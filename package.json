@@ -1,0 +1,37 @@
+{
+  "name": "@seniorsistemas/senior-core",
+  "version": "1.0.0",
+  "description": "Senior Core SDK para Node.js",
+  "main": "index.js",
+  "author": "Senior ECOAPI Team",
+  "license": "MIT",
+  "scripts": {
+    "test": "echo \"Error: no test specified! Configure in package.json\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dev-senior-com-br/senior-core-node.git"
+  },
+  "bugs": {
+    "url": "https://github.com/dev-senior-com-br/senior-core-node/issues"
+  },
+  "keywords": [
+    "node.js",
+    "senior",
+    "api",
+    "authentication"
+  ],
+  "dependencies": {
+    "bluebird": "3.4.7",
+    "lodash": "^4.17.15",
+    "q": "2.0.x",
+    "request": "^2.88.0",
+    "xml2js": "^0.4.23"
+  },
+  "homepage": "https://github.com/dev-senior-com-br/senior-core-node#readme",
+  "directories": {
+    "example": "examples",
+    "lib": "lib"
+  },
+  "devDependencies": {}
+}
