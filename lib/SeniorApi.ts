@@ -29,25 +29,3 @@ export default class SeniorApi {
     return this._authorization;
   }
 }
-
-// function SeniorApi(username: string, password: string) {
-
-//   this.username = username;
-//   this.password = password;
-
-//   this.accessToken = undefined;
-// }
-
-// Object.defineProperty(SeniorApi.prototype, 'authentication', {
-//   get: () => {
-//     this._authentication = this._authentication || new Authentication(this);
-//     return this._authentication;
-//   },
-// });
-
-// Object.defineProperty(SeniorApi.prototype, 'authorization', {
-//   get: () => {
-//     this._authorization = this._authorization || new Authorization(this);
-//     return this._authorization;
-//   },
-// });
