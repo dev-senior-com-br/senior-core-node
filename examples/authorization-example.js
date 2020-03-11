@@ -2,7 +2,7 @@ require('dotenv').config({
     path: "../.env"
 });
 
-var SeniorApi = require('../build/index');
+var SeniorApi = require('../built/index');
 const parseString = require('xml2js').parseString;
 
 var username = process.env.USERNAME;
