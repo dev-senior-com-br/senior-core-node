@@ -6,6 +6,9 @@
   "author": "Senior ECOAPI Team",
   "license": "MIT",
   "scripts": {
+    "build": "tsc",
+    "format": "prettier --write \"lib/**/*.ts\" \"lib/**/*.js\"",
+    "lint": "tslint -p tsconfig.json",
     "test": "echo \"Error: no test specified! Configure in package.json\" && exit 1"
   },
   "repository": {
@@ -33,5 +36,13 @@
     "example": "examples",
     "lib": "lib"
   },
-  "devDependencies": {}
+  "devDependencies": {
+    "@types/lodash": "^4.14.149",
+    "@types/q": "^1.5.2",
+    "@types/request": "^2.48.4",
+    "prettier": "^1.19.1",
+    "tslint": "^6.0.0",
+    "tslint-config-prettier": "^1.18.0",
+    "typescript": "^3.8.3"
+  }
 }

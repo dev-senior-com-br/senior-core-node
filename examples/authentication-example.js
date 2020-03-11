@@ -2,7 +2,7 @@ require('dotenv').config({
     path: "../.env"
 });
 
-var SeniorApi = require('../index');
+var SeniorApi = require('../built/index');
 
 var username = process.env.USERNAME;
 var password = process.env.PASS;
