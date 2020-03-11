@@ -25,7 +25,7 @@ var RequestOptions = /** @class */ (function () {
             headers: this.headers,
             json: this.json,
             qs: this.qs,
-            useQuerystring: this.useQuerystring,
+            useQuerystring: this.useQuerystring
         };
     };
     return RequestOptions;

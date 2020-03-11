@@ -1,10 +1,10 @@
-import { ClientOptions } from '../model/ClientOptions';
-import { RequestOptions } from '../model/RequestOptions';
-import Domain from './Domain';
-import * as _ from 'lodash';
-import * as Q from 'q';
-import * as http from 'request';
-import SeniorApi from '../SeniorApi';
+import { ClientOptions } from "../model/ClientOptions";
+import { RequestOptions } from "../model/RequestOptions";
+import Domain from "./Domain";
+import * as _ from "lodash";
+import * as Q from "q";
+import * as http from "request";
+import SeniorApi from "../SeniorApi";
 
 export default class RequestClient {
   seniorApi: SeniorApi;
@@ -29,18 +29,23 @@ export default class RequestClient {
 
     const deferred = Q.defer();
     let headers = new Map<string, string>();
-    headers.set('Accept', 'application/json');
-    headers.set('Content-Type', 'application/json');
+    headers.set("Accept", "application/json");
+    headers.set("Content-Type", "application/json");
 
     if (opts.headers) {
       headers = _.merge(headers, opts.headers);
     }
 
     if (opts.accessToken) {
-      headers.set('Authorization', `Bearer ${opts.accessToken}`);
+      headers.set("Authorization", `Bearer ${opts.accessToken}`);
     }
     // opções de request
-    const options = new RequestOptions(opts.timeout, this.baseUrl + opts.url, opts.method, headers);
+    const options = new RequestOptions(
+      opts.timeout,
+      this.baseUrl + opts.url,
+      opts.method,
+      headers
+    );
 
     if (!_.isNull(opts.data)) {
       options.json = opts.data;
@@ -56,7 +61,7 @@ export default class RequestClient {
       } else {
         deferred.resolve({
           statusCode: response.statusCode,
-          body: response.body,
+          body: response.body
         });
       }
     });

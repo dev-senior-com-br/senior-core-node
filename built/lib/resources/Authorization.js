@@ -10,8 +10,8 @@ var Authorization = /** @class */ (function () {
             if (!uri) {
                 throw new Error('A "uri" deve ser informada');
             }
-            var clientOptions = new ClientOptions_1.ClientOptions('/rest/platform/authorization/queries/getResource', HttpMethod_1.HttpMethod.POST, {
-                uri: uri,
+            var clientOptions = new ClientOptions_1.ClientOptions("/rest/platform/authorization/queries/getResource", HttpMethod_1.HttpMethod.POST, {
+                uri: uri
             });
             return _this.client.request(clientOptions);
         };
@@ -25,16 +25,16 @@ var Authorization = /** @class */ (function () {
             if (!attributes) {
                 throw new Error('Os "attributes" devem ser informados');
             }
-            var clientOptions = new ClientOptions_1.ClientOptions('/rest/platform/authorization/actions/checkAccess', HttpMethod_1.HttpMethod.POST, {
+            var clientOptions = new ClientOptions_1.ClientOptions("/rest/platform/authorization/actions/checkAccess", HttpMethod_1.HttpMethod.POST, {
                 permissions: [
                     {
                         resource: resource,
                         action: action,
-                        attributes: attributes,
-                    },
+                        attributes: attributes
+                    }
                 ],
                 includeFilters: false,
-                includeDelegations: false,
+                includeDelegations: false
             });
             clientOptions.accessToken = _this.seniorApi.accessToken;
             return _this.client.request(clientOptions);
@@ -43,8 +43,8 @@ var Authorization = /** @class */ (function () {
             if (!resources) {
                 throw new Error('Os "resources" devem ser informados');
             }
-            var clientOptions = new ClientOptions_1.ClientOptions('/rest/platform/authorization/actions/saveResources', HttpMethod_1.HttpMethod.POST, {
-                resources: resources,
+            var clientOptions = new ClientOptions_1.ClientOptions("/rest/platform/authorization/actions/saveResources", HttpMethod_1.HttpMethod.POST, {
+                resources: resources
             });
             clientOptions.accessToken = _this.seniorApi.accessToken;
             return _this.client.request(clientOptions);
@@ -53,8 +53,8 @@ var Authorization = /** @class */ (function () {
             if (!resources) {
                 throw new Error('Os "resources" devem ser informados');
             }
-            var clientOptions = new ClientOptions_1.ClientOptions('/rest/platform/authorization/actions/deleteResources', HttpMethod_1.HttpMethod.POST, {
-                resources: resources,
+            var clientOptions = new ClientOptions_1.ClientOptions("/rest/platform/authorization/actions/deleteResources", HttpMethod_1.HttpMethod.POST, {
+                resources: resources
             });
             clientOptions.accessToken = _this.seniorApi.accessToken;
             return _this.client.request(clientOptions);
@@ -66,9 +66,9 @@ var Authorization = /** @class */ (function () {
             if (!description) {
                 throw new Error('O "description" deve ser informado');
             }
-            var clientOptions = new ClientOptions_1.ClientOptions('/rest/platform/authorization/actions/createRole', HttpMethod_1.HttpMethod.POST, {
+            var clientOptions = new ClientOptions_1.ClientOptions("/rest/platform/authorization/actions/createRole", HttpMethod_1.HttpMethod.POST, {
                 name: name,
-                description: description,
+                description: description
             });
             clientOptions.accessToken = _this.seniorApi.accessToken;
             return _this.client.request(clientOptions);
@@ -77,8 +77,8 @@ var Authorization = /** @class */ (function () {
             if (!name) {
                 throw new Error('O "name" deve ser informado');
             }
-            var clientOptions = new ClientOptions_1.ClientOptions('/rest/platform/authorization/queries/getRole', HttpMethod_1.HttpMethod.POST, {
-                name: name,
+            var clientOptions = new ClientOptions_1.ClientOptions("/rest/platform/authorization/queries/getRole", HttpMethod_1.HttpMethod.POST, {
+                name: name
             });
             clientOptions.accessToken = _this.seniorApi.accessToken;
             return _this.client.request(clientOptions);
@@ -87,8 +87,8 @@ var Authorization = /** @class */ (function () {
             if (!name) {
                 throw new Error('O "name" deve ser informado');
             }
-            var clientOptions = new ClientOptions_1.ClientOptions('/rest/platform/authorization/actions/deleteRole', HttpMethod_1.HttpMethod.POST, {
-                name: name,
+            var clientOptions = new ClientOptions_1.ClientOptions("/rest/platform/authorization/actions/deleteRole", HttpMethod_1.HttpMethod.POST, {
+                name: name
             });
             clientOptions.accessToken = _this.seniorApi.accessToken;
             return _this.client.request(clientOptions);
@@ -100,9 +100,9 @@ var Authorization = /** @class */ (function () {
             if (!users) {
                 throw new Error('Os "users" devem ser informados');
             }
-            var clientOptions = new ClientOptions_1.ClientOptions('/rest/platform/authorization/actions/assignUsers', HttpMethod_1.HttpMethod.POST, {
+            var clientOptions = new ClientOptions_1.ClientOptions("/rest/platform/authorization/actions/assignUsers", HttpMethod_1.HttpMethod.POST, {
                 roles: roles,
-                users: users,
+                users: users
             });
             clientOptions.accessToken = _this.seniorApi.accessToken;
             return _this.client.request(clientOptions);
@@ -114,9 +114,9 @@ var Authorization = /** @class */ (function () {
             if (!users) {
                 throw new Error('Os "users" devem ser informados');
             }
-            var clientOptions = new ClientOptions_1.ClientOptions('/rest/platform/authorization/actions/unassignUsers', HttpMethod_1.HttpMethod.POST, {
+            var clientOptions = new ClientOptions_1.ClientOptions("/rest/platform/authorization/actions/unassignUsers", HttpMethod_1.HttpMethod.POST, {
                 roles: roles,
-                users: users,
+                users: users
             });
             clientOptions.accessToken = _this.seniorApi.accessToken;
             return _this.client.request(clientOptions);

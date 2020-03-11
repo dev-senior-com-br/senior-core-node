@@ -1,4 +1,4 @@
-import { HttpMethod } from './HttpMethod';
+import { HttpMethod } from "./HttpMethod";
 
 export class RequestOptions {
   timeout: number;
@@ -16,7 +16,7 @@ export class RequestOptions {
     headers: Map<string, string> = null,
     json: object = null,
     qs: string = null,
-    useQuerystring: boolean = false,
+    useQuerystring: boolean = false
   ) {
     this.timeout = timeout;
     this.url = url;
@@ -35,7 +35,7 @@ export class RequestOptions {
       headers: this.headers,
       json: this.json,
       qs: this.qs,
-      useQuerystring: this.useQuerystring,
+      useQuerystring: this.useQuerystring
     };
   }
 }

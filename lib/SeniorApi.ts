@@ -1,5 +1,5 @@
-import Authentication from './resources/Authentication';
-import Authorization from './resources/Authorization';
+import Authentication from "./resources/Authentication";
+import Authorization from "./resources/Authorization";
 
 export default class SeniorApi {
   password: string = null;

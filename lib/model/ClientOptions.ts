@@ -1,4 +1,4 @@
-import { HttpMethod } from './HttpMethod';
+import { HttpMethod } from "./HttpMethod";
 
 export class ClientOptions {
   url: string;
@@ -9,7 +9,11 @@ export class ClientOptions {
   data: object;
   params: string;
 
-  constructor(url: string = null, method: HttpMethod = null, data: object = null) {
+  constructor(
+    url: string = null,
+    method: HttpMethod = null,
+    data: object = null
+  ) {
     this.url = url;
     this.method = method;
     this.data = data;

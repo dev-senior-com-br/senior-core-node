@@ -1,4 +1,4 @@
-import SeniorApi from '../SeniorApi';
+import SeniorApi from "../SeniorApi";
 
 export default class Domain {
   seniorApi: SeniorApi;
@@ -6,6 +6,7 @@ export default class Domain {
   constructor(seniorApi: SeniorApi) {
     this.seniorApi = seniorApi;
 
-    this.baseUrl = 'https://platform-homologx.senior.com.br/t/senior.com.br/bridge/1.0';
+    this.baseUrl =
+      "https://platform-homologx.senior.com.br/t/senior.com.br/bridge/1.0";
   }
 }

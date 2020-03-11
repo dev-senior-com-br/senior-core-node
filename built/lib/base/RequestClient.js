@@ -23,13 +23,13 @@ var RequestClient = /** @class */ (function () {
             }
             var deferred = Q.defer();
             var headers = new Map();
-            headers.set('Accept', 'application/json');
-            headers.set('Content-Type', 'application/json');
+            headers.set("Accept", "application/json");
+            headers.set("Content-Type", "application/json");
             if (opts.headers) {
                 headers = _.merge(headers, opts.headers);
             }
             if (opts.accessToken) {
-                headers.set('Authorization', "Bearer " + opts.accessToken);
+                headers.set("Authorization", "Bearer " + opts.accessToken);
             }
             // opções de request
             var options = new RequestOptions_1.RequestOptions(opts.timeout, _this.baseUrl + opts.url, opts.method, headers);
@@ -47,7 +47,7 @@ var RequestClient = /** @class */ (function () {
                 else {
                     deferred.resolve({
                         statusCode: response.statusCode,
-                        body: response.body,
+                        body: response.body
                     });
                 }
             });
