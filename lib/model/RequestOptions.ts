@@ -28,14 +28,20 @@ export class RequestOptions {
   }
 
   public toTOptions(): object {
-    return {
+    let localHeaders = {};
+    this.headers.forEach((value, key) => {
+      localHeaders[key] = value
+    });
+
+    let objectReturn = {
       timeout: this.timeout,
       url: this.url,
       method: this.method,
-      headers: this.headers,
+      headers: localHeaders,
       json: this.json,
       qs: this.qs,
       useQuerystring: this.useQuerystring
     };
+    return objectReturn;
   }
 }

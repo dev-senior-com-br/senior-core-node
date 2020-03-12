@@ -39,6 +39,7 @@ export default class RequestClient {
     if (opts.accessToken) {
       headers.set("Authorization", `Bearer ${opts.accessToken}`);
     }
+
     // opções de request
     const options = new RequestOptions(
       opts.timeout,
@@ -55,6 +56,7 @@ export default class RequestClient {
       options.qs = opts.params;
       options.useQuerystring = true;
     }
+
     http(options.url, options.toTOptions(), (error, response) => {
       if (error) {
         deferred.reject(error);

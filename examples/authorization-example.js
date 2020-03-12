@@ -5,7 +5,7 @@ require('dotenv').config({
 var SeniorApi = require('../built/index').default;
 const parseString = require('xml2js').parseString;
 
-var username = process.env.USERNAME;
+var username = process.env.SENIOR_USERNAME;
 var password = process.env.PASS;
 
 var api = new SeniorApi(username, password);
