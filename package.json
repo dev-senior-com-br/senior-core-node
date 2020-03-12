@@ -22,7 +22,9 @@
     "node.js",
     "senior",
     "api",
-    "authentication"
+    "authentication",
+    "authorization",
+    "tenant"
   ],
   "dependencies": {
     "bluebird": "3.4.7",

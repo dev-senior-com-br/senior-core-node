@@ -3,12 +3,17 @@ require('dotenv').config({
 });
 
 var SeniorApi = require('../built/index').default;
+const parseString = require('xml2js').parseString;
 
-var username = process.env.USERNAME;
+var username = process.env.SENIOR_USERNAME;
 var password = process.env.PASS;
 var tenantName = process.env.TENANT_NAME;
 
 var api = new SeniorApi(username, password);
+
+function printError(error) {
+	console.error(error);
+}
 
 // Efetuando login
 api.authentication.login().then(function (json) {
@@ -20,7 +25,14 @@ api.authentication.login().then(function (json) {
 	if (refreshToken) {
 		// Efetuando refreshToken
 		jsonToken = api.authentication.refreshToken(tenantName, refreshToken).then(function (json) {
-			return JSON.parse(json.body.jsonToken);
+			if (json.statusCode != 200) {
+				parseString(json.body, function (err, result) {
+					printError(result);
+					return result;
+				});
+			} else {
+				return JSON.parse(json.body.jsonToken);
+			}
 		}).catch(function (error) {
 			console.error("Erro na tentativa de efetuar refreshToken: ", error);
 		});
@@ -41,7 +53,14 @@ var validationCode = "<SEU_CODIGO>";
 
 // Efetuando loginMFA
 var jsonToken = api.authentication.loginMFA(temporaryToken, validationCode).then(function (json) {
-	return JSON.parse(json.body.jsonToken);
+	if (json.statusCode != 200) {
+		parseString(json.body, function (err, result) {
+			printError(result);
+			return result;
+		});
+	} else {
+		return JSON.parse(json.body.jsonToken);
+	}
 }).catch(function (error) {
 	console.error("Erro na tentativa de efetuar loginMFA: ", error);
 });
@@ -51,7 +70,14 @@ var secret = "<SUA_SENHA>";
 
 // Efetuando loginWithKey
 jsonToken = api.authentication.loginWithKey(accessKey, secret, tenantName).then(function (json) {
-	return JSON.parse(json.body.jsonToken);
+	if (json.statusCode != 200) {
+		parseString(json.body, function (err, result) {
+			printError(result);
+			return result;
+		});
+	} else {
+		return JSON.parse(json.body.jsonToken);
+	}
 }).catch(function (error) {
 	console.error("Erro na tentativa de efetuar loginWithKey: ", error);
 });
