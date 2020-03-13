@@ -1,6 +1,7 @@
 import Authentication from "./resources/Authentication";
 import Authorization from "./resources/Authorization";
 import Tenant from "./resources/Tenant";
+import Users from "./resources/Users";
 
 export default class SeniorApi {
   password: string = null;
@@ -9,6 +10,8 @@ export default class SeniorApi {
   _authentication: Authentication;
   _authorization: Authorization;
   _tenant: Tenant;
+  _users: Users;
+
   constructor(username: string, password: string) {
     if (!username) {
       throw new Error('O "username" deve ser informado');
@@ -34,5 +37,10 @@ export default class SeniorApi {
   get tenant(): Tenant {
     this._tenant = this._tenant || new Tenant(this);
     return this._tenant;
+  }
+
+  get users(): Users {
+    this._users = this._users || new Users(this);
+    return this._users;
   }
 }
