@@ -15,7 +15,7 @@ api.authentication.login().then(function (json) {
 
 	var username = "teste-user";
 	var fullName = "teste api NODEJS";
-	var email = "teste@abc.com.br";
+	var email = "teste@workflow.com.br";
 	var password = "Teste12!";
 	var description =  "teste de API com NodeJS";
 	var blocked = false;

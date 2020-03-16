@@ -176,10 +176,6 @@ export default class Users {
             throw new Error('O "description" deve ser informado');
         }
 
-        if (!photo) {
-            throw new Error('O "photo" deve ser informado');
-        }
-
         if (!locale) {
             throw new Error('O "locale" deve ser informado');
         }
@@ -223,10 +219,6 @@ export default class Users {
 
         if (!description) {
             throw new Error('O "description" deve ser informado');
-        }
-
-        if (!photo) {
-            throw new Error('O "photo" deve ser informado');
         }
 
         if (!locale) {
