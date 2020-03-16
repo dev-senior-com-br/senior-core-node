@@ -3,46 +3,42 @@ import { ClientOptions } from "../model/ClientOptions";
 import { HttpMethod } from "../model/HttpMethod";
 import SeniorApi from "../SeniorApi";
 
-export default class Tenant {
-    seniorApi: SeniorApi;
-    private _client: RequestClient;
-
+export default class Tenant extends RequestClient {
     constructor(seniorApi: SeniorApi) {
-        this.seniorApi = seniorApi;
-    }
-
-    get client(): RequestClient {
-        this._client = this._client || new RequestClient(this.seniorApi);
-        return this._client;
+        super(seniorApi);
     }
 
     getTenantByName = (tenantName: string) => {
         if (!tenantName) {
             throw new Error('O "tenantName" deve ser informado');
         }
-        const clientOptions = new ClientOptions(
-            "/rest/platform/tenant/queries/getTenantByName",
-            HttpMethod.POST,
-            {
+        const clientOptions = {
+            url: "/rest/platform/tenant/queries/getTenantByName",
+            method: HttpMethod.POST,
+            data: {
                 tenantName
+            },
+            headers: {
+                authorization: this.seniorApi.accessToken
             }
-        );
-        clientOptions.accessToken = this.seniorApi.accessToken;
-        return this.client.request(clientOptions);
+        };
+        return this.request(clientOptions);
     };
 
     getTenantByDomain = (tenantDomain: string) => {
         if (!tenantDomain) {
             throw new Error('O "tenantDomain" deve ser informado');
         }
-        const clientOptions = new ClientOptions(
-            "/rest/platform/tenant/queries/getTenantByDomain",
-            HttpMethod.POST,
-            {
+        const clientOptions = {
+            url: "/rest/platform/tenant/queries/getTenantByDomain",
+            method: HttpMethod.POST,
+            data: {
                 tenantDomain
+            },
+            headers: {
+                authorization: this.seniorApi.accessToken
             }
-        );
-        clientOptions.accessToken = this.seniorApi.accessToken;
-        return this.client.request(clientOptions);
+        };
+        return this.request(clientOptions);
     };
 }
