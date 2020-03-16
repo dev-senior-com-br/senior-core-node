@@ -42,7 +42,8 @@
     "@types/q": "^1.5.2",
     "@types/request": "^2.48.4",
     "prettier": "^1.19.1",
-    "tslint": "^6.0.0",
+    "tslint": "^6.1.0",
+    "minimist": ">=1.2.2",
     "tslint-config-prettier": "^1.18.0",
     "typescript": "^3.8.3"
   }
