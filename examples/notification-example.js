@@ -16,11 +16,11 @@ api.authentication.login().then(function (json) {
         "authentication",
 		"News",
 		"None",
-		"clica ni mim",
-		"texto muito útil aqui",
+		"Assunto",
+		"Conteúdo útil aqui",
 		"platform",
 		"authentication",
-		["admin@workflow.com.br"]
+		[username]
     ).then(function (json) {
 		if (json.statusCode != 200) {
 			console.error(json);
