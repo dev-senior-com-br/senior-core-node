@@ -33,11 +33,15 @@ export default class RequestClient {
     headers.set("Content-Type", "application/json");
 
     if (opts.headers) {
-      headers = _.merge(headers, opts.headers);
-    }
-
-    if (opts.accessToken) {
-      headers.set("Authorization", `Bearer ${opts.accessToken}`);
+      if (opts.headers["X-Tenant"]) {
+        headers.set("X-Tenant", opts.headers["X-Tenant"]);
+      }
+      if (opts.headers["seniorx.version"]) {
+        headers.set("seniorx.version", String(opts.headers["seniorx.version"]));
+      }
+      if (opts.headers.authorization) {
+        headers.set("Authorization", "Bearer " + opts.headers.authorization);
+      }
     }
 
     // opções de request
