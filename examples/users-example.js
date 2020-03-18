@@ -33,7 +33,7 @@ api.authentication.login().then(function (json) {
 		console.error("Erro na tentativa de realizar chamada de createUser. ", error);
 	});
 
-	api.tenant.getUser(username).then(function (json) {
+	api.users.getUser(username).then(function (json) {
 		if (json.statusCode != 200) {
 			console.log(json);
 		} else {
@@ -41,12 +41,12 @@ api.authentication.login().then(function (json) {
 		}
 	}).catch(function (error) {
 		console.error("Erro na tentativa de realizar chamada de getUser. ", error);
-	});	
+	});
 
 	var tenantName = "<TENANT_NAME>";
 
 	fullName = "teste api NODEJS alterado";
-	api.tenant.updateUser(username, fullName, email, password, description, blocked, changePassword, photo, locale, properties).then(function (json) {
+	api.users.updateUser(username, fullName, email, password, description, blocked, changePassword, photo, locale, properties).then(function (json) {
 		if (json.statusCode != 200) {
 			console.log(json);
 		} else {
@@ -60,78 +60,92 @@ api.authentication.login().then(function (json) {
 	var description = "Grupo de teste de NodeJS";
 	var users = [username];
 	var id = "";
-	api.tenant.createGroup(name, description, email, users).then(function (json) {
+	api.users.createGroup(name, description, email, users).then(function (json) {
+
 		if (json.statusCode != 200) {
 			console.log(json);
 		} else {
+
 			console.log(json.body);
 			id = json.body.id;
+
+			var usersToAdd = [];
+			var usersToRemove = [username];
+			api.users.updateGroup(id, name, description, email, usersToAdd, usersToRemove).then(function (json) {
+				if (json.statusCode != 200) {
+					console.log(json);
+				} else {
+					console.log(json.body);
+				}
+			}).catch(function (error) {
+				console.error("Erro na tentativa de realizar chamada de updateGroup. ", error);
+			});
+
+			usersToAdd = [username];
+			usersToRemove = [];
+			api.users.updateGroupUsers(usersToAdd, usersToRemove, id).then(function (json) {
+				if (json.statusCode != 200) {
+					console.log(json);
+				} else {
+					console.log(json.body);
+				}
+			}).catch(function (error) {
+				console.error("Erro na tentativa de realizar chamada de updateGroupUsers. ", error);
+			});
+
+			api.users.getGroup(id).then(function (json) {
+				if (json.statusCode != 200) {
+					console.log(json);
+				} else {
+					console.log(json.body);
+				}
+			}).catch(function (error) {
+				console.error("Erro na tentativa de realizar chamada de getGroup. ", error);
+			});
+
+			var searchValue = "teste";
+			var pagination;
+			api.users.listGroupUsers(id, searchValue, pagination).then(function (json) {
+				if (json.statusCode != 200) {
+					console.log(json);
+				} else {
+					console.log(json.body);
+				}
+			}).catch(function (error) {
+				console.error("Erro na tentativa de realizar chamada de listGroupUsers. ", error);
+			});
+
+			api.users.listGroups(searchValue, tenantName, pagination).then(function (json) {
+				if (json.statusCode != 200) {
+					console.log(json);
+				} else {
+					console.log(json.body);
+				}
+			}).catch(function (error) {
+				console.error("Erro na tentativa de realizar chamada de listGroupUsers. ", error);
+			});
+
+			api.users.deleteGroup(id).then(function (json) {
+				if (json.statusCode != 200) {
+					console.log(json);
+				} else {
+					console.log(json.body);
+				}
+			}).catch(function (error) {
+				console.error("Erro na tentativa de realizar chamada de deleteGroup. ", error);
+			});
+
+			if (api.accessToken) {
+				api.authentication.logout().catch(function (error) {
+					console.error("Erro na tentativa de efetuar logout: ", error);
+				});
+			}
+
 		}
+
 	}).catch(function (error) {
 		console.error("Erro na tentativa de realizar chamada de createGroup. ", error);
-	});	
-
-	var usersToAdd = [];
-	var usersToRemove = [username];
-	api.tenant.updateGroup(id, name, description, email, usersToAdd, usersToRemove).then(function (json) {
-		if (json.statusCode != 200) {
-			console.log(json);
-		} else {
-			console.log(json.body);
-		}
-	}).catch(function (error) {
-		console.error("Erro na tentativa de realizar chamada de updateGroup. ", error);
 	});
-
-	usersToAdd = [username];
-	usersToRemove = [];
-	api.tenant.updateGroupUsers(usersToAdd, usersToRemove, id).then(function (json) {
-		if (json.statusCode != 200) {
-			console.log(json);
-		} else {
-			console.log(json.body);
-		}
-	}).catch(function (error) {
-		console.error("Erro na tentativa de realizar chamada de updateGroupUsers. ", error);
-	});
-
-	api.tenant.getGroup(id).then(function (json) {
-		if (json.statusCode != 200) {
-			console.log(json);
-		} else {
-			console.log(json.body);
-		}
-	}).catch(function (error) {
-		console.error("Erro na tentativa de realizar chamada de getGroup. ", error);
-	});
-
-	var searchValue;
-	var pagination;
-	api.tenant.listGroups(searchValue, tenantName, pagination).then(function (json) {
-		if (json.statusCode != 200) {
-			console.log(json);
-		} else {
-			console.log(json.body);
-		}
-	}).catch(function (error) {
-		console.error("Erro na tentativa de realizar chamada de listGroupUsers. ", error);
-	});
-
-	api.tenant.listGroupUsers(id, searchValue, pagination).then(function (json) {
-		if (json.statusCode != 200) {
-			console.log(json);
-		} else {
-			console.log(json.body);
-		}
-	}).catch(function (error) {
-		console.error("Erro na tentativa de realizar chamada de listGroupUsers. ", error);
-	});
-
-	if (api.accessToken) {
-		api.authentication.logout().catch(function (error) {
-			console.error("Erro na tentativa de efetuar logout: ", error);
-		});
-	}
 
 }).catch(function (error) {
 	console.error("Erro na tentativa de efetuar login: ", error);

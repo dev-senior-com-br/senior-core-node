@@ -30,8 +30,7 @@
     "bluebird": "3.4.7",
     "lodash": "^4.17.15",
     "q": "2.0.x",
-    "request": "^2.88.0",
-    "xml2js": "^0.4.23"
+    "request": "^2.88.0"
   },
   "homepage": "https://github.com/dev-senior-com-br/senior-core-node#readme",
   "directories": {
@@ -43,7 +42,8 @@
     "@types/q": "^1.5.2",
     "@types/request": "^2.48.4",
     "prettier": "^1.19.1",
-    "tslint": "^6.0.0",
+    "tslint": "^6.1.0",
+    "minimist": ">=1.2.2",
     "tslint-config-prettier": "^1.18.0",
     "typescript": "^3.8.3"
   }

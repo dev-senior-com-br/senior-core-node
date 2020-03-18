@@ -119,6 +119,7 @@ export default class Users {
     };
 
     updateGroup = (id: string, name: string, description: string, email: string, usersToAdd: string[], usersToRemove: string[]) => {
+
         if (!id) {
             throw new Error('O "id" deve ser informado');
         }
@@ -266,4 +267,18 @@ export default class Users {
         clientOptions.accessToken = this.seniorApi.accessToken;
         return this.client.request(clientOptions);
     };
+
+    deleteGroup = (id: string) => {
+        if (!id) {
+            throw new Error('O "id" deve ser informado');
+        }
+
+        const clientOptions = new ClientOptions(
+            "/rest/usuarios/userManager/entities/Grupo/" + id,
+            HttpMethod.DELETE
+        );
+        clientOptions.accessToken = this.seniorApi.accessToken;
+        return this.client.request(clientOptions);
+    };
+
 }
