@@ -1,11 +1,11 @@
 import RequestClient from "../base/RequestClient";
-import { ClientOptions } from "../model/ClientOptions";
 import { HttpMethod } from "../model/HttpMethod";
 import SeniorApi from "../SeniorApi";
 import { Pagination } from "../model/Pagination";
 import { Properties } from "../model/Properties";
 
 export default class Users extends RequestClient {
+    
     private _client: RequestClient;
 
     constructor(seniorApi: SeniorApi) {
@@ -60,37 +60,49 @@ export default class Users extends RequestClient {
         return this.request(clientOptions);
     };  
 
+
     getGroup = (id: string) => {
         if (!id) {
             throw new Error('O "id" deve ser informado');
         }
-        const clientOptions = new ClientOptions(
-            "/rest/platform/user/queries/getGroup",
-            HttpMethod.POST,
-            {
+
+        const clientOptions = {
+            url:  "/rest/platform/user/queries/getGroup",
+            method: HttpMethod.POST,
+            data: {
                 id
+            },
+            headers: {
+                authorization: this.seniorApi.accessToken
             }
-        );
-        clientOptions.accessToken = this.seniorApi.accessToken;
-        return this.client.request(clientOptions);
-    };
+        };
+        return this.request(clientOptions);
+    };  
+
 
     getUser = (username: string) => {
+
         if (!username) {
             throw new Error('O "username" deve ser informado');
         }
-        const clientOptions = new ClientOptions(
-            "/rest/platform/user/queries/getUser",
-            HttpMethod.POST,
-            {
-                username
-            }
-        );
-        clientOptions.accessToken = this.seniorApi.accessToken;
-        return this.client.request(clientOptions);
-    };
 
-    createGroup = (name: string, description: string, email: string, users: string[]) => {
+        const clientOptions = {
+            url: "/rest/platform/user/queries/getUser",
+            method: HttpMethod.POST,
+            data: {
+                username
+            },
+            headers: {
+                authorization: this.seniorApi.accessToken
+            }
+        };
+        return this.request(clientOptions);
+    }; 
+
+
+
+    createGroup =  (name: string, description: string, email: string, users: string[]) => {
+
         if (!name) {
             throw new Error('O "tenantName" deve ser informado');
         }
@@ -103,21 +115,23 @@ export default class Users extends RequestClient {
             throw new Error('O "tenantName" deve ser informado');
         }
 
-        const clientOptions = new ClientOptions(
-            "/rest/platform/user/actions/createGroup",
-            HttpMethod.POST,
-            {
+        const clientOptions = {
+            url: "/rest/platform/user/actions/createGroup",
+            method: HttpMethod.POST,
+            data: {
                 name,
                 description,
                 email,
                 users
+            },
+            headers: {
+                authorization: this.seniorApi.accessToken
             }
-        );
-        clientOptions.accessToken = this.seniorApi.accessToken;
-        return this.client.request(clientOptions);
-    };
+        };
+        return this.request(clientOptions);
+    }; 
 
-    updateGroup = (id: string, name: string, description: string, email: string, usersToAdd: string[], usersToRemove: string[]) => {
+    updateGroup =  (id: string, name: string, description: string, email: string, usersToAdd: string[], usersToRemove: string[]) => {
 
         if (!id) {
             throw new Error('O "id" deve ser informado');
@@ -139,22 +153,24 @@ export default class Users extends RequestClient {
             throw new Error('O "usersToAdd" ou "usersToRemove" devem ser informados');
         }
 
-        const clientOptions = new ClientOptions(
-            "/rest/platform/user/actions/updateGroup",
-            HttpMethod.POST,
-            {
+        const clientOptions = {
+            url: "/rest/platform/user/actions/updateGroup",
+            method: HttpMethod.POST,
+            data: {
                 id,
                 name,
                 description,
                 email,
                 usersToAdd,
                 usersToRemove
+            },
+            headers: {
+                authorization: this.seniorApi.accessToken
             }
-        );
-        clientOptions.accessToken = this.seniorApi.accessToken;
-        return this.client.request(clientOptions);
-    };
-
+        };
+        return this.request(clientOptions);
+    }; 
+    
     createUser = (username: string, fullName: string, email: string, password: string, description: string, blocked: boolean, changePassword: boolean, photo: string, locale: string, properties: Properties[]) => {
         if (!username) {
             throw new Error('O "username" deve ser informado');
@@ -180,10 +196,10 @@ export default class Users extends RequestClient {
             throw new Error('O "locale" deve ser informado');
         }
 
-        const clientOptions = new ClientOptions(
-            "/rest/platform/user/actions/createUser",
-            HttpMethod.POST,
-            {
+        const clientOptions = {
+            url: "/rest/platform/user/actions/createUser",
+            method: HttpMethod.POST,
+            data: {
                 username,
                 fullName,
                 email,
@@ -194,13 +210,16 @@ export default class Users extends RequestClient {
                 photo,
                 locale,
                 properties
+            },
+            headers: {
+                authorization: this.seniorApi.accessToken
             }
-        );
-        clientOptions.accessToken = this.seniorApi.accessToken;
-        return this.client.request(clientOptions);
+        };
+        return this.request(clientOptions);       
     };
 
     updateUser = (username: string, fullName: string, email: string, password: string, description: string, blocked: boolean, changePassword: boolean, photo: string, locale: string, properties: Properties[]) => {
+
         if (!username) {
             throw new Error('O "username" deve ser informado');
         }
@@ -225,10 +244,10 @@ export default class Users extends RequestClient {
             throw new Error('O "locale" deve ser informado');
         }
 
-        const clientOptions = new ClientOptions(
-            "/rest/platform/user/actions/updateUser",
-            HttpMethod.POST,
-            {
+        const clientOptions = {
+            url:  "/rest/platform/user/actions/updateUser",
+            method: HttpMethod.POST,
+            data: {
                 username,
                 fullName,
                 email,
@@ -239,13 +258,17 @@ export default class Users extends RequestClient {
                 photo,
                 locale,
                 properties
+            },
+            headers: {
+                authorization: this.seniorApi.accessToken
             }
-        );
-        clientOptions.accessToken = this.seniorApi.accessToken;
-        return this.client.request(clientOptions);
+        };
+
+        return this.request(clientOptions);       
     };
 
     updateGroupUsers = (usersToAdd: string[], usersToRemove: string[], groupId: string) => {
+
         if (!usersToAdd && !usersToRemove) {
             throw new Error('O "usersToAdd" e/ou "usersToRemove" devem ser informados.');
         }
@@ -254,30 +277,44 @@ export default class Users extends RequestClient {
             throw new Error('O "groupId" deve ser informado');
         }
 
-        const clientOptions = new ClientOptions(
-            "/rest/platform/user/actions/updateGroupUsers",
-            HttpMethod.POST,
-            {
+
+        const clientOptions = {
+            url:  "/rest/platform/user/actions/updateGroupUsers",
+            method: HttpMethod.POST,
+            data: {
                 usersToAdd,
                 usersToRemove,
                 groupId
+            },
+            headers: {
+                authorization: this.seniorApi.accessToken
             }
-        );
-        clientOptions.accessToken = this.seniorApi.accessToken;
-        return this.client.request(clientOptions);
+        };
+
+        return this.request(clientOptions);  
+
     };
 
     deleteGroup = (id: string) => {
+        
         if (!id) {
             throw new Error('O "id" deve ser informado');
         }
 
-        const clientOptions = new ClientOptions(
-            "/rest/usuarios/userManager/entities/Grupo/" + id,
-            HttpMethod.DELETE
-        );
-        clientOptions.accessToken = this.seniorApi.accessToken;
-        return this.client.request(clientOptions);
+        const clientOptions = {
+            url:  "/rest/usuarios/userManager/entities/Grupo/" + id,
+            method: HttpMethod.DELETE,
+            headers: {
+                authorization: this.seniorApi.accessToken
+            }
+        };
+        
+        return this.request(clientOptions);  
+
     };
+
+
+
+    
 
 }

@@ -23,6 +23,7 @@ api.authentication.login().then(function (json) {
 	var photo;
 	var locale = "pt_BR";
 	var properties;
+	
 	api.users.createUser(username, fullName, email, password, description, blocked, changePassword, photo, locale, properties).then(function (json) {
 		if (json.statusCode != 200) {
 			console.log(json);
