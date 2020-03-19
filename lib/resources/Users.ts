@@ -5,17 +5,11 @@ import SeniorApi from "../SeniorApi";
 import { Pagination } from "../model/Pagination";
 import { Properties } from "../model/Properties";
 
-export default class Users {
-    seniorApi: SeniorApi;
+export default class Users extends RequestClient {
     private _client: RequestClient;
 
     constructor(seniorApi: SeniorApi) {
-        this.seniorApi = seniorApi;
-    }
-
-    get client(): RequestClient {
-        this._client = this._client || new RequestClient(this.seniorApi);
-        return this._client;
+        super(seniorApi);
     }
 
     listGroups = (searchValue: string, tenant: string, pagination: Pagination) => {
@@ -27,17 +21,19 @@ export default class Users {
             throw new Error('O "tenant" deve ser informado');
         }
 
-        const clientOptions = new ClientOptions(
-            "/rest/platform/user/queries/listGroups",
-            HttpMethod.POST,
-            {
-                searchValue,
+        const clientOptions = {
+            url: "/rest/platform/user/queries/listGroups",
+            method: HttpMethod.POST,
+            data: {
+               searchValue,
                 tenant,
                 pagination
+            },
+            headers: {
+                authorization: this.seniorApi.accessToken
             }
-        );
-        clientOptions.accessToken = this.seniorApi.accessToken;
-        return this.client.request(clientOptions);
+        };
+        return this.request(clientOptions);
     };
 
     listGroupUsers = (id: string, searchValue: string, pagination: Pagination) => {
@@ -48,18 +44,21 @@ export default class Users {
         if (!searchValue) {
             throw new Error('O "searchValue" deve ser informado');
         }
-        const clientOptions = new ClientOptions(
-            "/rest/platform/user/queries/listGroupUsers",
-            HttpMethod.POST,
-            {
+
+        const clientOptions = {
+            url: "/rest/platform/user/queries/listGroupUsers",
+            method: HttpMethod.POST,
+            data: {
                 id,
                 searchValue,
                 pagination
+            },
+            headers: {
+                authorization: this.seniorApi.accessToken
             }
-        );
-        clientOptions.accessToken = this.seniorApi.accessToken;
-        return this.client.request(clientOptions);
-    };
+        };
+        return this.request(clientOptions);
+    };  
 
     getGroup = (id: string) => {
         if (!id) {
