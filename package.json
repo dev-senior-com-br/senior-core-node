@@ -24,7 +24,8 @@
     "api",
     "authentication",
     "authorization",
-    "tenant"
+    "tenant",
+    "users"
   ],
   "dependencies": {
     "bluebird": "3.4.7",
