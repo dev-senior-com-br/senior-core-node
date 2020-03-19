@@ -28,6 +28,7 @@
   ],
   "dependencies": {
     "bluebird": "3.4.7",
+    "dotenv": "^8.2.0",
     "lodash": "^4.17.15",
     "q": "2.0.x",
     "request": "^2.88.0"
