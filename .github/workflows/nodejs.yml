@@ -5,21 +5,36 @@ name: Senior Core SDK
 
 on:
   push:
-    branches: [ master ]
-  pull_request:
-    branches: [ master ]
+    branches:
+      - master
 
 jobs:
-  build:
+  publish-to-npm:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v1
-      - uses: actions/setup-node@v1
+      
+      # Checkout the repo
+      - uses: actions/checkout@master
+        
+      # Update package version and set up git
+      - uses: actions/setup-node@master
+      - name: Update package version and setup git
+        run: |
+          git config user.name "Actions User"
+          git config user.email noreply@github.com
+          npm version 1.0.$(date +%s)
+
+      # Publish to NPMJS
+      - uses: actions/setup-node@master
         with:
           node-version: 12
-          registry-url: https://npm.pkg.github.com/
-          scope: '@andremrezende'
-      - run: npm ci
-      - run: npm run build
-      - run: echo "//registry.npmjs.org/:_authToken=${{ secrets.NPM_AUTH_TOKEN }}" > ~/.npmrc
-      - run: npm publish --access public
+          registry-url: 'https://registry.npmjs.org/'
+      - name: Publish to NPMJS
+        run: |
+          npm config set //registry.npmjs.org/:_authToken=$NODE_AUTH_TOKEN
+          npm config set scope "@andremrezende"
+          npm config list
+          npm publish --access public 
+        env:
+          CI: true
+          NODE_AUTH_TOKEN: ${{secrets.npm_token}}
