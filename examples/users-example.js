@@ -13,15 +13,15 @@ api.authentication.login().then(function (json) {
 	var jsonToken = JSON.parse(json.body.jsonToken);
 	api.accessToken = jsonToken.access_token;
 
-	var username = "teste-user";
-	var fullName = "teste api NODEJS";
-	var email = "teste@workflow.com.br";
-	var password = "Teste12!";
+	var username = "<NOME_USUARIO_PARA_TESTES>";
+	var fullName = "<NOME_COMPLETO>";
+	var email = "<EMAIL_USUARIO_PARA_TESTES>";
+	var password = "<SENHA_USUARIO_PARA_TESTES>";
 	var description =  "teste de API com NodeJS";
 	var blocked = false;
 	var changePassword = false;
 	var photo;
-	var locale = "pt_BR";
+	var locale = "<LOCALE_PADRAO>";
 	var properties;
 	
 	api.users.createUser(username, fullName, email, password, description, blocked, changePassword, photo, locale, properties).then(function (json) {
@@ -46,7 +46,7 @@ api.authentication.login().then(function (json) {
 
 	var tenantName = "<TENANT_NAME>";
 
-	fullName = "teste api NODEJS alterado";
+	fullName = "<NOME_COMPLATO_ALTERADO>";
 	api.users.updateUser(username, fullName, email, password, description, blocked, changePassword, photo, locale, properties).then(function (json) {
 		if (json.statusCode != 200) {
 			console.log(json);
@@ -57,8 +57,8 @@ api.authentication.login().then(function (json) {
 		console.error("Erro na tentativa de realizar chamada de updateUser. ", error);
 	});
 
-	var name = "grupoACME";
-	var description = "Grupo de teste de NodeJS";
+	var name = "<NOME_GRUPO_TESTE>";
+	var description = "<DESCRICAO_NOME_GRUPO>";
 	var users = [username];
 	var id = "";
 	api.users.createGroup(name, description, email, users).then(function (json) {
@@ -104,7 +104,7 @@ api.authentication.login().then(function (json) {
 				console.error("Erro na tentativa de realizar chamada de getGroup. ", error);
 			});
 
-			var searchValue = "teste";
+			var searchValue = "<NOME_GRUPO_PROCURAR>";
 			var pagination;
 			api.users.listGroupUsers(id, searchValue, pagination).then(function (json) {
 				if (json.statusCode != 200) {
