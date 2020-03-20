@@ -21,6 +21,5 @@ jobs:
           scope: '@andremrezende'
       - run: npm ci
       - run: npm run build
+      - run: echo "//registry.npmjs.org/:_authToken=${{ secrets.NPM_AUTH_TOKEN }}" > ~/.npmrc
       - run: npm publish --access public
-        env:
-          NODE_AUTH_TOKEN: ${{secrets.PUBLISH_NPM_TOKEN}}
