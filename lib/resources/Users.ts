@@ -267,6 +267,24 @@ export default class Users extends RequestClient {
         return this.request(clientOptions);       
     };
 
+    deleteUser = (id: string) => {
+        
+        if (!id) {
+            throw new Error('O "id" deve ser informado');
+        }
+
+        const clientOptions = {
+            url:  "/rest/usuarios/userManager/entities/Usuario/" + id,
+            method: HttpMethod.DELETE,
+            headers: {
+                authorization: this.seniorApi.accessToken
+            }
+        };
+        
+        return this.request(clientOptions);  
+
+    };
+
     updateGroupUsers = (usersToAdd: string[], usersToRemove: string[], groupId: string) => {
 
         if (!usersToAdd && !usersToRemove) {
