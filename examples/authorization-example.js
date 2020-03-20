@@ -8,7 +8,7 @@ const parseString = require('xml2js').parseString;
 var username = process.env.SENIOR_USERNAME;
 var password = process.env.PASS;
 
-var api = new SeniorApi(username, password);
+var api = new SeniorApi();
 
 function printError(error) {
 	console.error(error['ams:fault']['ams:code'][0] + " - " + error['ams:fault']['ams:message'][0] + " - " + error['ams:fault']['ams:description'][0]);

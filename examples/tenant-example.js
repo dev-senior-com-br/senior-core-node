@@ -14,7 +14,7 @@ function printError(error) {
 	console.error(error['ams:fault']['ams:code'][0] + " - " + error['ams:fault']['ams:message'][0] + " - " + error['ams:fault']['ams:description'][0]);
 }
 
-api.authentication.login().then(function (json) {
+api.authentication.login(username, password).then(function (json) {
 	var jsonToken = JSON.parse(json.body.jsonToken);
 	api.accessToken = jsonToken.access_token;
 
