@@ -19,7 +19,6 @@ jobs:
           node-version: 12
       - run: npm ci
       - run: npm run build
-      - run: npm run lint
       - run: echo registry=https://npm.pkg.github.com/andremrezende >> .npmrc
 
   publish-npm:
