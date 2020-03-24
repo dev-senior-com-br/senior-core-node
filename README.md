@@ -57,6 +57,10 @@ node <teste>-example
 ### Links
 * [Documentação da API](https://dev.senior.com.br/api/platform/)
 
+
+## Obtendo versão de distribuição
+Última versão disponível em [https://www.npmjs.com/package/@seniorsistemas/senior-core](https://www.npmjs.com/package/@seniorsistemas/senior-core)
+
 ## Suporte
 
 Criar uma issue [https://github.com/dev-senior-com-br/senior-core-node/issues](https://github.com/dev-senior-com-br/senior-core-node/issues)
