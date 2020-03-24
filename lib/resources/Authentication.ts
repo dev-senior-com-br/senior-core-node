@@ -8,13 +8,20 @@ export default class Authentication extends RequestClient {
     super(seniorApi);
   }
 
-  login = () => {
+  login = (username: string, password: string) => {
+    if (!username) {
+      throw new Error('O "username" deve ser informado');
+    }
+
+    if (!password) {
+      throw new Error('O "password" deve ser informado');
+    }
     const clientOptions = {
       url: "/rest/platform/authentication/actions/login",
       method: HttpMethod.POST,
       data: {
-        username: this.seniorApi.username,
-        password: this.seniorApi.password
+        username: username,
+        password: password
       }
     };
 

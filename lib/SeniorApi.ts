@@ -5,25 +5,12 @@ import Notification from "./resources/Notification";
 import Users from "./resources/Users";
 
 export default class SeniorApi {
-  password: string = null;
-  username: string = null;
   accessToken: string = null;
   _authentication: Authentication;
   _authorization: Authorization;
   _tenant: Tenant;
   _notification: Notification;
   _users: Users;
-  constructor(username: string, password: string) {
-    if (!username) {
-      throw new Error('O "username" deve ser informado');
-    }
-
-    if (!password) {
-      throw new Error('O "password" deve ser informado');
-    }
-    this.username = username;
-    this.password = password;
-  }
 
   get authentication(): Authentication {
     this._authentication = this._authentication || new Authentication(this);

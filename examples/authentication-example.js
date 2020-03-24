@@ -1,5 +1,5 @@
-require('dotenv').config({
-    path: "../.env"
+ require('dotenv').config({
+     path: "../.env"
 });
 
 var SeniorApi = require('../built/index').default;
@@ -8,10 +8,10 @@ var username = process.env.SENIOR_USERNAME;
 var password = process.env.PASS;
 var tenantName = process.env.TENANT_NAME;
 
-var api = new SeniorApi(username, password);
+var api = new SeniorApi();
 
 // Efetuando login
-api.authentication.login().then(function (json) {
+api.authentication.login(username, password).then(function (json) {
 	var jsonToken = JSON.parse(json.body.jsonToken);
 	api.accessToken = jsonToken.access_token;
 	
