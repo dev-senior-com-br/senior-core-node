@@ -11,6 +11,9 @@ A SDK suporta o Node.js na versão 10 ou superior.
 npm i @seniorsistemas/senior-core --save-dev
 ```
 
+## Ambiente
+Atualmente o ambiente utilizado para desenvolvimento e padrão é o de Homologx.
+
 ## Fontes
 ```sh
 $ git clone https://github.com/dev-senior-com-br/senior-core-node.git

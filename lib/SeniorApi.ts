@@ -4,6 +4,11 @@ import Tenant from "./resources/Tenant";
 import Notification from "./resources/Notification";
 import Users from "./resources/Users";
 
+enum ENVIRONMENTS {
+                   DEV = "https://platform-homologx.senior.com.br/t/senior.com.br/bridge/1.0", 
+                   PROD = "https://platform.senior.com.br/t/senior.com.br/bridge/1.0"
+                  };
+
 export default class SeniorApi {
   accessToken: string = null;
   _authentication: Authentication;
@@ -11,6 +16,7 @@ export default class SeniorApi {
   _tenant: Tenant;
   _notification: Notification;
   _users: Users;
+  _environment = ENVIRONMENTS.DEV;
 
   get authentication(): Authentication {
     this._authentication = this._authentication || new Authentication(this);
@@ -35,5 +41,10 @@ export default class SeniorApi {
   get users(): Users {
     this._users = this._users || new Users(this);
     return this._users;
+  }
+
+  get environment(): string {
+    this._environment = this._environment || ENVIRONMENTS.DEV;
+    return this._environment;
   }
 }
