@@ -12,7 +12,7 @@ npm i @seniorsistemas/senior-core --save-dev
 ```
 
 ## Ambiente
-Atualmente o ambiente utilizado para desenvolvimento e padrão é o de Homologx.
+Atualmente o ambiente padrão para o desenvolvimento é o da Homologx.
 
 ## Fontes
 ```sh
