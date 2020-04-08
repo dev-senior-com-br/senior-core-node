@@ -7,7 +7,14 @@ Esta biblioteca permite desenvolvedores criar integrações com API da Senior. V
 A SDK suporta o Node.js na versão 10 ou superior.
  
 ## Instalação
+```
+npm i @seniorsistemas/senior-core --save-dev
+```
 
+## Ambiente
+Atualmente o ambiente padrão para o desenvolvimento é o da Homologx.
+
+## Fontes
 ```sh
 $ git clone https://github.com/dev-senior-com-br/senior-core-node.git
 $ cd senior-core-node
@@ -23,7 +30,7 @@ _Criar arquivo *.env* na raíz do projeto_
 
 #### _Adicionar ao arquivo as seguintes propriedades_ 
 ```text
- USERNAME = <NOME_DO_USUARIO>
+ SENIOR_USERNAME = <NOME_DO_USUARIO>
  PASS = <SENHA_DO_USUARIO>
  TENANT_NAME = <NOME_DO_TENANT>
 ```
