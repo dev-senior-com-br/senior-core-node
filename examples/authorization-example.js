@@ -8,6 +8,14 @@ const parseString = require('xml2js').parseString;
 var username = process.env.SENIOR_USERNAME;
 var password = process.env.PASS;
 
+//Propriedades necessárias:
+var resource = "<URI_DO_RECURSO>";
+var action = "<ACAO_DO_RECURSO>";
+var attributes = [{ "attribute": "<NOME_DO_ATRIBUTO>", "value": "VALOR_DO_ATRIBUTO" }];
+var role = "<NOME_DO_PAPEL>";
+var roles = ["<NOME_DO_PAPEL>"];
+var users = ["<IDENTIFICADOR_DO_USUARIO>"];
+
 var api = new SeniorApi();
 
 function printError(error) {
@@ -31,10 +39,6 @@ api.authentication.login(username, password).then(function (json) {
 	}).catch(function (error) {
 		console.error("Erro na tentativa obter o recurso: ", error);
 	});
-
-	var resource = "<URI_DO_RECURSO>";
-	var action = "<ACAO_DO_RECURSO>";
-	var attributes = [{ "attribute": "<NOME_DO_ATRIBUTO>", "value": "VALOR_DO_ATRIBUTO" }];
 
 	api.authorization.checkAccess(resource, action, attributes).then(function (json) {
 		if (json.statusCode != 200) {
@@ -77,8 +81,6 @@ api.authentication.login(username, password).then(function (json) {
 		console.error("Erro na tentativa de excluir o recurso: ", error);
 	});
 
-	var role = "<NOME_DO_PAPEL>";
-
 	api.authorization.createRole(role).then(function (json) {
 		if (json.statusCode != 200) {
 			parseString(json.body, function (err, result) {
@@ -117,9 +119,6 @@ api.authentication.login(username, password).then(function (json) {
 	}).catch(function (error) {
 		console.error("Erro na tentativa de remover o papel: ", error);
 	});
-
-	var roles = ["<NOME_DO_PAPEL>"];
-	var users = ["<IDENTIFICADOR_DO_USUARIO>"];
 
 	api.authorization.assignUsers(roles, users).then(function (json) {
 		if (json.statusCode != 200) {
