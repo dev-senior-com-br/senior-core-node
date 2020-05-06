@@ -8,7 +8,15 @@ var username = process.env.SENIOR_USERNAME;
 var password = process.env.PASS;
 var tenantName = process.env.TENANT_NAME;
 
+
+//Propriedades necessárias:
+var temporaryToken = "<SEU_TOKEN>";
+var validationCode = "<SEU_CODIGO>";
+var accessKey = "<SUA_CHAVE>";
+var secret = "<SUA_SENHA>";
+
 var api = new SeniorApi();
+
 
 // Efetuando login
 api.authentication.login(username, password).then(function (json) {
@@ -40,8 +48,6 @@ api.authentication.login(username, password).then(function (json) {
 	console.error("Erro na tentativa de efetuar login: ", error);
 });
 
-var temporaryToken = "<SEU_TOKEN>";
-var validationCode = "<SEU_CODIGO>";
 
 // Efetuando loginMFA
 api.authentication.loginMFA(temporaryToken, validationCode).then(function (json) {
@@ -53,9 +59,6 @@ api.authentication.loginMFA(temporaryToken, validationCode).then(function (json)
 }).catch(function (error) {
 	console.error("Erro na tentativa de efetuar loginMFA: ", error);
 });
-
-var accessKey = "<SUA_CHAVE>";
-var secret = "<SUA_SENHA>";
 
 // Efetuando loginWithKey
 api.authentication.loginWithKey(accessKey, secret, tenantName).then(function (json) {

@@ -61,6 +61,23 @@ Alterear os valores das variáveis e executar conforme o comando abaixo:
 node <teste>-example
 ``` 
 
+Alguns exemplos necessitam de propriedades específicas, descritas no inicio dos arquivos. Como o `user-example`:
+```
+...
+//Propriedades necessárias:
+var creation_username = "<Username do novo usuário>";
+var creation_fullName = "<Nome completo>";
+var creation_email = "<Email do novo usuário>";
+var creation_password = "<Senha do novo usuário>";
+var creation_locale = "<Locale do usuário (exemplo: pt-BR)>";
+var changed_fullName = "<Nome completo para alteração do usuário>";
+var tenantName = "<Nome do tenant>";
+var group_name =  "<Nome do novo grupo>";
+var group_description = "<Descrição do grupo>";
+...
+```
+
+
 ### Links
 * [Documentação da API](https://dev.senior.com.br/api/platform/)
 
