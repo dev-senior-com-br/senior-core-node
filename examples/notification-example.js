@@ -7,8 +7,6 @@ var SeniorApi = require('../built/index').default;
 var username = process.env.SENIOR_USERNAME;
 var password = process.env.PASS;
 
-//Propriedades necessárias:
-
 var api = new SeniorApi();
 
 api.authentication.login(username, password).then(function (json) {
