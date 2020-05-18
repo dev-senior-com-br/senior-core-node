@@ -3,6 +3,7 @@ import Authorization from "./resources/Authorization";
 import Tenant from "./resources/Tenant";
 import Notification from "./resources/Notification";
 import Users from "./resources/Users";
+import Entity from "./base/Entity";
 
 enum ENVIRONMENTS {
                    DEV = "https://platform-homologx.senior.com.br/t/senior.com.br/bridge/1.0", 
@@ -46,5 +47,9 @@ export default class SeniorApi {
   get environment(): string {
     this._environment = this._environment || ENVIRONMENTS.DEV;
     return this._environment;
+  }
+
+  getEntity(domain: string, service: string, entityName: string) {
+    return new Entity(domain, service, entityName, this);
   }
 }
