@@ -28,7 +28,7 @@ export default class RequestClient {
     }
 
     const deferred = Q.defer();
-    let headers = new Map<string, string>();
+    const headers = new Map<string, string>();
     headers.set("Accept", "application/json");
     headers.set("Content-Type", "application/json");
 

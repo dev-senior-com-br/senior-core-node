@@ -32,7 +32,8 @@
     "dotenv": "^8.2.0",
     "lodash": "^4.17.15",
     "q": "2.0.x",
-    "request": "^2.88.0"
+    "request": "^2.88.0",
+    "tsc": "^1.20150623.0"
   },
   "homepage": "https://github.com/dev-senior-com-br/senior-core-node#readme",
   "directories": {
