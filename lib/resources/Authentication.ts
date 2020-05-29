@@ -5,7 +5,7 @@ import SeniorApi from "../SeniorApi";
 export default class Authentication extends RequestClient {
 
   constructor(seniorApi: SeniorApi) {
-    super(seniorApi);
+    super(seniorApi, "platform", "authentication");
   }
 
   login = (username: string, password: string) => {
@@ -17,7 +17,7 @@ export default class Authentication extends RequestClient {
       throw new Error('O "password" deve ser informado');
     }
     const clientOptions = {
-      url: "/rest/platform/authentication/actions/login",
+      url: this.getUrlPath("actions/login"),
       method: HttpMethod.POST,
       data: {
         username: username,
@@ -30,7 +30,7 @@ export default class Authentication extends RequestClient {
 
   logout = () => {
     const clientOptions = {
-      url: "/rest/platform/authentication/actions/logout",
+      url: this.getUrlPath("actions/logout"),
       method: HttpMethod.POST,
       data: {
         access_token: this.seniorApi.accessToken
@@ -44,7 +44,7 @@ export default class Authentication extends RequestClient {
 
   loginMFA = (temporaryToken: string, validationCode: number) => {
     const clientOptions = {
-      url: "/rest/platform/authentication/actions/loginMFA",
+      url: this.getUrlPath("actions/loginMFA"),
       method: HttpMethod.POST,
       data: {
         temporaryToken,
@@ -56,7 +56,7 @@ export default class Authentication extends RequestClient {
   };
   loginWithKey = (accessKey: string, secret: string, tenantName: string) => {
     const clientOptions = {
-      url: "/anonymous/rest/platform/authentication/actions/loginWithKey",
+      url: this.getUrlPath("actions/loginWithKey", true),
       method: HttpMethod.POST,
       data: {
         accessKey,
@@ -68,7 +68,7 @@ export default class Authentication extends RequestClient {
   };
   refreshToken = (tenantName: string, refreshToken: string) => {
     const clientOptions = {
-      url: "/rest/platform/authentication/actions/refreshToken", 
+      url: this.getUrlPath("actions/refreshToken"), 
       method: HttpMethod.POST, 
       data: {
           refreshToken: refreshToken

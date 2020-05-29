@@ -5,7 +5,7 @@ import SeniorApi from "../SeniorApi";
 export default class Authorization extends RequestClient {
   
   constructor(seniorApi: SeniorApi) {
-    super(seniorApi);
+    super(seniorApi, "platform", "authorization");
   }
 
   getResource = (uri: string) => {
@@ -14,7 +14,7 @@ export default class Authorization extends RequestClient {
     }
 
     const clientOptions = {
-      url: "/rest/platform/authorization/queries/getResource",
+      url: this.getUrlPath("queries/getResource"),
       method: HttpMethod.POST,
       data: {
         uri
@@ -36,7 +36,7 @@ export default class Authorization extends RequestClient {
     }
 
     const clientOptions = {
-      url: "/rest/platform/authorization/actions/checkAccess",
+      url: this.getUrlPath("actions/checkAccess"),
       method: HttpMethod.POST,
       data: {
         permissions: [
@@ -62,7 +62,7 @@ export default class Authorization extends RequestClient {
       throw new Error('Os "resources" devem ser informados');
     }
     const clientOptions = {
-      url: "/rest/platform/authorization/actions/saveResources",
+      url: this.getUrlPath("actions/saveResources"),
       method: HttpMethod.POST,
       data: {
         resources
@@ -79,7 +79,7 @@ export default class Authorization extends RequestClient {
       throw new Error('Os "resources" devem ser informados');
     }
     const clientOptions = {
-      url: "/rest/platform/authorization/actions/deleteResources",
+      url: this.getUrlPath("actions/deleteResources"),
       method: HttpMethod.POST,
       data: {
         resources
@@ -100,7 +100,7 @@ export default class Authorization extends RequestClient {
       throw new Error('O "description" deve ser informado');
     }
     const clientOptions = {
-      url: "/rest/platform/authorization/actions/createRole",
+      url: this.getUrlPath("actions/createRole"),
       method: HttpMethod.POST,
       data: {
         name,
@@ -118,7 +118,7 @@ export default class Authorization extends RequestClient {
       throw new Error('O "name" deve ser informado');
     }
     const clientOptions = {
-      url: "/rest/platform/authorization/queries/getRole",
+      url: this.getUrlPath("queries/getRole"),
       method: HttpMethod.POST,
       data: {
         name
@@ -136,7 +136,7 @@ export default class Authorization extends RequestClient {
       throw new Error('O "name" deve ser informado');
     }
     const clientOptions = {
-      url: "/rest/platform/authorization/actions/deleteRole",
+      url: this.getUrlPath("actions/deleteRole"),
       method: HttpMethod.POST,
       data: {
         name
@@ -157,7 +157,7 @@ export default class Authorization extends RequestClient {
       throw new Error('Os "users" devem ser informados');
     }
     const clientOptions = {
-      url: "/rest/platform/authorization/actions/assignUsers",
+      url: this.getUrlPath("actions/assignUsers"),
       method: HttpMethod.POST,
       data: {
         roles,
@@ -179,7 +179,7 @@ export default class Authorization extends RequestClient {
       throw new Error('Os "users" devem ser informados');
     }
     const clientOptions = {
-      url: "/rest/platform/authorization/actions/unassignUsers",
+      url: this.getUrlPath("actions/unassignUsers"),
       method: HttpMethod.POST,
       data: {
         roles,
