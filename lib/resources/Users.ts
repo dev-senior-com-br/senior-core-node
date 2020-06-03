@@ -9,7 +9,7 @@ export default class Users extends RequestClient {
     private _client: RequestClient;
 
     constructor(seniorApi: SeniorApi) {
-        super(seniorApi);
+        super(seniorApi, "platform", "user");
     }
 
     listGroups = (searchValue: string, tenant: string, pagination: Pagination) => {
@@ -22,7 +22,7 @@ export default class Users extends RequestClient {
         }
 
         const clientOptions = {
-            url: "/rest/platform/user/queries/listGroups",
+            url: this.getUrlPath("queries/listGroups"),
             method: HttpMethod.POST,
             data: {
                searchValue,
@@ -46,7 +46,7 @@ export default class Users extends RequestClient {
         }
 
         const clientOptions = {
-            url: "/rest/platform/user/queries/listGroupUsers",
+            url: this.getUrlPath("queries/listGroupUsers"),
             method: HttpMethod.POST,
             data: {
                 id,
@@ -67,7 +67,7 @@ export default class Users extends RequestClient {
         }
 
         const clientOptions = {
-            url:  "/rest/platform/user/queries/getGroup",
+            url: this.getUrlPath( "queries/getGroup"),
             method: HttpMethod.POST,
             data: {
                 id
@@ -87,7 +87,7 @@ export default class Users extends RequestClient {
         }
 
         const clientOptions = {
-            url: "/rest/platform/user/queries/getUser",
+            url: this.getUrlPath("queries/getUser"),
             method: HttpMethod.POST,
             data: {
                 username
@@ -116,7 +116,7 @@ export default class Users extends RequestClient {
         }
 
         const clientOptions = {
-            url: "/rest/platform/user/actions/createGroup",
+            url: this.getUrlPath("actions/createGroup"),
             method: HttpMethod.POST,
             data: {
                 name,
@@ -154,7 +154,7 @@ export default class Users extends RequestClient {
         }
 
         const clientOptions = {
-            url: "/rest/platform/user/actions/updateGroup",
+            url: this.getUrlPath("actions/updateGroup"),
             method: HttpMethod.POST,
             data: {
                 id,
@@ -197,7 +197,7 @@ export default class Users extends RequestClient {
         }
 
         const clientOptions = {
-            url: "/rest/platform/user/actions/createUser",
+            url: this.getUrlPath("actions/createUser"),
             method: HttpMethod.POST,
             data: {
                 username,
@@ -245,7 +245,7 @@ export default class Users extends RequestClient {
         }
 
         const clientOptions = {
-            url:  "/rest/platform/user/actions/updateUser",
+            url:  this.getUrlPath("actions/updateUser"),
             method: HttpMethod.POST,
             data: {
                 username,
@@ -274,7 +274,7 @@ export default class Users extends RequestClient {
         }
 
         const clientOptions = {
-            url:  "/rest/usuarios/userManager/entities/Usuario/" + id,
+            url:  this.getUrlPath("entities/Usuario/" + id),
             method: HttpMethod.DELETE,
             headers: {
                 authorization: this.seniorApi.accessToken
@@ -297,7 +297,7 @@ export default class Users extends RequestClient {
 
 
         const clientOptions = {
-            url:  "/rest/platform/user/actions/updateGroupUsers",
+            url:  this.getUrlPath("actions/updateGroupUsers"),
             method: HttpMethod.POST,
             data: {
                 usersToAdd,
@@ -320,7 +320,7 @@ export default class Users extends RequestClient {
         }
 
         const clientOptions = {
-            url:  "/rest/usuarios/userManager/entities/Grupo/" + id,
+            url:  this.getUrlPath("entities/Grupo/" + id),
             method: HttpMethod.DELETE,
             headers: {
                 authorization: this.seniorApi.accessToken
