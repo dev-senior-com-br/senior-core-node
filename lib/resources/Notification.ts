@@ -1,11 +1,16 @@
 import RequestClient from '../base/RequestClient';
 import { HttpMethod } from '../model/HttpMethod';
+import { SeniorApi } from '../..';
 
 export default class Notification extends RequestClient {
 
+    constructor(seniorApi: SeniorApi) {
+      super(seniorApi, "platform", "notifications")
+    }
+
     notifyUser = (origin: string, kind: string, priority: string, subject: string, content: string, domain: string, service: string, users: string[]) => {
         const clientOptions = {
-          url: "/rest/platform/notifications/actions/notifyUser",
+          url: this.getUrlPath("actions/notifyUser"),
           method: HttpMethod.POST,
           data: {
             "notificationOrigin" : origin,

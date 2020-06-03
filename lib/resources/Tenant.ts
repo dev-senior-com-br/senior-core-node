@@ -5,7 +5,7 @@ import SeniorApi from "../SeniorApi";
 
 export default class Tenant extends RequestClient {
     constructor(seniorApi: SeniorApi) {
-        super(seniorApi);
+        super(seniorApi, "platform", "tenant");
     }
 
     getTenantByName = (tenantName: string) => {
@@ -13,7 +13,7 @@ export default class Tenant extends RequestClient {
             throw new Error('O "tenantName" deve ser informado');
         }
         const clientOptions = {
-            url: "/rest/platform/tenant/queries/getTenantByName",
+            url: this.getUrlPath("queries/getTenantByName"),
             method: HttpMethod.POST,
             data: {
                 tenantName
@@ -30,7 +30,7 @@ export default class Tenant extends RequestClient {
             throw new Error('O "tenantDomain" deve ser informado');
         }
         const clientOptions = {
-            url: "/rest/platform/tenant/queries/getTenantByDomain",
+            url: this.getUrlPath("queries/getTenantByDomain"),
             method: HttpMethod.POST,
             data: {
                 tenantDomain

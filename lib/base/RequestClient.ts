@@ -5,14 +5,19 @@ import * as _ from "lodash";
 import * as Q from "q";
 import * as http from "request";
 import SeniorApi from "../SeniorApi";
+import { ENVIRONMENTS } from "../base/Environment"
 
 export default class RequestClient {
   seniorApi: SeniorApi;
   private baseUrl: string;
+  domain: string;
+  service: string;
 
-  constructor(seniorApi: SeniorApi) {
+  constructor(seniorApi: SeniorApi, domain: string, service: string) {
     this.seniorApi = seniorApi;
     this.baseUrl = new Domain(this.seniorApi).baseUrl;
+    this.domain = domain;
+    this.service = service;
   }
   /**
    * @param {ClientOptions}
@@ -74,4 +79,12 @@ export default class RequestClient {
 
     return deferred.promise;
   };
+
+  getUrlPath = (path: string, anonymous: boolean = false) => {
+    ///anonymous/rest/platform/authentication/actions/loginWithKey"
+    if (this.seniorApi._environment == ENVIRONMENTS.DEV)
+      return `${anonymous ? '/anonymous' : ''}/rest/${this.domain}/${this.service}/${path}`
+    else
+      return `/${this.domain}/${this.service}${anonymous ? '/anonymous' : ''}/${path}`
+  }
 }

@@ -3,19 +3,15 @@ import RequestClient from "./RequestClient";
 import SeniorApi from "../SeniorApi";
 
 export default class Entity extends RequestClient {
-    private domain: string;
-    private service: string;
 	private entityName: string;
 	
 	constructor(domain: string, service: string, entityName: string, seniorAPi: SeniorApi) {
-        super(seniorAPi);
-        this.domain = domain;
-        this.service = service;
+        super(seniorAPi, domain, service);
         this.entityName = entityName;
 	}
 	
 	get = (filter: string = '', id : string) => {
-        let url = `/rest/${this.domain}/${this.service}/entities/${this.entityName}`;
+        let url = this.getUrlPath(`entities/${this.entityName}`);
         if (id) {
             url += "/" + id;
         } else {
@@ -24,7 +20,7 @@ export default class Entity extends RequestClient {
             }
         }
         const clientOptions = {
-            url,
+            url : this.getUrlPath(url),
             headers: {
                 authorization: `Bearer ${this.seniorApi.accessToken}`
             },
@@ -34,12 +30,12 @@ export default class Entity extends RequestClient {
 	}
 	
     post = (param: object, id: string) => {
-        let url = `/rest/${this.domain}/${this.service}/entities/${this.entityName}`;
+        let url = `entities/${this.entityName}`;
         if (id) {
             url += `/${id}`
         }
 		const clientOptions = {
-            url,
+            url : this.getUrlPath(url),
             headers: {
                 authorization: `Bearer ${this.seniorApi.accessToken}`
             },
@@ -51,7 +47,7 @@ export default class Entity extends RequestClient {
 	
 	put = (id: string, param: object) => {
 		const clientOptions = {
-            url: `/rest/${this.domain}/${this.service}/entities/${this.entityName}/${id}`,
+            url: this.getUrlPath(`entities/${this.entityName}/${id}`),
             headers: {
                 authorization: `Bearer ${this.seniorApi.accessToken}`
             },
@@ -63,7 +59,7 @@ export default class Entity extends RequestClient {
 	
 	patch = (id: string, param: object) => {
 		const clientOptions = {
-            url: `/rest/${this.domain}/${this.service}/entities/${this.entityName}/${id}`,
+            url: this.getUrlPath(`entities/${this.entityName}/${id}`),
             headers: {
                 authorization: `Bearer ${this.seniorApi.accessToken}`
             },
@@ -75,7 +71,7 @@ export default class Entity extends RequestClient {
 	
 	delete = (id: string) => {
         const clientOptions = {
-            url: `/rest/${this.domain}/${this.service}/entities/${this.entityName}/${id}`,
+            url: this.getUrlPath(`entities/${this.entityName}/${id}`),
             headers: {
                 authorization: `Bearer ${this.seniorApi.accessToken}`
             },
