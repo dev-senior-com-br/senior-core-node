@@ -15,7 +15,6 @@ jobs:
       
       # Get version
       - uses: martinbeentjes/npm-get-version-action@v1.0.0
-      - name: Get current package version
       
       # Update package version and set up git
       - uses: actions/setup-node@master
