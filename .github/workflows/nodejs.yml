@@ -15,6 +15,11 @@ jobs:
       
       # Checkout the repo
       - uses: actions/checkout@master
+      
+      # Get version
+      - uses: martinbeentjes/npm-get-version-action@master     
+      - name: get-npm-version
+      - id: package-version
         
       # Update package version and set up git
       - uses: actions/setup-node@master
@@ -22,7 +27,7 @@ jobs:
         run: |
           git config user.name "Actions User"
           git config user.email noreply@github.com
-          npm version 1.0.$(date +%s)
+          npm version ${{steps.package-version.outputs.current-version}}$(date +%s)
 
       # Publish to NPMJS
       - uses: actions/setup-node@master
