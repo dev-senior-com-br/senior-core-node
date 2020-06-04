@@ -22,7 +22,7 @@ jobs:
         run: |
           git config user.name "Actions User"
           git config user.email noreply@github.com
-          npm version ${{ steps.package-version.outputs.current-version(date +%s)}}
+          npm version ${{ steps.package-version.outputs.current-version}}$(date +%s)
 
       # Publish to NPMJS
       - uses: actions/setup-node@master
