@@ -3,9 +3,9 @@ import { RequestOptions } from "../model/RequestOptions";
 import Domain from "./Domain";
 import * as _ from "lodash";
 import * as Q from "q";
-import * as http from "request";
+import http from "request";
 import SeniorApi from "../SeniorApi";
-import { ENVIRONMENTS } from "../base/Environment"
+import ENVIRONMENTS from "../Environments";
 
 export default class RequestClient {
   seniorApi: SeniorApi;

@@ -4,7 +4,7 @@ import Tenant from "./resources/Tenant";
 import Notification from "./resources/Notification";
 import Users from "./resources/Users";
 import Entity from "./base/Entity";
-import { ENVIRONMENTS } from "..";
+import ENVIRONMENTS from "./Environments";
 
 export default class SeniorApi {
   accessToken: string = null;

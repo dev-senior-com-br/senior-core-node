@@ -1,6 +1,6 @@
-import RequestClient from "../base/RequestClient";
 import { HttpMethod } from "../model/HttpMethod";
 import SeniorApi from "../SeniorApi";
+import RequestClient from "../base/RequestClient";
 
 export default class Authentication extends RequestClient {
 
