@@ -21,8 +21,9 @@ jobs:
       - name: Update package version and setup git
         run: |
           git config user.name "Actions User"
-          git config user.email noreply@github.com
-          npm version ${{ steps.package-version.outputs.current-version}}$(date +%s)
+          git config user.email noreply@github.com]
+          npm version patch
+      # npm version ${{ steps.package-version.outputs.current-version}}$(date +%s)
 
       # Publish to NPMJS
       - uses: actions/setup-node@master
