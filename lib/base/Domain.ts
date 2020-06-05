@@ -1,6 +1,6 @@
 import SeniorApi from "../SeniorApi";
 
-export default class Domain {
+export = class Domain {
   seniorApi: SeniorApi;
   baseUrl: string;
   constructor(seniorApi: SeniorApi) {

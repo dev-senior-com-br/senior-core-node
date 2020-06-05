@@ -7,7 +7,7 @@ import http from "request";
 import SeniorApi from "../SeniorApi";
 import ENVIRONMENTS from "../Environments";
 
-export default class RequestClient {
+export = class RequestClient {
   seniorApi: SeniorApi;
   private baseUrl: string;
   domain: string;
