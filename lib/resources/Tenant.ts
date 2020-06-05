@@ -3,7 +3,7 @@ import { ClientOptions } from "../model/ClientOptions";
 import { HttpMethod } from "../model/HttpMethod";
 import SeniorApi from "../SeniorApi";
 
-export default class Tenant extends RequestClient {
+export = class Tenant extends RequestClient {
     constructor(seniorApi: SeniorApi) {
         super(seniorApi, "platform", "tenant");
     }

@@ -2,7 +2,7 @@ import { HttpMethod } from "../model/HttpMethod";
 import SeniorApi from "../SeniorApi";
 import RequestClient from "../base/RequestClient";
 
-export default class Authentication extends RequestClient {
+export = class Authentication extends RequestClient {
 
   constructor(seniorApi: SeniorApi) {
     super(seniorApi, "platform", "authentication");

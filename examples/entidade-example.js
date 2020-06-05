@@ -1,8 +1,8 @@
 require('dotenv').config({
     path: "../.env"
 });
-var SeniorApi = require('../built/index').SeniorApi;
-var FilterBuilder = require('../built/index').FilterBuilder;
+var SeniorApi = require('../dist/index').SeniorApi;
+var FilterBuilder = require('../dist/index').FilterBuilder;
 
 var username = process.env.SENIOR_USERNAME;
 var password = process.env.PASS;
@@ -20,22 +20,22 @@ api.authentication.login(username, password).then(function (json) {
         nome: 'grupotestesdk'
     }).then(post => {
         const id = post.body.idGrupo.replace(/^\s+|\s+$/g,"");
-        entity.get().then(sucess => {}, error => {});
-        entity.get(id).then(sucess => {}, error => {});
-        entity.get(new FilterBuilder().field('nome').equals('grupotestesdk').build()).then(sucess => {}, error => {});
+        entity.get().then(sucess => {console.log(sucess)}, error => {console.log(error)});
+        entity.get(id).then(sucess => {console.log(sucess)}, error => {console.log(error)});
+        entity.get(new FilterBuilder().field('nome').equals('grupotestesdk').build()).then(sucess => {console.log(sucess)}, error => {});
         
         entity.put(id, {
             idGrupo: id,
             nome: 'grupotestesdk2'
-        }).then(sucess => {}, error => {});
+        }).then(sucess => {console.log(sucess)}, error => {console.log(error)});
 
         entity.patch(id, {
             idGrupo: id,
             nome: 'grupotestesdk3'
-        }).then(sucess => {}, error => {});
+        }).then(sucess => {console.log(sucess)}, error => {console.log(error)});
 
-        entity.delete(id).then(sucess => {}, error => {});
-    }, error => {});
+        entity.delete(id).then(sucess => {console.log(sucess)}, error => {console.log(error)});
+    }, error => {console.log(error)});
 
     if (api.accessToken) {
         api.authentication.logout().catch(function (error) {

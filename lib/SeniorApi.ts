@@ -6,7 +6,7 @@ import Users from "./resources/Users";
 import Entity from "./base/Entity";
 import ENVIRONMENTS from "./Environments";
 
-export default class SeniorApi {
+export = class SeniorApi {
   accessToken: string = null;
   _authentication: Authentication;
   _authorization: Authorization;
@@ -38,6 +38,10 @@ export default class SeniorApi {
   get users(): Users {
     this._users = this._users || new Users(this);
     return this._users;
+  }
+  
+  set environment(value: string) {
+    this._environment = ENVIRONMENTS[value];
   }
 
   get environment(): string {
