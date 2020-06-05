@@ -2,12 +2,11 @@
      path: "../.env"
 });
 
-var SeniorApi = require('../built/index').default;
+var SeniorApi = require('../dist/index').SeniorApi;
 
 var username = process.env.SENIOR_USERNAME;
 var password = process.env.PASS;
 var tenantName = process.env.TENANT_NAME;
-
 
 //Propriedades necessárias:
 var temporaryToken = "<SEU_TOKEN>";
@@ -16,7 +15,7 @@ var accessKey = "<SUA_CHAVE>";
 var secret = "<SUA_SENHA>";
 
 var api = new SeniorApi();
-
+api.environment = "DEV";
 
 // Efetuando login
 api.authentication.login(username, password).then(function (json) {

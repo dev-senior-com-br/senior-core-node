@@ -39,6 +39,10 @@ export = class SeniorApi {
     this._users = this._users || new Users(this);
     return this._users;
   }
+  
+  set environment(value: string) {
+    this._environment = ENVIRONMENTS[value];
+  }
 
   get environment(): string {
     this._environment = this._environment || ENVIRONMENTS.DEV;
