@@ -22,6 +22,7 @@ jobs:
         run: |
           git config user.name "Actions User"
           git config user.email noreply@github.com]
+          npm i
           npm run build
           npm version patch
       # npm version ${{ steps.package-version.outputs.current-version}}$(date +%s)
