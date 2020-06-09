@@ -25,7 +25,8 @@ jobs:
           npm -v
           npm i
           npm run build
-          git add . && git commit
+          git config --global core.editor "\usr\local\bin\subl -n -w"
+          git add . && git commit -m "new version"
           npm version patch
       # npm version ${{ steps.package-version.outputs.current-version}}$(date +%s)
 
