@@ -41,7 +41,6 @@ jobs:
           npm config set scope "@andremrezende"
           npm config list
           npm publish --access public 
-          git add . && git commit -m "latest version"
         env:
           CI: true
           NODE_AUTH_TOKEN: ${{secrets.npm_token}}
