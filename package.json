@@ -11,7 +11,7 @@
   "scripts": {
     "prebuild": "del-cli --force ./dist",
     "build": "tsc",
-    "postbuild": "cpx **/*.ts ./dist && del-cli --force ./dist/node_modules && del-cli --force ./dist/examples",
+    "postbuild": "cpx \"**/*.ts\" ./dist && del-cli --force ./dist/node_modules && del-cli --force ./dist/examples",
     "format": "prettier --write \"lib/**/*.ts\" \"lib/**/*.js\"",
     "lint": "tslint -p tsconfig.json",
     "test": "echo \"Error: no test specified! Configure in package.json\" && exit 1"
