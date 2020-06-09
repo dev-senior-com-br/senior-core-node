@@ -23,6 +23,7 @@ jobs:
           git config user.name "Actions User"
           git config user.email noreply@github.com]
           npm -v
+          npm i
           npm run build
           git add . && git commit
           npm version patch
