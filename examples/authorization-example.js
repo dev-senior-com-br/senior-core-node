@@ -1,7 +1,7 @@
 require('dotenv').config({
     path: "../.env"
 });
-0
+
 var SeniorApi = require('../dist/index').SeniorApi;
 const parseString = require('xml2js').parseString;
 
