@@ -10,6 +10,9 @@ var password = process.env.PASS;
 var api = new SeniorApi();
 
 api.authentication.login(username, password).then(function (json) {
+	if(json.body.resetPasswordInfo) {
+		throw new Error("Usuário informado inválido para os testes, é necessário fazer o login na plataforma ao menos uma vez após a sua criação para realizar a troca da senha.");
+	}
 	api.accessToken = JSON.parse(json.body.jsonToken).access_token;
 
 	api.notification.notifyUser(
