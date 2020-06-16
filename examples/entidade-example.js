@@ -1,7 +1,7 @@
 require('dotenv').config({
     path: "../.env"
 });
-var SeniorApi = require('../built/index').SeniorApi;
+var SeniorApi = require('../dist/index').SeniorApi;
 var FilterBuilder = require('../built/index').FilterBuilder;
 
 var username = process.env.SENIOR_USERNAME;
