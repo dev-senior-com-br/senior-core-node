@@ -19,6 +19,9 @@ api.environment = "DEV";
 
 // Efetuando login
 api.authentication.login(username, password).then(function (json) {
+	if(json.body.resetPasswordInfo) {
+		throw new Error("Usuário informado inválido para os testes, é necessário fazer o login na plataforma ao menos uma vez após a sua criação para realizar a troca da senha.");
+	}
 	var jsonToken = JSON.parse(json.body.jsonToken);
 	api.accessToken = jsonToken.access_token;
 	
