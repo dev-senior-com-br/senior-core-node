@@ -1,13 +1,17 @@
 {
   "name": "@seniorsistemas/senior-core",
-  "version": "1.2.4",
+  "version": "1.2.22",
   "description": "Senior Core SDK para Node.js",
   "main": "index.js",
-  "files": ["dist", "lib"],
+  "files": [
+    "dist"
+  ],
   "author": "Senior ECOAPI Team",
   "license": "MIT",
   "scripts": {
+    "prebuild": "del-cli --force ./dist",
     "build": "tsc",
+    "postbuild": "cpx \"**/*.ts\" ./dist && del-cli --force ./dist/node_modules && del-cli --force ./dist/examples",
     "format": "prettier --write \"lib/**/*.ts\" \"lib/**/*.js\"",
     "lint": "tslint -p tsconfig.json",
     "test": "echo \"Error: no test specified! Configure in package.json\" && exit 1"
@@ -45,10 +49,13 @@
     "@types/lodash": "^4.14.149",
     "@types/q": "^1.5.2",
     "@types/request": "^2.48.4",
+    "@deboxsoft/cpx": "^1.5.0",
+    "del-cli": "^3.0.1",
+    "minimist": ">=1.2.2",
+    "prebuild": "^10.0.0",
     "prettier": "^1.19.1",
     "tslint": "^6.1.0",
-    "minimist": ">=1.2.2",
     "tslint-config-prettier": "^1.18.0",
-    "typescript": "^3.8.3"
+    "typescript": "^3.9.5"
   }
 }

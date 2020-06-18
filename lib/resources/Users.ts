@@ -4,7 +4,7 @@ import SeniorApi from "../SeniorApi";
 import { Pagination } from "../model/Pagination";
 import { Properties } from "../model/Properties";
 
-export default class Users extends RequestClient {
+export = class Users extends RequestClient {
     
     private _client: RequestClient;
 

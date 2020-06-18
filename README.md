@@ -40,13 +40,13 @@ _Criar arquivo *.env* na raíz do projeto_
 Primeiro você precisa criar um arquivo `.js`, como por exemplo: `authentication-example.js`, e nele requerer a biblioteca.
 
 ```javascript
-var SeniorApi = require('../senior-core/index').default;
+var SeniorApi = require('@seniorsistemas/senior-core/dist/lib/SeniorApi').default;
 ```
 
-Então você precisa criar instância informando usuário e senha.
+Então você precisa criar a instância do SeniorApi.
 
 ```javascript
-var api = new SeniorApi(username, password);
+var api = new SeniorApi();
 ```
 
 ### Exemplos

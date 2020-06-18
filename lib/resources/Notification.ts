@@ -1,8 +1,8 @@
 import RequestClient from '../base/RequestClient';
 import { HttpMethod } from '../model/HttpMethod';
-import { SeniorApi } from '../..';
+import SeniorApi from '../SeniorApi';
 
-export default class Notification extends RequestClient {
+export = class Notification extends RequestClient {
 
     constructor(seniorApi: SeniorApi) {
       super(seniorApi, "platform", "notifications")

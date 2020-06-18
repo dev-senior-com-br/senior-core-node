@@ -1,13 +1,13 @@
 import { ClientOptions } from "../model/ClientOptions";
 import { RequestOptions } from "../model/RequestOptions";
-import Domain from "./Domain";
 import * as _ from "lodash";
 import * as Q from "q";
-import * as http from "request";
 import SeniorApi from "../SeniorApi";
-import { ENVIRONMENTS } from "../base/Environment"
+import ENVIRONMENTS from "../Environments";
+import { Domain } from "./Domain";
+import http = require("request");
 
-export default class RequestClient {
+export = class RequestClient {
   seniorApi: SeniorApi;
   private baseUrl: string;
   domain: string;
