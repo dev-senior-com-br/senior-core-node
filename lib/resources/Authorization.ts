@@ -149,6 +149,24 @@ export = class Authorization extends RequestClient {
     return this.request(clientOptions);
   };
 
+  listRoles = (searchValue: string) => {
+    if (!searchValue) {
+      throw new Error('O "name" devem ser informado');
+    }
+    const clientOptions = {
+      url: this.getUrlPath("queries/listRoles"),
+      method: HttpMethod.POST,
+      data: {
+        searchValue
+      },
+      headers: {
+        authorization: this.seniorApi.accessToken
+      }
+    };
+    console.log(clientOptions);
+    return this.request(clientOptions);
+  };
+
   assignUsers = (roles: string[], users: string[]) => {
     if (!roles) {
       throw new Error('Os "roles" devem ser informados');
