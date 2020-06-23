@@ -8,13 +8,19 @@ var username = process.env.SENIOR_USERNAME;
 var password = process.env.PASS;
 var tenantName = process.env.TENANT_NAME;
 
-//Propriedades necessárias:
+var resource = "<URI_DO_RECURSO>";
+var action = "<ACAO_DO_RECURSO>";
 var resource = "/";
-var action = "edit";
+var action = "<ACTION>";
 var attributes = [{ "attribute": "<NOME_DO_ATRIBUTO>", "value": "VALOR_DO_ATRIBUTO" }];
-var role = "ADMIN";
-var roles = ["TEST_API"];
-var users = ["admin"];
+var role = "<NOME_DO_PAPEL>";
+var roles = ["<NOME_DO_PAPEL>"];
+var users = ["<IDENTIFICADOR_DO_USUARIO>"];
+
+var api = new SeniorApi();
+var role = "<ROLE_NAME>";
+var roles = ["<ROLE_NAME>"];
+var users = ["<USERNAME>"];
 
 function printError(error) {
 	console.error(error['ams:fault']['ams:code'][0] + " - " + error['ams:fault']['ams:message'][0] + " - " + error['ams:fault']['ams:description'][0]);
