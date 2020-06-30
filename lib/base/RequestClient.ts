@@ -5,7 +5,7 @@ import * as Q from "q";
 import {SeniorApi} from "../SeniorApi";
 import {ENVIRONMENTS} from "../Environments";
 import { Domain } from "./Domain";
-import http = require("request");
+import http from "request";
 
 export class RequestClient {
   seniorApi: SeniorApi;

@@ -2,7 +2,6 @@
   "name": "@seniorsistemas/senior-core",
   "version": "1.2.22",
   "description": "Senior Core SDK para Node.js",
-  "main": "index.js",
   "files": [
     "dist"
   ],
@@ -33,17 +32,13 @@
   ],
   "dependencies": {
     "bluebird": "3.4.7",
-    "dotenv": "^8.2.0",
     "lodash": "^4.17.15",
     "q": "2.0.x",
-    "request": "^2.88.0",
-    "tsc": "^1.20150623.0"
+    "dotenv": "^8.2.0",
+    "request": "^2.88.0"
   },
   "homepage": "https://github.com/dev-senior-com-br/senior-core-node#readme",
-  "directories": {
-    "example": "examples",
-    "lib": "lib"
-  },
+  "directories": {},
   "devDependencies": {
     "@types/lodash": "^4.14.149",
     "@types/q": "^1.5.2",
@@ -55,6 +50,7 @@
     "prettier": "^1.19.1",
     "tslint": "^6.1.0",
     "tslint-config-prettier": "^1.18.0",
+    "tsc": "^1.20150623.0",
     "typescript": "^3.9.5"
   }
 }

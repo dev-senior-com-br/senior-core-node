@@ -1,7 +1,7 @@
 {
     "compilerOptions": {
         "outDir": "./dist",
-        "target": "es6",
+        "target": "es5",
         "module": "commonjs",
         "allowSyntheticDefaultImports": true,
         "sourceMap": true,
@@ -10,10 +10,14 @@
         ],
         "esModuleInterop": true,
         "declaration": true,
-
+        "baseUrl": "./dist",
+        "paths": {
+            "@seniorsistemas/senior-core": ["dist/"],
+            "@seniorsistemas/senior-core/*": ["dist/*"]
+        }
     },
     "include": [
         "./lib/**/*",
         "./index.ts"
-    ]
+    ],
 }
