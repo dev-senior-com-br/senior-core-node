@@ -1,10 +1,10 @@
-import RequestClient from "../base/RequestClient";
+import {RequestClient} from "../base/RequestClient";
 import { HttpMethod } from "../model/HttpMethod";
-import SeniorApi from "../SeniorApi";
+import {SeniorApi} from "../SeniorApi";
 import { Pagination } from "../model/Pagination";
 import { Properties } from "../model/Properties";
 
-export = class Users extends RequestClient {
+export class Users extends RequestClient {
     
     private _client: RequestClient;
 

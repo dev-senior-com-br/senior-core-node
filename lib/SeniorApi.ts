@@ -1,12 +1,12 @@
-import Authentication from "./resources/Authentication";
-import Authorization from "./resources/Authorization";
-import Tenant from "./resources/Tenant";
-import Notification from "./resources/Notification";
-import Users from "./resources/Users";
-import Entity from "./base/Entity";
-import ENVIRONMENTS from "./Environments";
+import {Authentication} from "./resources/Authentication";
+import {Authorization} from "./resources/Authorization";
+import {Tenant} from "./resources/Tenant";
+import {Notification} from "./resources/Notification";
+import {Users} from "./resources/Users";
+import {Entity} from "./base/Entity";
+import {ENVIRONMENTS} from "./Environments";
 
-export = class SeniorApi {
+export class SeniorApi {
   accessToken: string = null;
   _authentication: Authentication;
   _authorization: Authorization;

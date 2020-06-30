@@ -1,4 +1,4 @@
-import SeniorApi from "../SeniorApi";
+import {SeniorApi} from "../SeniorApi";
 
 export class Domain {
   seniorApi: SeniorApi;

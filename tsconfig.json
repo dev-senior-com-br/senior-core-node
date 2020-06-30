@@ -1,18 +1,19 @@
 {
     "compilerOptions": {
         "outDir": "./dist",
-        "allowJs": true,
-        "target": "es5",
+        "target": "es6",
+        "module": "commonjs",
         "allowSyntheticDefaultImports": true,
         "sourceMap": true,
         "types": [
             "node"
         ],
-        "esModuleInterop": true
+        "esModuleInterop": true,
+        "declaration": true,
+
     },
     "include": [
         "./lib/**/*",
         "./index.ts"
-    ],
-    "exclude": ["node_modules", "**/__tests__/*"]
+    ]
 }

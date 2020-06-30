@@ -1,8 +1,8 @@
 import { HttpMethod } from "../model/HttpMethod";
-import RequestClient from "./RequestClient";
-import SeniorApi from "../SeniorApi";
+import {RequestClient} from "./RequestClient";
+import {SeniorApi} from "../SeniorApi";
 
-export = class Entity extends RequestClient {
+export class Entity extends RequestClient {
 	private entityName: string;
 	
 	constructor(domain: string, service: string, entityName: string, seniorAPi: SeniorApi) {

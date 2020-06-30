@@ -1,4 +1,4 @@
-export = class  FilterBuilder {
+export class  FilterBuilder {
 	private  filter : string = "";
 	
 	field = (fieldName: string): FilterBuilder => {
