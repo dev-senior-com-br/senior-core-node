@@ -1,11 +1,9 @@
 import { ClientOptions } from "../model/ClientOptions";
 import { RequestOptions } from "../model/RequestOptions";
-import * as _ from "lodash";
-import * as Q from "q";
 import {SeniorApi} from "../SeniorApi";
 import {ENVIRONMENTS} from "../Environments";
 import { Domain } from "./Domain";
-import http from "request";
+import axios, { AxiosResponse } from "axios";
 
 export class RequestClient {
   seniorApi: SeniorApi;
@@ -32,7 +30,6 @@ export class RequestClient {
       throw new Error('A "url" deve ser informada');
     }
 
-    const deferred = Q.defer();
     const headers = new Map<string, string>();
     headers.set("Accept", "application/json");
     headers.set("Content-Type", "application/json");
@@ -57,27 +54,17 @@ export class RequestClient {
       headers
     );
 
-    if (!_.isNull(opts.data)) {
-      options.json = opts.data;
+    if(opts.data) {
+      options.data = opts.data;
     }
 
-    if (!_.isNull(opts.params)) {
-      options.qs = opts.params;
-      options.useQuerystring = true;
+    if(opts.params) {
+      options.params = opts.params;
     }
 
-    http(options.url, options.toTOptions(), (error, response) => {
-      if (error) {
-        deferred.reject(error);
-      } else {
-        deferred.resolve({
-          statusCode: response.statusCode,
-          body: response.body
-        });
-      }
+    return axios(options.url, options.toTOptions()).then((res: AxiosResponse) => {
+      return {... res, statusCode: res.status, body: res.data};
     });
-
-    return deferred.promise;
   };
 
   getUrlPath = (path: string, anonymous: boolean = false) => {

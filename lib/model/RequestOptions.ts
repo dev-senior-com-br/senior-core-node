@@ -5,26 +5,23 @@ export class RequestOptions {
   url: string;
   method: HttpMethod;
   headers: Map<string, string>;
-  json: object;
-  qs: string;
-  useQuerystring: boolean;
+  data: object;
+  params: string;
 
   constructor(
     timeout: number = 30000,
     url: string = null,
     method: HttpMethod = null,
     headers: Map<string, string> = null,
-    json: object = null,
-    qs: string = null,
-    useQuerystring: boolean = false
+    data: object = null,
+    params: string = null
   ) {
     this.timeout = timeout;
     this.url = url;
     this.method = method;
     this.headers = headers;
-    this.json = json;
-    this.qs = qs;
-    this.useQuerystring = useQuerystring;
+    this.data = data;
+    this.params = params;
   }
 
   public toTOptions(): object {
@@ -38,9 +35,8 @@ export class RequestOptions {
       url: this.url,
       method: this.method,
       headers: localHeaders,
-      json: this.json,
-      qs: this.qs,
-      useQuerystring: this.useQuerystring
+      data: this.data,
+      params: this.params
     };
     return objectReturn;
   }
