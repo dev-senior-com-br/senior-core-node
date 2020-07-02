@@ -34,6 +34,16 @@ api.authentication.login(username, password).then(function (json) {
 	var userDescription = "teste de API com NodeJS";
 	var properties;
 
+	api.users.getUser(username).then(function (json) {
+		if (json.statusCode != 200) {
+			console.log(json);			
+		} else {
+			console.log('Minhas informações: ' + json.body);					
+		}
+	}).catch(function (error) {
+		console.error("Erro na tentativa de realizar chamada de getUser. ", error);
+	});
+
 	api.users.createUser(creation_username, creation_fullName, creation_email, creation_password, userDescription, blocked, changePassword, photo, creation_locale, properties).then(function (json) {
 		if (json.statusCode != 200) {
 			console.log(json);

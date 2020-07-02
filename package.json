@@ -42,9 +42,10 @@
     "minimist": ">=1.2.2",
     "prebuild": "^10.0.0",
     "prettier": "^1.19.1",
+    "q": "^1.5.1",
+    "tsc": "^1.20150623.0",
     "tslint": "^6.1.0",
     "tslint-config-prettier": "^1.18.0",
-    "tsc": "^1.20150623.0",
     "typescript": "^3.9.5"
   }
 }
