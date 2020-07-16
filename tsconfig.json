@@ -10,14 +10,14 @@
         ],
         "esModuleInterop": true,
         "declaration": true,
-        "baseUrl": "./dist",
+        "baseUrl": "./",
         "paths": {
-            "@seniorsistemas/senior-core": ["dist/"],
-            "@seniorsistemas/senior-core/*": ["dist/*"]
+            "@seniorsistemas/senior-core": ["./dist"],
+            "@seniorsistemas/senior-core/*": ["./dist/*"]
         }
     },
     "include": [
         "./lib/**/*",
         "./index.ts"
-    ],
+    ]
 }
