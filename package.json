@@ -1,10 +1,11 @@
 {
   "name": "@seniorsistemas/senior-core",
-  "version": "1.2.29",
+  "version": "1.2.30",
   "description": "Senior Core SDK para Node.js",
   "files": [
     "dist/*"
   ],
+  "main": "./dist/index.js",
   "author": "Senior ECOAPI Team",
   "license": "MIT",
   "scripts": {
