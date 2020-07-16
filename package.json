@@ -1,6 +1,6 @@
 {
   "name": "@seniorsistemas/senior-core",
-  "version": "1.2.27",
+  "version": "1.2.28",
   "description": "Senior Core SDK para Node.js",
   "files": [
     "dist/**/*"
@@ -8,6 +8,7 @@
   "author": "Senior ECOAPI Team",
   "license": "MIT",
   "scripts": {
+    "prepublish": "npm run build",
     "prebuild": "del-cli --force ./dist",
     "build": "tsc",
     "format": "prettier --write \"lib/**/*.ts\" \"lib/**/*.js\"",
