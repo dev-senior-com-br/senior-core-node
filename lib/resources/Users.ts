@@ -12,15 +12,10 @@ export class Users extends RequestClient {
         super(seniorApi, "platform", "user");
     }
 
-    listGroups = (searchValue: string, tenant: string, pagination: Pagination) => {
-        if (!searchValue) {
-            throw new Error('O "searchValue" deve ser informado');
-        }
-
-        if (!tenant) {
-            throw new Error('O "tenant" deve ser informado');
-        }
-
+    listGroups(searchValue: string)
+    listGroups(searchValue: string, tenant: string)
+    listGroups(searchValue: string, tenant: string, pagination: Pagination)
+    listGroups(searchValue = '', tenant?: string, pagination?: Pagination) {
         const clientOptions = {
             url: this.getUrlPath("queries/listGroups"),
             method: HttpMethod.POST,
@@ -34,7 +29,7 @@ export class Users extends RequestClient {
             }
         };
         return this.request(clientOptions);
-    };
+    }
 
     listGroupUsers = (id: string, searchValue: string, pagination: Pagination) => {
         if (!id) {
