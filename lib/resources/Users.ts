@@ -75,11 +75,7 @@ export class Users extends RequestClient {
     };  
 
 
-    getUser = (username: string) => {
-
-        if (!username) {
-            throw new Error('O "username" deve ser informado');
-        }
+    getUser = (username?: string) => {
 
         const clientOptions = {
             url: this.getUrlPath("queries/getUser"),
