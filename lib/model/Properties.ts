@@ -1,9 +1,9 @@
 export class Properties {
-    name: string;
-    value: string;
+  name: string;
+  value: string;
 
-    constructor(name: string, value: string) {
-        this.name = name;
-        this.value = value;
-    }
+  constructor(name: string, value: string) {
+    this.name = name;
+    this.value = value;
+  }
 }

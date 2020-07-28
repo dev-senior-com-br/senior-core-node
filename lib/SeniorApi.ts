@@ -1,55 +1,55 @@
-import {Authentication} from "./resources/Authentication";
-import {Authorization} from "./resources/Authorization";
-import {Tenant} from "./resources/Tenant";
-import {Notification} from "./resources/Notification";
-import {Users} from "./resources/Users";
-import {Entity} from "./base/Entity";
-import {ENVIRONMENTS} from "./Environments";
+import { Authentication } from './resources/Authentication';
+import { Authorization } from './resources/Authorization';
+import { Tenant } from './resources/Tenant';
+import { Notification } from './resources/Notification';
+import { Users } from './resources/Users';
+import { Entity } from './base/Entity';
+import { ENVIRONMENTS } from './Environments';
 
 export class SeniorApi {
   accessToken: string = null;
-  _authentication: Authentication;
-  _authorization: Authorization;
-  _tenant: Tenant;
-  _notification: Notification;
-  _users: Users;
-  _environment = ENVIRONMENTS.DEV;
+  #authentication: Authentication;
+  #authorization: Authorization;
+  #tenant: Tenant;
+  #notification: Notification;
+  #users: Users;
+  #environment = ENVIRONMENTS.DEV;
 
   get authentication(): Authentication {
-    this._authentication = this._authentication || new Authentication(this);
-    return this._authentication;
+    this.#authentication = this.#authentication || new Authentication(this);
+    return this.#authentication;
   }
 
   get authorization(): Authorization {
-    this._authorization = this._authorization || new Authorization(this);
-    return this._authorization;
+    this.#authorization = this.#authorization || new Authorization(this);
+    return this.#authorization;
   }
 
   get tenant(): Tenant {
-    this._tenant = this._tenant || new Tenant(this);
-    return this._tenant;
+    this.#tenant = this.#tenant || new Tenant(this);
+    return this.#tenant;
   }
 
   get notification(): Notification {
-    this._notification = this._notification || new Notification(this);
-    return this._notification;
+    this.#notification = this.#notification || new Notification(this);
+    return this.#notification;
   }
 
   get users(): Users {
-    this._users = this._users || new Users(this);
-    return this._users;
+    this.#users = this.#users || new Users(this);
+    return this.#users;
   }
-  
+
   set environment(value: string) {
-    this._environment = ENVIRONMENTS[value];
+    this.#environment = ENVIRONMENTS[value];
   }
 
   get environment(): string {
-    this._environment = this._environment || ENVIRONMENTS.DEV;
-    return this._environment;
+    this.#environment = this.#environment || ENVIRONMENTS.DEV;
+    return this.#environment;
   }
 
-  getEntity(domain: string, service: string, entityName: string) {
+  getEntity(domain: string, service: string, entityName: string): Entity {
     return new Entity(domain, service, entityName, this);
   }
 }

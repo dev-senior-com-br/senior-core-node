@@ -1,19 +1,19 @@
-import { HttpMethod } from "./HttpMethod";
+import { HttpMethod } from './HttpMethod';
 
 export class RequestOptions {
   timeout: number;
   url: string;
   method: HttpMethod;
-  headers: Map<string, string>;
-  data: object;
+  headers: Record<string, string>;
+  data: any;
   params: string;
 
   constructor(
-    timeout: number = 30000,
+    timeout = 30000,
     url: string = null,
     method: HttpMethod = null,
-    headers: Map<string, string> = null,
-    data: object = null,
+    headers: Record<string, string> = null,
+    data: any = null,
     params: string = null
   ) {
     this.timeout = timeout;
@@ -24,20 +24,7 @@ export class RequestOptions {
     this.params = params;
   }
 
-  public toTOptions(): object {
-    let localHeaders = {};
-    this.headers.forEach((value, key) => {
-      localHeaders[key] = value
-    });
-
-    let objectReturn = {
-      timeout: this.timeout,
-      url: this.url,
-      method: this.method,
-      headers: localHeaders,
-      data: this.data,
-      params: this.params
-    };
-    return objectReturn;
+  toOptions(): RequestOptions {
+    return { ...this, headers: { ...this.headers } }; //clone
   }
 }

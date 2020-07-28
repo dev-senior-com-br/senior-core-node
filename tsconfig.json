@@ -1,7 +1,7 @@
 {
     "compilerOptions": {
         "outDir": "./dist",
-        "target": "es5",
+        "target": "ESNext",
         "module": "commonjs",
         "allowSyntheticDefaultImports": true,
         "sourceMap": true,
