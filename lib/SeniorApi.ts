@@ -4,6 +4,7 @@ import { Tenant } from './resources/Tenant';
 import { Notification } from './resources/Notification';
 import { Users } from './resources/Users';
 import { Entity } from './base/Entity';
+import { Platform } from './base/Platform';
 import { ENVIRONMENTS } from './Environments';
 
 export class SeniorApi {
@@ -13,7 +14,7 @@ export class SeniorApi {
   #tenant: Tenant;
   #notification: Notification;
   #users: Users;
-  #environment = ENVIRONMENTS.DEV;
+  #platform: Platform = new Platform(ENVIRONMENTS.DEV);
 
   get authentication(): Authentication {
     this.#authentication = this.#authentication || new Authentication(this);
@@ -40,13 +41,18 @@ export class SeniorApi {
     return this.#users;
   }
 
-  set environment(value: string) {
-    this.#environment = ENVIRONMENTS[value];
+  setUrl(url: string): void {
+    this.setEnvironment(url);
   }
 
-  get environment(): string {
-    this.#environment = this.#environment || ENVIRONMENTS.DEV;
-    return this.#environment;
+  setEnvironment(env: ENVIRONMENTS): void
+  setEnvironment(url: string): void
+  setEnvironment(envOrUrl: ENVIRONMENTS | string): void {
+    this.#platform = new Platform(envOrUrl);
+  }
+
+  get platform(): Platform {
+    return this.#platform;
   }
 
   getEntity(domain: string, service: string, entityName: string): Entity {
