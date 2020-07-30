@@ -11,7 +11,7 @@ export class Entity extends RequestClient {
     this.entityName = entityName;
   }
 
-  get(filter = '', id: string): Promise<RequestReturn> {
+  get(filter = '', id: string): Promise<RequestReturn<any>> {
     let url = this.getUrlPath(`entities/${this.entityName}`);
     if (id) {
       url += '/' + id;
@@ -30,7 +30,7 @@ export class Entity extends RequestClient {
     return this.request(clientOptions);
   }
 
-  post(param: any, id: string): Promise<RequestReturn> {
+  post(param: any, id: string): Promise<RequestReturn<any>> {
     let url = `entities/${this.entityName}`;
     if (id) {
       url += `/${id}`;
@@ -46,7 +46,7 @@ export class Entity extends RequestClient {
     return this.request(clientOptions);
   }
 
-  put(id: string, param: any): Promise<RequestReturn> {
+  put(id: string, param: any): Promise<RequestReturn<any>> {
     const clientOptions = {
       url: this.getUrlPath(`entities/${this.entityName}/${id}`),
       headers: {
@@ -58,7 +58,7 @@ export class Entity extends RequestClient {
     return this.request(clientOptions);
   }
 
-  patch(id: string, param: any): Promise<RequestReturn> {
+  patch(id: string, param: any): Promise<RequestReturn<any>> {
     const clientOptions = {
       url: this.getUrlPath(`entities/${this.entityName}/${id}`),
       headers: {
@@ -70,7 +70,7 @@ export class Entity extends RequestClient {
     return this.request(clientOptions);
   }
 
-  delete(id: string): Promise<RequestReturn> {
+  delete(id: string): Promise<RequestReturn<any>> {
     const clientOptions = {
       url: this.getUrlPath(`entities/${this.entityName}/${id}`),
       headers: {

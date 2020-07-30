@@ -8,7 +8,7 @@ export class Tenant extends RequestClient {
     super(seniorApi, 'platform', 'tenant');
   }
 
-  getTenantByName(tenantName: string): Promise<RequestReturn> {
+  getTenantByName(tenantName: string): Promise<RequestReturn<any>> {
     if (!tenantName) {
       throw new Error('O "tenantName" deve ser informado');
     }
@@ -25,7 +25,7 @@ export class Tenant extends RequestClient {
     return this.request(clientOptions);
   }
 
-  getTenantByDomain(tenantDomain: string): Promise<RequestReturn> {
+  getTenantByDomain(tenantDomain: string): Promise<RequestReturn<any>> {
     if (!tenantDomain) {
       throw new Error('O "tenantDomain" deve ser informado');
     }

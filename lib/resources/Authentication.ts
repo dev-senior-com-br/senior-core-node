@@ -8,7 +8,7 @@ export class Authentication extends RequestClient {
     super(seniorApi, 'platform', 'authentication');
   }
 
-  login(username: string, password: string): Promise<RequestReturn> {
+  login(username: string, password: string): Promise<RequestReturn<any>> {
     if (!username) {
       throw new Error('O "username" deve ser informado');
     }
@@ -28,7 +28,7 @@ export class Authentication extends RequestClient {
     return this.request(clientOptions);
   }
 
-  logout(): Promise<RequestReturn> {
+  logout(): Promise<RequestReturn<any>> {
     const clientOptions = {
       url: this.getUrlPath('actions/logout'),
       method: HttpMethod.POST,
@@ -42,7 +42,7 @@ export class Authentication extends RequestClient {
     return this.request(clientOptions);
   }
 
-  loginMFA(temporaryToken: string, validationCode: number): Promise<RequestReturn> {
+  loginMFA(temporaryToken: string, validationCode: number): Promise<RequestReturn<any>> {
     const clientOptions = {
       url: this.getUrlPath('actions/loginMFA'),
       method: HttpMethod.POST,
@@ -54,7 +54,7 @@ export class Authentication extends RequestClient {
 
     return this.request(clientOptions);
   }
-  loginWithKey(accessKey: string, secret: string, tenantName: string): Promise<RequestReturn> {
+  loginWithKey(accessKey: string, secret: string, tenantName: string): Promise<RequestReturn<any>> {
     const clientOptions = {
       url: this.getUrlPath('actions/loginWithKey', true),
       method: HttpMethod.POST,
@@ -66,7 +66,7 @@ export class Authentication extends RequestClient {
     };
     return this.request(clientOptions);
   }
-  refreshToken(tenantName: string, refreshToken: string): Promise<RequestReturn> {
+  refreshToken(tenantName: string, refreshToken: string): Promise<RequestReturn<any>> {
     const clientOptions = {
       url: this.getUrlPath('actions/refreshToken'),
       method: HttpMethod.POST,

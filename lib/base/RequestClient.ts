@@ -20,9 +20,9 @@ export class RequestClient {
   }
   /**
    * @param {ClientOptions}
-   * @returns {RequestReturn}
+   * @returns {RequestReturn<T>}
    */
-  request(opts: ClientOptions = new ClientOptions()): Promise<RequestReturn> {
+  request<T>(opts: ClientOptions = new ClientOptions()): Promise<RequestReturn<T>> {
     if (!opts.method) {
       throw new Error('O "method" deve ser informado');
     }
@@ -64,7 +64,7 @@ export class RequestClient {
     }
 
     return axios(options.url, options.toOptions()).then(
-      (res: AxiosResponse): RequestReturn => {
+      (res: AxiosResponse): RequestReturn<T> => {
         return { ...res, statusCode: res.status, body: res.data };
       }
     );

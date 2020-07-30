@@ -1,6 +1,6 @@
 import { AxiosResponse } from 'axios';
 
-export interface RequestReturn extends AxiosResponse {
+export interface RequestReturn<T> extends AxiosResponse {
     statusCode: number,
-    body: any
+    body: T
 }

@@ -1,7 +1,7 @@
 import { RequestClient } from '../base/RequestClient';
 import { HttpMethod } from '../model/HttpMethod';
 import { SeniorApi } from '../SeniorApi';
-import { Pagination } from '../model/Pagination';
+import { Pagination, PaginationDefault } from '../model/Pagination';
 import { Properties } from '../model/Properties';
 import { RequestReturn } from '../model/RequestReturn';
 
@@ -13,14 +13,14 @@ export class Users extends RequestClient {
   listGroups(searchValue: string);
   listGroups(searchValue: string, tenant: string);
   listGroups(searchValue: string, tenant: string, pagination: Pagination);
-  listGroups(searchValue = '', tenant?: string, pagination?: Pagination): Promise<RequestReturn> {
+  listGroups(searchValue = '', tenant?: string, pagination?: Pagination): Promise<RequestReturn<any>> {
     const clientOptions = {
       url: this.getUrlPath('queries/listGroups'),
       method: HttpMethod.POST,
       data: {
         searchValue,
         tenant,
-        pagination,
+        pagination: pagination ? { ...PaginationDefault, ...pagination } : undefined
       },
       headers: {
         authorization: this.seniorApi.accessToken,
@@ -29,7 +29,7 @@ export class Users extends RequestClient {
     return this.request(clientOptions);
   }
 
-  listGroupUsers(id: string, searchValue: string, pagination: Pagination): Promise<RequestReturn> {
+  listGroupUsers(id: string, searchValue: string, pagination: Pagination): Promise<RequestReturn<any>> {
     if (!id) {
       throw new Error('O "id" deve ser informado');
     }
@@ -44,7 +44,7 @@ export class Users extends RequestClient {
       data: {
         id,
         searchValue,
-        pagination,
+        pagination: pagination ? { ...PaginationDefault, ...pagination } : undefined
       },
       headers: {
         authorization: this.seniorApi.accessToken,
@@ -53,7 +53,7 @@ export class Users extends RequestClient {
     return this.request(clientOptions);
   }
 
-  getGroup(id: string): Promise<RequestReturn> {
+  getGroup(id: string): Promise<RequestReturn<any>> {
     if (!id) {
       throw new Error('O "id" deve ser informado');
     }
@@ -71,7 +71,7 @@ export class Users extends RequestClient {
     return this.request(clientOptions);
   }
 
-  getUser(username?: string): Promise<RequestReturn> {
+  getUser(username?: string): Promise<RequestReturn<any>> {
     const clientOptions = {
       url: this.getUrlPath('queries/getUser'),
       method: HttpMethod.POST,
@@ -90,7 +90,7 @@ export class Users extends RequestClient {
     description: string,
     email: string,
     users: string[]
-  ): Promise<RequestReturn> {
+  ): Promise<RequestReturn<any>> {
     if (!name) {
       throw new Error('O "tenantName" deve ser informado');
     }
@@ -126,7 +126,7 @@ export class Users extends RequestClient {
     email: string,
     usersToAdd: string[],
     usersToRemove: string[]
-  ): Promise<RequestReturn> {
+  ): Promise<RequestReturn<any>> {
     if (!id) {
       throw new Error('O "id" deve ser informado');
     }
@@ -179,7 +179,7 @@ export class Users extends RequestClient {
     photo: string,
     locale: string,
     properties: Properties[]
-  ): Promise<RequestReturn> {
+  ): Promise<RequestReturn<any>> {
     if (!username) {
       throw new Error('O "username" deve ser informado');
     }
@@ -237,7 +237,7 @@ export class Users extends RequestClient {
     photo: string,
     locale: string,
     properties: Properties[]
-  ): Promise<RequestReturn> {
+  ): Promise<RequestReturn<any>> {
     if (!username) {
       throw new Error('O "username" deve ser informado');
     }
@@ -285,7 +285,7 @@ export class Users extends RequestClient {
     return this.request(clientOptions);
   }
 
-  deleteUser(id: string): Promise<RequestReturn> {
+  deleteUser(id: string): Promise<RequestReturn<any>> {
     if (!id) {
       throw new Error('O "id" deve ser informado');
     }
@@ -305,7 +305,7 @@ export class Users extends RequestClient {
     usersToAdd: string[],
     usersToRemove: string[],
     groupId: string
-  ): Promise<RequestReturn> {
+  ): Promise<RequestReturn<any>> {
     if (!usersToAdd && !usersToRemove) {
       throw new Error(
         'O "usersToAdd" e/ou "usersToRemove" devem ser informados.'
@@ -332,7 +332,7 @@ export class Users extends RequestClient {
     return this.request(clientOptions);
   }
 
-  deleteGroup(id: string): Promise<RequestReturn> {
+  deleteGroup(id: string): Promise<RequestReturn<any>> {
     if (!id) {
       throw new Error('O "id" deve ser informado');
     }

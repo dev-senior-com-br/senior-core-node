@@ -9,7 +9,7 @@
   "author": "Senior ECOAPI Team",
   "license": "MIT",
   "scripts": {
-    "prepublish": "npm run build",
+    "prepublishOnly": "npm run build",
     "prebuild": "del-cli --force ./dist",
     "build": "tsc",
     "format": "prettier --write \"lib/**/*.ts\" \"lib/**/*.js\"",

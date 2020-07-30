@@ -17,7 +17,7 @@ export class Notification extends RequestClient {
     domain: string,
     service: string,
     users: string[]
-  ): Promise<RequestReturn> {
+  ): Promise<RequestReturn<any>> {
     const clientOptions = {
       url: this.getUrlPath('actions/notifyUser'),
       method: HttpMethod.POST,

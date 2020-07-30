@@ -6,6 +6,6 @@ export class ClientOptions {
   method: HttpMethod;
   headers?: SeniorHeader = {};
   timeout?: number;
-  data?: Record<string, any>;
+  data?: any;
   params?: string;
 }
