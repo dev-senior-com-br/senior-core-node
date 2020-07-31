@@ -121,7 +121,7 @@ export class Authorization extends RequestClient {
       url: this.getUrlPath('queries/getRole'),
       method: HttpMethod.POST,
       data: {
-        name,
+        name
       },
       headers: {
         authorization: this.seniorApi.accessToken,

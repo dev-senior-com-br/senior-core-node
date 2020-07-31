@@ -14,13 +14,11 @@ var resource = '/';
 var action = '<ACTION>';
 var attributes = [{ 'attribute': '<NOME_DO_ATRIBUTO>', 'value': 'VALOR_DO_ATRIBUTO' }];
 var role = '<NOME_DO_PAPEL>';
+var descriptionRole = '<DESCRICAO_DO_PAPEL>'
 var roles = ['<NOME_DO_PAPEL>'];
 var users = ['<IDENTIFICADOR_DO_USUARIO>'];
 
 var api = new SeniorApi();
-var role = '<ROLE_NAME>';
-var roles = ['<ROLE_NAME>'];
-var users = ['<USERNAME>'];
 
 function printError(error) {
   console.error(error['ams:fault']['ams:code'][0] + ' - ' + error['ams:fault']['ams:message'][0] + ' - ' + error['ams:fault']['ams:description'][0]);
@@ -80,7 +78,7 @@ api.authentication.login(username, password).then(function (json) {
     console.error('Erro na tentativa de excluir o recurso: ', error);
   });
 
-  api.authorization.createRole(role).then(function (json) {
+  api.authorization.createRole(role, descriptionRole).then(function (json) {
     if (json.statusCode != 200) {
       console.error(json.body);
     } else {
