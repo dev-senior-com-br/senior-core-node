@@ -1,30 +1,30 @@
-import { HttpMethod } from "../model/HttpMethod";
-import {RequestClient} from "../base/RequestClient";
-import {SeniorApi} from "../SeniorApi";
+import { HttpMethod } from '../model/HttpMethod';
+import { RequestClient } from '../base/RequestClient';
+import { SeniorApi } from '../SeniorApi';
+import { RequestReturn } from '../model/RequestReturn';
 
 export class Authorization extends RequestClient {
-  
   constructor(seniorApi: SeniorApi) {
-    super(seniorApi, "platform", "authorization");
+    super(seniorApi, 'platform', 'authorization');
   }
 
-  getResource = (uri: string) => {
+  getResource(uri: string): Promise<RequestReturn<any>> {
     if (!uri) {
       throw new Error('A "uri" deve ser informada');
     }
 
     const clientOptions = {
-      url: this.getUrlPath("queries/getResource"),
+      url: this.getUrlPath('queries/getResource'),
       method: HttpMethod.POST,
       data: {
-        uri
-      }
+        uri,
+      },
     };
 
     return this.request(clientOptions);
-  };
+  }
 
-  checkAccess = (resource: string, action: string, attributes: string) => {
+  checkAccess(resource: string, action: string, attributes: string): Promise<RequestReturn<any>> {
     if (!resource) {
       throw new Error('O "resource" deve ser informado');
     }
@@ -36,63 +36,63 @@ export class Authorization extends RequestClient {
     }
 
     const clientOptions = {
-      url: this.getUrlPath("actions/checkAccess"),
+      url: this.getUrlPath('actions/checkAccess'),
       method: HttpMethod.POST,
       data: {
         permissions: [
           {
             resource,
             action,
-            attributes
-          }
+            attributes,
+          },
         ],
         includeFilters: false,
-        includeDelegations: false
+        includeDelegations: false,
       },
       headers: {
-        authorization: this.seniorApi.accessToken
-      }
+        authorization: this.seniorApi.accessToken,
+      },
     };
 
     return this.request(clientOptions);
-  };
+  }
 
-  saveResources = (resources: object) => {
+  saveResources(resources: any): Promise<RequestReturn<any>> {
     if (!resources) {
       throw new Error('Os "resources" devem ser informados');
     }
     const clientOptions = {
-      url: this.getUrlPath("actions/saveResources"),
+      url: this.getUrlPath('actions/saveResources'),
       method: HttpMethod.POST,
       data: {
-        resources
+        resources,
       },
       headers: {
-        authorization: this.seniorApi.accessToken
-      }
+        authorization: this.seniorApi.accessToken,
+      },
     };
     return this.request(clientOptions);
-  };
+  }
 
-  deleteResources = (resources: object) => {
+  deleteResources(resources: any): Promise<RequestReturn<any>> {
     if (!resources) {
       throw new Error('Os "resources" devem ser informados');
     }
     const clientOptions = {
-      url: this.getUrlPath("actions/deleteResources"),
+      url: this.getUrlPath('actions/deleteResources'),
       method: HttpMethod.POST,
       data: {
-        resources
+        resources,
       },
       headers: {
-        authorization: this.seniorApi.accessToken
-      }
+        authorization: this.seniorApi.accessToken,
+      },
     };
 
     return this.request(clientOptions);
-  };
+  }
 
-  createRole = (name: string, description: string) => {
+  createRole(name: string, description: string): Promise<RequestReturn<any>> {
     if (!name) {
       throw new Error('O "name" deve ser informado');
     }
@@ -100,74 +100,74 @@ export class Authorization extends RequestClient {
       throw new Error('O "description" deve ser informado');
     }
     const clientOptions = {
-      url: this.getUrlPath("actions/createRole"),
+      url: this.getUrlPath('actions/createRole'),
       method: HttpMethod.POST,
       data: {
         name,
-        description
+        description,
       },
       headers: {
-        authorization: this.seniorApi.accessToken
-      }
+        authorization: this.seniorApi.accessToken,
+      },
     };
     return this.request(clientOptions);
-  };
+  }
 
-  getRole = (name: string) => {
+  getRole(name: string): Promise<RequestReturn<any>> {
     if (!name) {
       throw new Error('O "name" deve ser informado');
     }
     const clientOptions = {
-      url: this.getUrlPath("queries/getRole"),
+      url: this.getUrlPath('queries/getRole'),
       method: HttpMethod.POST,
       data: {
         name
       },
       headers: {
-        authorization: this.seniorApi.accessToken
-      }
+        authorization: this.seniorApi.accessToken,
+      },
     };
 
     return this.request(clientOptions);
-  };
+  }
 
-  deleteRole = (name: string) => {
+  deleteRole(name: string): Promise<RequestReturn<any>> {
     if (!name) {
       throw new Error('O "name" deve ser informado');
     }
     const clientOptions = {
-      url: this.getUrlPath("actions/deleteRole"),
+      url: this.getUrlPath('actions/deleteRole'),
       method: HttpMethod.POST,
       data: {
-        name
+        name,
       },
       headers: {
-        authorization: this.seniorApi.accessToken
-      }
+        authorization: this.seniorApi.accessToken,
+      },
     };
 
     return this.request(clientOptions);
-  };
+  }
 
-  listRoles = (searchValue: string) => {
+  listRoles(searchValue: string): Promise<RequestReturn<any>> {
     if (!searchValue) {
       throw new Error('O "name" devem ser informado');
     }
     const clientOptions = {
-      url: this.getUrlPath("queries/listRoles"),
+      url: this.getUrlPath('queries/listRoles'),
       method: HttpMethod.POST,
       data: {
-        searchValue
+        searchValue,
       },
       headers: {
-        authorization: this.seniorApi.accessToken
-      }
+        authorization: this.seniorApi.accessToken,
+      },
     };
     console.log(clientOptions);
     return this.request(clientOptions);
-  };
+  }
 
-  assignUsers = (roles: string[], users: string[]) => {
+  assignUsers(roles: string[], users: string[]): Promise<RequestReturn<any>> {
     if (!roles) {
       throw new Error('Os "roles" devem ser informados');
     }
@@ -175,21 +175,21 @@ export class Authorization extends RequestClient {
       throw new Error('Os "users" devem ser informados');
     }
     const clientOptions = {
-      url: this.getUrlPath("actions/assignUsers"),
+      url: this.getUrlPath('actions/assignUsers'),
       method: HttpMethod.POST,
       data: {
         roles,
-        users
+        users,
       },
       headers: {
-        authorization: this.seniorApi.accessToken
-      }
+        authorization: this.seniorApi.accessToken,
+      },
     };
 
     return this.request(clientOptions);
-  };
+  }
 
-  unassignUsers = (roles: string[], users: string[]) => {
+  unassignUsers(roles: string[], users: string[]): Promise<RequestReturn<any>> {
     if (!roles) {
       throw new Error('Os "roles" devem ser informados');
     }
@@ -197,17 +197,17 @@ export class Authorization extends RequestClient {
       throw new Error('Os "users" devem ser informados');
     }
     const clientOptions = {
-      url: this.getUrlPath("actions/unassignUsers"),
+      url: this.getUrlPath('actions/unassignUsers'),
       method: HttpMethod.POST,
       data: {
         roles,
-        users
+        users,
       },
       headers: {
-        authorization: this.seniorApi.accessToken
-      }
+        authorization: this.seniorApi.accessToken,
+      },
     };
 
     return this.request(clientOptions);
-  };
+  }
 }
