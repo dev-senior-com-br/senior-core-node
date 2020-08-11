@@ -1,7 +1,7 @@
 import { RequestClient } from '../base/RequestClient';
 import { HttpMethod } from '../model/HttpMethod';
 import { SeniorApi } from '../SeniorApi';
-import { RequestReturn } from '../model/RequestReturn';
+import { RequestReturn } from '../model';
 
 export class Notification extends RequestClient {
   constructor(seniorApi: SeniorApi) {
@@ -17,7 +17,7 @@ export class Notification extends RequestClient {
     domain: string,
     service: string,
     users: string[]
-  ): Promise<RequestReturn<any>> {
+  ): Promise<RequestReturn> {
     const clientOptions = {
       url: this.getUrlPath('actions/notifyUser'),
       method: HttpMethod.POST,

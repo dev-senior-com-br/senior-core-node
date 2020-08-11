@@ -1,14 +1,14 @@
 import { HttpMethod } from '../model/HttpMethod';
 import { RequestClient } from '../base/RequestClient';
 import { SeniorApi } from '../SeniorApi';
-import { RequestReturn } from '../model/RequestReturn';
+import { RequestReturn } from '../model';
 
 export class Authorization extends RequestClient {
   constructor(seniorApi: SeniorApi) {
     super(seniorApi, 'platform', 'authorization');
   }
 
-  getResource(uri: string): Promise<RequestReturn<any>> {
+  getResource(uri: string): Promise<RequestReturn> {
     if (!uri) {
       throw new Error('A "uri" deve ser informada');
     }
@@ -24,7 +24,7 @@ export class Authorization extends RequestClient {
     return this.request(clientOptions);
   }
 
-  checkAccess(resource: string, action: string, attributes: string): Promise<RequestReturn<any>> {
+  checkAccess(resource: string, action: string, attributes: string): Promise<RequestReturn> {
     if (!resource) {
       throw new Error('O "resource" deve ser informado');
     }
@@ -57,7 +57,7 @@ export class Authorization extends RequestClient {
     return this.request(clientOptions);
   }
 
-  saveResources(resources: any): Promise<RequestReturn<any>> {
+  saveResources(resources: any): Promise<RequestReturn> {
     if (!resources) {
       throw new Error('Os "resources" devem ser informados');
     }
@@ -74,7 +74,7 @@ export class Authorization extends RequestClient {
     return this.request(clientOptions);
   }
 
-  deleteResources(resources: any): Promise<RequestReturn<any>> {
+  deleteResources(resources: any): Promise<RequestReturn> {
     if (!resources) {
       throw new Error('Os "resources" devem ser informados');
     }
@@ -92,7 +92,7 @@ export class Authorization extends RequestClient {
     return this.request(clientOptions);
   }
 
-  createRole(name: string, description: string): Promise<RequestReturn<any>> {
+  createRole(name: string, description: string): Promise<RequestReturn> {
     if (!name) {
       throw new Error('O "name" deve ser informado');
     }
@@ -113,7 +113,7 @@ export class Authorization extends RequestClient {
     return this.request(clientOptions);
   }
 
-  getRole(name: string): Promise<RequestReturn<any>> {
+  getRole(name: string): Promise<RequestReturn> {
     if (!name) {
       throw new Error('O "name" deve ser informado');
     }
@@ -131,7 +131,7 @@ export class Authorization extends RequestClient {
     return this.request(clientOptions);
   }
 
-  deleteRole(name: string): Promise<RequestReturn<any>> {
+  deleteRole(name: string): Promise<RequestReturn> {
     if (!name) {
       throw new Error('O "name" deve ser informado');
     }
@@ -149,7 +149,7 @@ export class Authorization extends RequestClient {
     return this.request(clientOptions);
   }
 
-  listRoles(searchValue: string): Promise<RequestReturn<any>> {
+  listRoles(searchValue: string): Promise<RequestReturn> {
     if (!searchValue) {
       throw new Error('O "name" devem ser informado');
     }
@@ -167,7 +167,7 @@ export class Authorization extends RequestClient {
     return this.request(clientOptions);
   }
 
-  assignUsers(roles: string[], users: string[]): Promise<RequestReturn<any>> {
+  assignUsers(roles: string[], users: string[]): Promise<RequestReturn> {
     if (!roles) {
       throw new Error('Os "roles" devem ser informados');
     }
@@ -189,7 +189,7 @@ export class Authorization extends RequestClient {
     return this.request(clientOptions);
   }
 
-  unassignUsers(roles: string[], users: string[]): Promise<RequestReturn<any>> {
+  unassignUsers(roles: string[], users: string[]): Promise<RequestReturn> {
     if (!roles) {
       throw new Error('Os "roles" devem ser informados');
     }

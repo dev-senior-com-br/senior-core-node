@@ -1,6 +1,6 @@
-import { SeniorApi } from './lib/SeniorApi';
-import { FilterBuilder } from './lib/base/FilterBuilder';
-import { RequestClient } from './lib/base/RequestClient';
-import { ENVIRONMENTS } from './lib/Environments';
-
-export { SeniorApi, FilterBuilder, RequestClient, ENVIRONMENTS };
+export { SeniorApi } from './lib/SeniorApi';
+export { FilterBuilder } from './lib/base/FilterBuilder';
+export { RequestClient } from './lib/base/RequestClient';
+export { ENVIRONMENTS } from './lib/Environments';
+export { Entity } from './lib/base/Entity';
+export * from './lib/model';

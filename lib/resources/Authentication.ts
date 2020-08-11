@@ -1,14 +1,14 @@
 import { HttpMethod } from '../model/HttpMethod';
 import { SeniorApi } from '../SeniorApi';
 import { RequestClient } from '../base/RequestClient';
-import { RequestReturn } from '../model/RequestReturn';
+import { RequestReturn } from '../model';
 
 export class Authentication extends RequestClient {
   constructor(seniorApi: SeniorApi) {
     super(seniorApi, 'platform', 'authentication');
   }
 
-  login(username: string, password: string): Promise<RequestReturn<any>> {
+  login(username: string, password: string): Promise<RequestReturn> {
     if (!username) {
       throw new Error('O "username" deve ser informado');
     }
@@ -28,12 +28,12 @@ export class Authentication extends RequestClient {
     return this.request(clientOptions);
   }
 
-  logout(): Promise<RequestReturn<any>> {
+  logout(): Promise<RequestReturn> {
     const clientOptions = {
       url: this.getUrlPath('actions/logout'),
       method: HttpMethod.POST,
       data: {
-        access_token: this.seniorApi.accessToken,
+        accessToken: this.seniorApi.accessToken,
       },
       headers: {
         authorization: this.seniorApi.accessToken,
@@ -42,7 +42,7 @@ export class Authentication extends RequestClient {
     return this.request(clientOptions);
   }
 
-  loginMFA(temporaryToken: string, validationCode: number): Promise<RequestReturn<any>> {
+  loginMFA(temporaryToken: string, validationCode: number): Promise<RequestReturn> {
     const clientOptions = {
       url: this.getUrlPath('actions/loginMFA'),
       method: HttpMethod.POST,
@@ -54,7 +54,7 @@ export class Authentication extends RequestClient {
 
     return this.request(clientOptions);
   }
-  loginWithKey(accessKey: string, secret: string, tenantName: string): Promise<RequestReturn<any>> {
+  loginWithKey(accessKey: string, secret: string, tenantName: string): Promise<RequestReturn> {
     const clientOptions = {
       url: this.getUrlPath('actions/loginWithKey', true),
       method: HttpMethod.POST,
@@ -66,7 +66,7 @@ export class Authentication extends RequestClient {
     };
     return this.request(clientOptions);
   }
-  refreshToken(tenantName: string, refreshToken: string): Promise<RequestReturn<any>> {
+  refreshToken(tenantName: string, refreshToken: string): Promise<RequestReturn> {
     const clientOptions = {
       url: this.getUrlPath('actions/refreshToken'),
       method: HttpMethod.POST,

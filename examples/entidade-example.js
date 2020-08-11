@@ -21,30 +21,37 @@ api.authentication.login(username, password).then(function (json) {
     
   entity.post({
     nome: 'grupotestesdk'
-  }).then(post => {
+  }).then(async post => {
+    console.log(post.body)
     const id = post.body.idGrupo.replace(/^\s+|\s+$/g,'');
-    entity.get().then(sucess => {console.log(sucess);}, error => {console.log(error);});
-    entity.get(id).then(sucess => {console.log(sucess);}, error => {console.log(error);});
-    entity.get(new FilterBuilder().field('nome').equals('grupotestesdk').build()).then(sucess => {console.log(sucess);}, error => {});
+    await entity.get()
+      .then(sucess => console.log(sucess.body))
+      .catch(err => console.error(err));
+    await entity.get({ id })
+      .then(sucess => console.log(sucess.body))
+      .catch(err => console.error(err));
+    await entity.get({filter: new FilterBuilder().field('nome').equals('grupotestesdk').build()})
+      .then(sucess => console.log(sucess.body))
+      .catch(err => console.error(err));
         
-    entity.put(id, {
+    await entity.put(id, {
       idGrupo: id,
       nome: 'grupotestesdk2'
-    }).then(sucess => {console.log(sucess);}, error => {console.log(error);});
+    }).then(sucess => console.log(sucess.body)) // returns {idGrupo}
+      .catch(err => console.error(err));
 
-    entity.patch(id, {
-      idGrupo: id,
-      nome: 'grupotestesdk3'
-    }).then(sucess => {console.log(sucess);}, error => {console.log(error);});
+    await entity.delete(id)
+      .then(sucess => console.log(sucess.body)) // returns 204 no content
+      .catch(err => console.error(err));
+  }).catch(err => console.error(err))
+    .finally(async () => {
+     if (api.accessToken) {
+      await api.authentication.logout().catch(function (error) {
+        console.error('Erro na tentativa de efetuar logout: ', error);
+      });
+    }
+  });
 
-    entity.delete(id).then(sucess => {console.log(sucess);}, error => {console.log(error);});
-  }, error => {console.log(error);});
-
-  if (api.accessToken) {
-    api.authentication.logout().catch(function (error) {
-      console.error('Erro na tentativa de efetuar logout: ', error);
-    });
-  }
 }).catch(function (error) {
   console.error('Erro na tentativa de efetuar login: ', error);
 });
