@@ -13,6 +13,14 @@ npm i @seniorsistemas/senior-core --save
 
 ## Ambiente
 Atualmente o ambiente padrão para o desenvolvimento é o da Homologx.
+Para fazer a troca do ambiente basta chamar o metodo `setEnvironment` ou `setUrl` caso queira passar uma url da plataforma diferente das configuradas:
+
+```javascript
+export enum ENVIRONMENTS {
+  DEV = 'https://platform-homologx.senior.com.br/t/senior.com.br/bridge/1.0',
+  PROD = 'https://api.senior.com.br',
+}
+```
 
 ### Configurações
 Os comando abaixo permitem configuração de proxy:
@@ -42,6 +50,14 @@ Então você precisa criar a instância do SeniorApi.
 const api = new SeniorApi(username, password);
 ```
 
+Mudando o ambiente:
+
+```javascript
+const { ENVIRONMENTS } = require('@seniorsistemas/senior-core');
+api.setEnvironment(ENVIRONMENTS.PROD);
+```
+
+
 ### Exemplos
 Na pasta [examples](https://github.com/dev-senior-com-br/senior-core-node/tree/develop/examples) você encontrar alguns exemplos.
 Para executa-los, basta rodar o comando abaixo com o nome do arquivo (substituir a chave <nome_arquivo>).
@@ -57,7 +73,19 @@ SENIOR_USERNAME=<seu_usuario_da_plataforma>
 PASS=<seu_password_da_plataforma>
 ```
 
+
 Essa configuração é igual ao colocar variáveis de ambiente, o `.env` é só um falicitador para o node.
+=======
+#### Exemplos implementados
+
+* [Authentication](examples/authentication-example.js)
+* [Authorization](examples/authorization-example.js)
+* [Entidade](examples/entidade-example.js)
+* [Notification](examples/notification-example.js)
+* [Tenant](examples/tenant-example.js)
+* [Users](examples/users-example.js)
+
+
 
 ### Links
 * [Documentação da API](https://dev.senior.com.br/api/platform/)
