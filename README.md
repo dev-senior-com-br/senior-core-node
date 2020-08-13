@@ -97,7 +97,7 @@ var group_description = "<Descrição do grupo>";
 
 * [Authentication](examples/authentication-example.js)
 * [Authorization](examples/authorization-example.js)
-* [Entidade](examples/entidade-example.ts)
+* [Entidade](examples/entidade-example.js)
 * [Notification](examples/notification-example.js)
 * [Tenant](examples/tenant-example.js)
 * [Users](examples/users-example.js)
