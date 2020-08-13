@@ -65,6 +65,12 @@ Para executa-los, basta rodar o comando abaixo com o nome do arquivo (substituir
 node examples/<nome_arquivo>.js
 ``` 
 
+Para rodar arquivos `.ts` é necessário instalar o pacote `ts-node` globalmente (`npm i -g ts-node`) e executar o exemplo conforme abaixo.
+
+```
+ts-node examples/<nome_arquivo>.ts
+```
+
 Alguns exemplos necessitam de propriedades específicas, descritas no inicio dos arquivos. Para configurar basta criar um arquivo no root do projeto chamado `.env` contendo chave=valor para cada variavel de ambiente que o exemplo necessita.
 Exemplo:
 No arquivo `examples/authentication-example.js` usamos a variavel de ambiente: `process.env.SENIOR_USERNAME`, sendo assim no arquivo `.env` você vai colocar o seguinte:
@@ -78,18 +84,29 @@ Essa configuração é igual ao colocar variáveis de ambiente, o `.env` é só 
 =======
 #### Exemplos implementados
 
-* [Authentication](examples/authentication-example.js)
-* [Authorization](examples/authorization-example.js)
-* [Entidade](examples/entidade-example.js)
-* [Notification](examples/notification-example.js)
-* [Tenant](examples/tenant-example.js)
-* [Users](examples/users-example.js)
-
-
+- [Authentication](examples/authentication-example.js)
+- [Authorization](examples/authorization-example.js)
+- [Entity](examples/entity-example.ts)
+- [Notification](examples/notification-example.js)
+- [Tenant](examples/tenant-example.js)
+- [Users](examples/users-example.js)
 
 ### Links
-* [Documentação da API](https://dev.senior.com.br/api/platform/)
 
+- [Documentação da API](https://dev.senior.com.br/api/platform/)
+
+### Entidades
+
+Para utilizar as entidades é necessário chamar o metódo `getEntity` da api passando por parâmetro o domínio, serviço e a entidade.
+
+```javascript
+const entity: Entity<Vacancy> = api.getEntity("hcm", "recruitment", "vacancy");
+entity.get().then(resp => console.log(resp.body));
+
+// Caso seja necessário utilizar a classe de filtro
+String filter = new FilterBuilder().field("id").equals("60B3957C72C44E00A9739451B07265C3").build();
+// O mesmo terá como retorno o seguinte : ?filter=id eq '60B3957C72C44E00A9739451B07265C3'
+```
 
 ## Obtendo versão de distribuição
 Última versão disponível em [https://www.npmjs.com/package/@seniorsistemas/senior-core](https://www.npmjs.com/package/@seniorsistemas/senior-core)
