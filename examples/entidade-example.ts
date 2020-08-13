@@ -1,8 +1,6 @@
 // to run this you need to call ts-node entidade-example.ts
 
-require('dotenv').config({
-  path: '../.env'
-});
+require('dotenv').config();
 import { SeniorApi, FilterBuilder, Entity } from "../dist";
 import { Grupo } from "./model/grupo";
 
