@@ -11,7 +11,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Configurado CI/CD utilizando Github Actions.
 
-## [v1.2.32] - 2020-08-16
+## [1.2.32] - 2020-08-16
 
 ### Changed
 
@@ -20,3 +20,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Removed
 
 ### Added
+
+[Unreleased]: https://github.com/dev-senior-com-br/senior-core-node/compare/v1.2.32...HEAD
+
+[1.2.32]: https://github.com/dev-senior-com-br/senior-core-node/releases/tag/v1.2.32
