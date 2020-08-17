@@ -9,4 +9,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
-- Adicionado commit inicial.
+- Configurado CI/CD utilizando Github Actions.
+
+## [v1.2.32] - 2020-08-16
+
+### Changed
+
+### Fixed
+
+### Removed
+
+### Added
