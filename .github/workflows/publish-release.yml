@@ -12,8 +12,8 @@ jobs:
     - name: Get the version
       id: get_version
       run: |
-      echo ::set-output name=version::$(echo ${{ github.ref }} | sed -e 's/refs\/tags\///g')
-      echo ::set-output name=version_without_v::$(echo ${{ github.ref }} | sed -e 's/refs\/tags\/v//g')
+        echo ::set-output name=version::$(echo ${{ github.ref }} | sed -e 's/refs\/tags\///g')
+        echo ::set-output name=version_without_v::$(echo ${{ github.ref }} | sed -e 's/refs\/tags\/v//g')
     - name: Update package.json
       run: npm version --no-git-tag-version ${{ steps.get_version.outputs.version }}
     - name: Update changelog
