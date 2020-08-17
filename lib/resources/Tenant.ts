@@ -1,14 +1,14 @@
 import { RequestClient } from '../base/RequestClient';
 import { HttpMethod } from '../model/HttpMethod';
 import { SeniorApi } from '../SeniorApi';
-import { RequestReturn } from '../model/RequestReturn';
+import { RequestReturn } from '../model';
 
 export class Tenant extends RequestClient {
   constructor(seniorApi: SeniorApi) {
     super(seniorApi, 'platform', 'tenant');
   }
 
-  getTenantByName(tenantName: string): Promise<RequestReturn<any>> {
+  getTenantByName(tenantName: string): Promise<RequestReturn> {
     if (!tenantName) {
       throw new Error('O "tenantName" deve ser informado');
     }
@@ -25,7 +25,7 @@ export class Tenant extends RequestClient {
     return this.request(clientOptions);
   }
 
-  getTenantByDomain(tenantDomain: string): Promise<RequestReturn<any>> {
+  getTenantByDomain(tenantDomain: string): Promise<RequestReturn> {
     if (!tenantDomain) {
       throw new Error('O "tenantDomain" deve ser informado');
     }

@@ -7,6 +7,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+-   Criado documentação de entidades
+-   Tipado entidades e documentado filtros
+
 ## [1.2.33] - 2020-08-17
 
 ### Added

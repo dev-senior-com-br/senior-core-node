@@ -3,7 +3,7 @@
   "version": "1.2.33",
   "description": "Senior Core SDK para Node.js",
   "files": [
-    "dist/*"
+    "dist"
   ],
   "main": "./dist/index.js",
   "author": "Senior ECOAPI Team",
@@ -45,14 +45,12 @@
   "homepage": "https://github.com/dev-senior-com-br/senior-core-node#readme",
   "directories": {},
   "devDependencies": {
-    "@deboxsoft/cpx": "^1.5.0",
     "del-cli": "^3.0.1",
-    "minimist": ">=1.2.2",
-    "prebuild": "^10.0.0",
-    "q": "^1.5.1",
+    "@types/node": "^14.0.14",
     "tsc": "^1.20150623.0",
     "typescript": "^3.9.5",
     "prettier": "2.0.5",
+    "ts-node": "^8.10.2",
     "@typescript-eslint/eslint-plugin": "^3.4.0",
     "@typescript-eslint/parser": "^3.4.0",
     "eslint": "^7.3.1"

@@ -57,11 +57,9 @@ export class RequestClient {
       options.params = opts.params;
     }
 
-    return axios(options.url, options.toOptions()).then(
-      (res: AxiosResponse): RequestReturn<T> => {
-        return { ...res, statusCode: res.status, body: res.data };
-      }
-    );
+    return axios
+      .request<T>(options.toOptions())
+      .then((response: AxiosResponse) => ({ ...response, body: response.data, statusCode: response.status }));
   }
 
   getUrlPath(path: string, anonymous = false): string {

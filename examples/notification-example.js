@@ -1,6 +1,4 @@
-require('dotenv').config({
-  path: '../.env'
-});
+require('dotenv').config();
 var SeniorApi = require('../').SeniorApi;
 
 var username = process.env.SENIOR_USERNAME;

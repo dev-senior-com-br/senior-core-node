@@ -1,6 +1,4 @@
-require('dotenv').config({
-  path: '../.env'
-});
+require('dotenv').config();
 
 var SeniorApi = require('../').SeniorApi;
 

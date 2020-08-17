@@ -55,7 +55,7 @@ export class SeniorApi {
     return this.#platform;
   }
 
-  getEntity(domain: string, service: string, entityName: string): Entity {
+  getEntity<T>(domain: string, service: string, entityName: string): Entity<T> {
     return new Entity(domain, service, entityName, this);
   }
 }
