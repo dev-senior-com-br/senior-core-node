@@ -15,7 +15,7 @@
     "format": "prettier --write \"lib/**/*.ts\" \"lib/**/*.js\"",
     "lint": "eslint ./lib",
     "lint:fix": "npm run lint -- --fix",
-    "test": "echo \"Error: no test specified! Configure in package.json\" && exit 1"
+    "test": "echo \"Error: no test specified! Configure in package.json\""
   },
   "husky": {
     "hooks": {
