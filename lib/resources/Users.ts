@@ -29,13 +29,9 @@ export class Users extends RequestClient {
     return this.request(clientOptions);
   }
 
-  listGroupUsers(id: string, searchValue: string, pagination?: Pagination): Promise<RequestReturn> {
+  listGroupUsers(id: string, searchValue?: string, pagination?: Pagination): Promise<RequestReturn> {
     if (!id) {
       throw new Error('O "id" deve ser informado');
-    }
-
-    if (!searchValue) {
-      throw new Error('O "searchValue" deve ser informado');
     }
 
     const clientOptions = {
@@ -89,7 +85,7 @@ export class Users extends RequestClient {
     name: string,
     description: string,
     email: string,
-    users: string[]
+    users?: string[]
   ): Promise<RequestReturn> {
     if (!name) {
       throw new Error('O "tenantName" deve ser informado');
@@ -121,33 +117,14 @@ export class Users extends RequestClient {
 
   updateGroup(
     id: string,
-    name: string,
-    description: string,
-    email: string,
-    usersToAdd: string[],
-    usersToRemove: string[]
+    name?: string,
+    description?: string,
+    email?: string,
+    usersToAdd?: string[],
+    usersToRemove?: string[]
   ): Promise<RequestReturn> {
     if (!id) {
       throw new Error('O "id" deve ser informado');
-    }
-
-    if (!name) {
-      throw new Error('O "name" deve ser informado');
-    }
-
-    if (!description) {
-      throw new Error('O "description" deve ser informado');
-    }
-
-    if (!email) {
-      throw new Error('O "email" deve ser informado');
-    }
-
-    if (
-      (!usersToAdd && !usersToRemove) ||
-      (usersToAdd.length < 1 && usersToRemove.length < 1)
-    ) {
-      throw new Error('O "usersToAdd" ou "usersToRemove" devem ser informados');
     }
 
     const clientOptions = {
@@ -173,12 +150,12 @@ export class Users extends RequestClient {
     fullName: string,
     email: string,
     password: string,
-    description: string,
     blocked: boolean,
     changePassword: boolean,
-    photo: string,
-    locale: string,
-    properties: Properties[]
+    description?: string,
+    photo?: string,
+    locale?: string,
+    properties?: Properties[]
   ): Promise<RequestReturn> {
     if (!username) {
       throw new Error('O "username" deve ser informado');
@@ -196,12 +173,12 @@ export class Users extends RequestClient {
       throw new Error('O "password" deve ser informado');
     }
 
-    if (!description) {
-      throw new Error('O "description" deve ser informado');
+    if (!changePassword) {
+      throw new Error('o "changePassword" deve ser informado');
     }
 
-    if (!locale) {
-      throw new Error('O "locale" deve ser informado');
+    if (!blocked) {
+      throw new Error('o "blocked" deve ser informado');
     }
 
     const clientOptions = {
@@ -227,41 +204,16 @@ export class Users extends RequestClient {
   }
 
   updateUser(
-    username: string,
-    fullName: string,
-    email: string,
-    password: string,
-    description: string,
-    blocked: boolean,
-    changePassword: boolean,
-    photo: string,
-    locale: string,
-    properties: Properties[]
+    username?: string,
+    fullName?: string,
+    email?: string,
+    description?: string,
+    blocked?: boolean,
+    changePassword?: boolean,
+    photo?: string,
+    locale?: string,
+    properties?: Properties[]
   ): Promise<RequestReturn> {
-    if (!username) {
-      throw new Error('O "username" deve ser informado');
-    }
-
-    if (!fullName) {
-      throw new Error('O "fullName" deve ser informado');
-    }
-
-    if (!email) {
-      throw new Error('O "email" deve ser informado');
-    }
-
-    if (!password) {
-      throw new Error('O "password" deve ser informado');
-    }
-
-    if (!description) {
-      throw new Error('O "description" deve ser informado');
-    }
-
-    if (!locale) {
-      throw new Error('O "locale" deve ser informado');
-    }
-
     const clientOptions = {
       url: this.getUrlPath('actions/updateUser'),
       method: HttpMethod.POST,
@@ -269,7 +221,6 @@ export class Users extends RequestClient {
         username,
         fullName,
         email,
-        password,
         description,
         blocked,
         changePassword,

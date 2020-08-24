@@ -6,11 +6,10 @@ var username = process.env.SENIOR_USERNAME;
 var password = process.env.PASS;
 var tenantName = process.env.TENANT_NAME;
 
-//Propriedades necessárias:
-var temporaryToken = '<SEU_TOKEN>';
-var validationCode = '<SEU_CODIGO>';
-var accessKey = '<SUA_CHAVE>';
-var secret = '<SUA_SENHA>';
+var temporaryToken = process.env.TEMPORARY_TOKEN;
+var validationCode = process.env.VALIDATION_TOKEN;
+var accessKey = process.env.ACCESS_KEY;
+var secret = process.env.SECRET;
 
 var api = new SeniorApi();
 api.environment = 'DEV';

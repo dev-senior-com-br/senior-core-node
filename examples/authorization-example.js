@@ -4,17 +4,15 @@ var SeniorApi = require('../').SeniorApi;
 
 var username = process.env.SENIOR_USERNAME;
 var password = process.env.PASS;
-var tenantName = process.env.TENANT_NAME;
 
-var resource = '<URI_DO_RECURSO>';
-var action = '<ACAO_DO_RECURSO>';
-var resource = '/';
-var action = '<ACTION>';
-var attributes = [{ 'attribute': '<NOME_DO_ATRIBUTO>', 'value': 'VALOR_DO_ATRIBUTO' }];
-var role = '<NOME_DO_PAPEL>';
-var descriptionRole = '<DESCRICAO_DO_PAPEL>'
-var roles = ['<NOME_DO_PAPEL>'];
-var users = ['<IDENTIFICADOR_DO_USUARIO>'];
+var resource = process.env.RESOURCE_URI;
+var resourceName = process.env.RESOURCE_NAME;
+var action = process.env.RESOURCE_ACTION;
+var attributes = [{ 'attribute': process.env.ATTRIBUTE_NAME, 'value': process.env.ATTRIBUTE_VALUE }];
+var role = process.env.ROLE_NAME;
+var descriptionRole = process.env.ROLE_DESCRIPTION;
+var roles = [role];
+var users = [process.env.USER_ID];
 
 var api = new SeniorApi();
 
@@ -54,7 +52,14 @@ api.authentication.login(username, password).then(function (json) {
     console.error('Erro ao verificar se o usuário corrente possui permissão: ', error);
   });
 
-  api.authorization.saveResources(uri).then(function (json) {
+  const resourcesToSave = [{ 
+    uri: resource, 
+    name: resourceName, 
+    actions: [{ 
+      name: action 
+    }] 
+  }]
+  api.authorization.saveResources(resourcesToSave).then(function (json) {
     if (json.statusCode != 200) {
       console.error(json.body);
     } else {
@@ -64,7 +69,7 @@ api.authentication.login(username, password).then(function (json) {
     console.error('Erro na tentativa criar o recurso: ', error);
   });
 
-  var resource2Delete = ['<IDENTIFICADOR_DO_RECURSO>'];
+  var resource2Delete = resourcesToSave.map(r2s => r2s.uri);
 
   api.authorization.deleteResources(resource2Delete).then(function (json) {
     if (json.statusCode != 200) {

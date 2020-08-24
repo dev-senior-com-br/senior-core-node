@@ -6,15 +6,15 @@ var username = process.env.SENIOR_USERNAME;
 var password = process.env.PASS;
 
 //Propriedades necessárias:
-var creation_username = '<Username do novo usuário>';
-var creation_fullName = '<Nome completo>';
-var creation_email = '<Email do novo usuário>';
-var creation_password = '<Senha do novo usuário>';
-var creation_locale = '<Locale do usuário (exemplo: pt-BR)>';
-var changed_fullName = '<Nome completo para alteração do usuário>';
-var tenantName = '<Nome do tenant>';
-var group_name =  '<Nome do novo grupo>';
-var group_description = '<Descrição do grupo>';
+var creation_username = process.env.NEW_USER_USERNAME;
+var creation_fullName = process.env.NEW_USER_FULLNAME;
+var creation_email = process.env.NEW_USER_EMAIL;
+var creation_password = process.env.NEW_USER_PASS;
+var creation_locale = process.env.NEW_USER_LOCALE || 'pt-br';
+var changed_fullName = process.env.CHANGED_USER_FULLNAME;
+var tenantName = process.env.TENANT_NAME;
+var group_name =  process.env.GROUP_NAME;
+var group_description = process.env.GROUP_DESCRIPTION;
 
 
 var api = new SeniorApi();

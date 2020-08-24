@@ -57,8 +57,8 @@ export class Authorization extends RequestClient {
     return this.request(clientOptions);
   }
 
-  saveResources(resources: any): Promise<RequestReturn> {
-    if (!resources) {
+  saveResources(resources: any[]): Promise<RequestReturn> {
+    if (!resources || resources.length === 0) {
       throw new Error('Os "resources" devem ser informados');
     }
     const clientOptions = {
