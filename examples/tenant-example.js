@@ -12,7 +12,7 @@ function printError(error) {
   console.error(error['ams:fault']['ams:code'][0] + ' - ' + error['ams:fault']['ams:message'][0] + ' - ' + error['ams:fault']['ams:description'][0]);
 }
 
-api.authentication.login(username, password).then(function (json) {
+api.authentication.login({username, password}).then(function (json) {
   if(json.body.resetPasswordInfo) {
     throw new Error('Usuário informado inválido para os testes, é necessário fazer o login na plataforma ao menos uma vez após a sua criação para realizar a troca da senha.');
   }

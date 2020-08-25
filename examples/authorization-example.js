@@ -24,7 +24,7 @@ var api = new SeniorApi();
 api.environment = 'DEV';
 
 // Efetuando login
-api.authentication.login(username, password).then(function (json) {
+api.authentication.login({username, password}).then(function (json) {
   if(json.body.resetPasswordInfo) {
     throw new Error('Usuário informado inválido para os testes, é necessário fazer o login na plataforma ao menos uma vez após a sua criação para realizar a troca da senha.');
   }
@@ -42,7 +42,7 @@ api.authentication.login(username, password).then(function (json) {
     console.error('Erro na tentativa obter o recurso: ', error);
   });
 
-  api.authorization.checkAccess(resource, action, attributes).then(function (json) {
+  api.authorization.checkAccess({resource, action, attributes}).then(function (json) {
     if (json.statusCode != 200) {
       console.error(json.body);
     } else {
@@ -81,7 +81,7 @@ api.authentication.login(username, password).then(function (json) {
     console.error('Erro na tentativa de excluir o recurso: ', error);
   });
 
-  api.authorization.createRole(role, descriptionRole).then(function (json) {
+  api.authorization.createRole({name: role, description: descriptionRole}).then(function (json) {
     if (json.statusCode != 200) {
       console.error(json.body);
     } else {
@@ -121,7 +121,7 @@ api.authentication.login(username, password).then(function (json) {
     console.error('Erro na tentativa de remover o papel: ', error);
   });
 
-  api.authorization.assignUsers(roles, users).then(function (json) {
+  api.authorization.assignUsers({roles, users}).then(function (json) {
     if (json.statusCode != 200) {
       console.error(json.body);
     } else {
@@ -131,7 +131,7 @@ api.authentication.login(username, password).then(function (json) {
     console.error('Erro na tentativa de associar usuário(s) ao(s) papel(is): ', error);
   });
 
-  api.authorization.unassignUsers(roles, users).then(function (json) {
+  api.authorization.unassignUsers({roles, users}).then(function (json) {
     if (json.statusCode != 200) {
       console.error(json.body);
     } else {
