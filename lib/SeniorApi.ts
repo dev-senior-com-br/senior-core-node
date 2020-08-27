@@ -6,6 +6,7 @@ import { Users } from './resources/Users';
 import { Entity } from './base/Entity';
 import { Platform } from './base/Platform';
 import { ENVIRONMENTS } from './Environments';
+import { Blob } from './resources/Blob';
 
 export class SeniorApi {
   accessToken: string = null;
@@ -14,6 +15,7 @@ export class SeniorApi {
   #tenant: Tenant;
   #notification: Notification;
   #users: Users;
+  #blob: Blob
   #platform: Platform = new Platform(ENVIRONMENTS.DEV);
 
   get authentication(): Authentication {
@@ -39,6 +41,11 @@ export class SeniorApi {
   get users(): Users {
     this.#users = this.#users || new Users(this);
     return this.#users;
+  }
+
+  get blob(): Blob {
+    this.#blob = this.#blob || new Blob(this);
+    return this.#blob;
   }
 
   setUrl(url: string): void {
