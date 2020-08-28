@@ -14,6 +14,7 @@ export class Notification extends RequestClient {
     priority: string,
     subject: string,
     content: string,
+    notificationClass: string,
     domain: string,
     service: string,
     users: string[]
@@ -27,6 +28,7 @@ export class Notification extends RequestClient {
         notificationPriority: priority,
         notificationSubject: subject,
         notificationContent: content,
+        notificationClass: notificationClass,
         sourceDomain: domain,
         sourceService: service,
         destinationUsers: users,

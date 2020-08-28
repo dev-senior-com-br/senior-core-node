@@ -18,6 +18,7 @@ api.authentication.login(username, password).then(function (json) {
     'None',
     'Assunto',
     'Conteúdo útil aqui',
+    'Classe da notificação',
     'platform',
     'authentication',
     [username]
