@@ -10,7 +10,7 @@ const password = process.env.PASS;
 const api = new SeniorApi();
 
 // Efetuando login
-api.authentication.login(username, password).then(function (json) {
+api.authentication.login({username, password}).then(function (json) {
   if(json.body.resetPasswordInfo) {
     throw new Error('Usuário informado inválido para os testes, é necessário fazer o login na plataforma ao menos uma vez após a sua criação para realizar a troca da senha.');
   }

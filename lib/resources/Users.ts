@@ -1,26 +1,31 @@
 import { RequestClient } from '../base/RequestClient';
 import { HttpMethod } from '../model/HttpMethod';
 import { SeniorApi } from '../SeniorApi';
-import { Pagination, PaginationDefault } from '../model/Pagination';
-import { Properties } from '../model/Properties';
+import { PaginationDefault } from '../model/Pagination';
 import { RequestReturn } from '../model';
+import {
+  ListGroupsDto,
+  ListGroupUsersDto,
+  CreateGroupDto,
+  UpdateGroupDto,
+  CreateUserDto,
+  UpdateUserDto,
+  UpdateGroupUsersDto,
+} from '../dto/Users';
 
 export class Users extends RequestClient {
   constructor(seniorApi: SeniorApi) {
     super(seniorApi, 'platform', 'user');
   }
 
-  listGroups(searchValue: string);
-  listGroups(searchValue: string, tenant: string);
-  listGroups(searchValue: string, tenant: string, pagination: Pagination);
-  listGroups(searchValue = '', tenant?: string, pagination?: Pagination): Promise<RequestReturn> {
+  listGroups(dto: ListGroupsDto): Promise<RequestReturn> {
     const clientOptions = {
       url: this.getUrlPath('queries/listGroups'),
       method: HttpMethod.POST,
       data: {
-        searchValue,
-        tenant,
-        pagination: pagination ? { ...PaginationDefault, ...pagination } : undefined
+        ...dto,
+        searchValue: dto.searchValue ? dto.searchValue : '',
+        pagination: dto.pagination ? { ...PaginationDefault, ...dto.pagination } : undefined,
       },
       headers: {
         authorization: this.seniorApi.accessToken,
@@ -29,22 +34,20 @@ export class Users extends RequestClient {
     return this.request(clientOptions);
   }
 
-  listGroupUsers(id: string, searchValue: string, pagination?: Pagination): Promise<RequestReturn> {
-    if (!id) {
+  listGroupUsers(dto: ListGroupUsersDto): Promise<RequestReturn> {
+    if (!dto.id) {
       throw new Error('O "id" deve ser informado');
-    }
-
-    if (!searchValue) {
-      throw new Error('O "searchValue" deve ser informado');
     }
 
     const clientOptions = {
       url: this.getUrlPath('queries/listGroupUsers'),
       method: HttpMethod.POST,
       data: {
-        id,
-        searchValue,
-        pagination: pagination ? { ...PaginationDefault, ...pagination } : undefined
+        ...dto,
+        searchValue: dto.searchValue ? dto.searchValue : '',
+        pagination: dto.pagination
+          ? { ...PaginationDefault, ...dto.pagination }
+          : undefined,
       },
       headers: {
         authorization: this.seniorApi.accessToken,
@@ -85,33 +88,23 @@ export class Users extends RequestClient {
     return this.request(clientOptions);
   }
 
-  createGroup(
-    name: string,
-    description: string,
-    email: string,
-    users: string[]
-  ): Promise<RequestReturn> {
-    if (!name) {
-      throw new Error('O "tenantName" deve ser informado');
+  createGroup(dto: CreateGroupDto): Promise<RequestReturn> {
+    if (!dto.name) {
+      throw new Error('O "name" deve ser informado');
     }
 
-    if (!description) {
-      throw new Error('O "tenantName" deve ser informado');
+    if (!dto.description) {
+      throw new Error('O "description" deve ser informado');
     }
 
-    if (!email) {
-      throw new Error('O "tenantName" deve ser informado');
+    if (!dto.email) {
+      throw new Error('O "email" deve ser informado');
     }
 
     const clientOptions = {
       url: this.getUrlPath('actions/createGroup'),
       method: HttpMethod.POST,
-      data: {
-        name,
-        description,
-        email,
-        users,
-      },
+      data: dto,
       headers: {
         authorization: this.seniorApi.accessToken,
       },
@@ -119,48 +112,15 @@ export class Users extends RequestClient {
     return this.request(clientOptions);
   }
 
-  updateGroup(
-    id: string,
-    name: string,
-    description: string,
-    email: string,
-    usersToAdd: string[],
-    usersToRemove: string[]
-  ): Promise<RequestReturn> {
-    if (!id) {
+  updateGroup(dto: UpdateGroupDto): Promise<RequestReturn> {
+    if (!dto.id) {
       throw new Error('O "id" deve ser informado');
-    }
-
-    if (!name) {
-      throw new Error('O "name" deve ser informado');
-    }
-
-    if (!description) {
-      throw new Error('O "description" deve ser informado');
-    }
-
-    if (!email) {
-      throw new Error('O "email" deve ser informado');
-    }
-
-    if (
-      (!usersToAdd && !usersToRemove) ||
-      (usersToAdd.length < 1 && usersToRemove.length < 1)
-    ) {
-      throw new Error('O "usersToAdd" ou "usersToRemove" devem ser informados');
     }
 
     const clientOptions = {
       url: this.getUrlPath('actions/updateGroup'),
       method: HttpMethod.POST,
-      data: {
-        id,
-        name,
-        description,
-        email,
-        usersToAdd,
-        usersToRemove,
-      },
+      data: dto,
       headers: {
         authorization: this.seniorApi.accessToken,
       },
@@ -168,57 +128,35 @@ export class Users extends RequestClient {
     return this.request(clientOptions);
   }
 
-  createUser(
-    username: string,
-    fullName: string,
-    email: string,
-    password: string,
-    description: string,
-    blocked: boolean,
-    changePassword: boolean,
-    photo: string,
-    locale: string,
-    properties: Properties[]
-  ): Promise<RequestReturn> {
-    if (!username) {
+  createUser(dto: CreateUserDto): Promise<RequestReturn> {
+    if (!dto.username) {
       throw new Error('O "username" deve ser informado');
     }
 
-    if (!fullName) {
+    if (!dto.fullName) {
       throw new Error('O "fullName" deve ser informado');
     }
 
-    if (!email) {
+    if (!dto.email) {
       throw new Error('O "email" deve ser informado');
     }
 
-    if (!password) {
+    if (!dto.password) {
       throw new Error('O "password" deve ser informado');
     }
 
-    if (!description) {
-      throw new Error('O "description" deve ser informado');
+    if (dto.changePassword === undefined || dto.changePassword === null) {
+      throw new Error('o "changePassword" deve ser informado');
     }
 
-    if (!locale) {
-      throw new Error('O "locale" deve ser informado');
+    if (dto.blocked === undefined || dto.blocked === null) {
+      throw new Error('o "blocked" deve ser informado');
     }
 
     const clientOptions = {
       url: this.getUrlPath('actions/createUser'),
       method: HttpMethod.POST,
-      data: {
-        username,
-        fullName,
-        email,
-        password,
-        description,
-        blocked,
-        changePassword,
-        photo,
-        locale,
-        properties,
-      },
+      data: dto,
       headers: {
         authorization: this.seniorApi.accessToken,
       },
@@ -226,57 +164,11 @@ export class Users extends RequestClient {
     return this.request(clientOptions);
   }
 
-  updateUser(
-    username: string,
-    fullName: string,
-    email: string,
-    password: string,
-    description: string,
-    blocked: boolean,
-    changePassword: boolean,
-    photo: string,
-    locale: string,
-    properties: Properties[]
-  ): Promise<RequestReturn> {
-    if (!username) {
-      throw new Error('O "username" deve ser informado');
-    }
-
-    if (!fullName) {
-      throw new Error('O "fullName" deve ser informado');
-    }
-
-    if (!email) {
-      throw new Error('O "email" deve ser informado');
-    }
-
-    if (!password) {
-      throw new Error('O "password" deve ser informado');
-    }
-
-    if (!description) {
-      throw new Error('O "description" deve ser informado');
-    }
-
-    if (!locale) {
-      throw new Error('O "locale" deve ser informado');
-    }
-
+  updateUser(dto: UpdateUserDto): Promise<RequestReturn> {
     const clientOptions = {
       url: this.getUrlPath('actions/updateUser'),
       method: HttpMethod.POST,
-      data: {
-        username,
-        fullName,
-        email,
-        password,
-        description,
-        blocked,
-        changePassword,
-        photo,
-        locale,
-        properties,
-      },
+      data: dto,
       headers: {
         authorization: this.seniorApi.accessToken,
       },
@@ -301,29 +193,19 @@ export class Users extends RequestClient {
     return this.request(clientOptions);
   }
 
-  updateGroupUsers(
-    usersToAdd: string[],
-    usersToRemove: string[],
-    groupId: string
-  ): Promise<RequestReturn> {
-    if (!usersToAdd && !usersToRemove) {
-      throw new Error(
-        'O "usersToAdd" e/ou "usersToRemove" devem ser informados.'
-      );
+  updateGroupUsers(dto: UpdateGroupUsersDto): Promise<RequestReturn> {
+    if (!dto.usersToAdd && !dto.usersToRemove) {
+      throw new Error('O "usersToAdd" e/ou "usersToRemove" devem ser informados.');
     }
 
-    if (!groupId) {
+    if (!dto.groupId) {
       throw new Error('O "groupId" deve ser informado');
     }
 
     const clientOptions = {
       url: this.getUrlPath('actions/updateGroupUsers'),
       method: HttpMethod.POST,
-      data: {
-        usersToAdd,
-        usersToRemove,
-        groupId,
-      },
+      data: dto,
       headers: {
         authorization: this.seniorApi.accessToken,
       },

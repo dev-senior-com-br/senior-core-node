@@ -6,17 +6,16 @@ var username = process.env.SENIOR_USERNAME;
 var password = process.env.PASS;
 var tenantName = process.env.TENANT_NAME;
 
-//Propriedades necessárias:
-var temporaryToken = '<SEU_TOKEN>';
-var validationCode = '<SEU_CODIGO>';
-var accessKey = '<SUA_CHAVE>';
-var secret = '<SUA_SENHA>';
+var temporaryToken = process.env.TEMPORARY_TOKEN;
+var validationCode = process.env.VALIDATION_TOKEN;
+var accessKey = process.env.ACCESS_KEY;
+var secret = process.env.SECRET;
 
 var api = new SeniorApi();
 api.environment = 'DEV';
 
 // Efetuando login
-api.authentication.login(username, password).then(function (json) {
+api.authentication.login({password, username}).then(function (json) {
   if(json.body.resetPasswordInfo) {
     throw new Error('Usuário informado inválido para os testes, é necessário fazer o login na plataforma ao menos uma vez após a sua criação para realizar a troca da senha.');
   }
@@ -27,7 +26,7 @@ api.authentication.login(username, password).then(function (json) {
 
   if (refreshToken) {
     // Efetuando refreshToken
-    jsonToken = api.authentication.refreshToken(tenantName, refreshToken).then(function (json) {
+    jsonToken = api.authentication.refreshToken({tenantName, refreshToken}).then(function (json) {
       if (json.statusCode != 200) {
         console.error(json.body);
       } else {
@@ -50,7 +49,7 @@ api.authentication.login(username, password).then(function (json) {
 
 
 // Efetuando loginMFA
-api.authentication.loginMFA(temporaryToken, validationCode).then(function (json) {
+api.authentication.loginMFA({temporaryToken, validationCode}).then(function (json) {
   if (json.statusCode != 200) {
     console.error(json.body);
   } else {
@@ -61,7 +60,7 @@ api.authentication.loginMFA(temporaryToken, validationCode).then(function (json)
 });
 
 // Efetuando loginWithKey
-api.authentication.loginWithKey(accessKey, secret, tenantName).then(function (json) {
+api.authentication.loginWithKey({accessKey, secret, tenantName}).then(function (json) {
   if (json.statusCode != 200) {
     console.error(json.body);
   } else {
