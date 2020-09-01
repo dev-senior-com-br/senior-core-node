@@ -1,6 +1,6 @@
 {
   "name": "@seniorsistemas/senior-core",
-  "version": "1.3.0",
+  "version": "2.0.0",
   "description": "Senior Core SDK para Node.js",
   "files": [
     "dist"
