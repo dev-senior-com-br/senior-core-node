@@ -20,7 +20,7 @@ export interface Action {
 export interface Resource {
   uri: string;
   /**
-   * Obrigatório na criação de um rosource
+   * Obrigatório na criação de um resource
    */
   name?: string;
   label?: string;

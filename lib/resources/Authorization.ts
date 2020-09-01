@@ -26,6 +26,9 @@ export class Authorization extends RequestClient {
       data: {
         uri,
       },
+      headers: {
+        authorization: this.seniorApi.accessToken,
+      },
     };
 
     return this.request(clientOptions);

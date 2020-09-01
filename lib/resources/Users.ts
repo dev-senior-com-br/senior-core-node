@@ -145,11 +145,11 @@ export class Users extends RequestClient {
       throw new Error('O "password" deve ser informado');
     }
 
-    if (!dto.changePassword) {
+    if (dto.changePassword === undefined || dto.changePassword === null) {
       throw new Error('o "changePassword" deve ser informado');
     }
 
-    if (!dto.blocked) {
+    if (dto.blocked === undefined || dto.blocked === null) {
       throw new Error('o "blocked" deve ser informado');
     }
 
