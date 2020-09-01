@@ -6,5 +6,6 @@ export interface NotifyUserDto {
   content: string;
   domain: string;
   service: string;
+  notificationClass: string;
   users: string[];
 }
