@@ -25,6 +25,7 @@ export class Notification extends RequestClient {
         notificationSubject: dto.subject,
         notificationContent: dto.content,
         sourceDomain: dto.domain,
+        notificationClass: dto.notificationClass,
         sourceService: dto.service,
         destinationUsers: dto.users,
       },

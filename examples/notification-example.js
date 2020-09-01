@@ -12,6 +12,7 @@ const notification = {
   priority:'None',
   subject: 'Assunto',
   content: 'Conteúdo útil aqui',
+  notificationClass: 'Classe da notificação',
   domain: 'platform',
   service: 'authentication',
   users: [username]
