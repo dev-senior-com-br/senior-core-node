@@ -7,6 +7,19 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Changed
+
+-   Alterado chamadas para os métodos do `Authentication`, agora não é mais uma lista de parametros e sim um objeto;
+-   Alterado chamadas para os métodos do `Authorization`, agora não é mais uma lista de parametros e sim um objeto;
+-   Alterado chamadas para os métodos do `Notification`, agora não é mais uma lista de parametros e sim um objeto;
+-   Alterado chamadas para os métodos do `Users`, agora não é mais uma lista de parametros e sim um objeto;
+-   Ajustado os exemplos para atender os novos métodos.
+
+### Added
+
+-   Guia de exemplos.
+
+
 ## [1.3.0] - 2020-08-17
 
 ### Added

@@ -6,20 +6,20 @@ var username = process.env.SENIOR_USERNAME;
 var password = process.env.PASS;
 
 //Propriedades necessárias:
-var creation_username = '<Username do novo usuário>';
-var creation_fullName = '<Nome completo>';
-var creation_email = '<Email do novo usuário>';
-var creation_password = '<Senha do novo usuário>';
-var creation_locale = '<Locale do usuário (exemplo: pt-BR)>';
-var changed_fullName = '<Nome completo para alteração do usuário>';
-var tenantName = '<Nome do tenant>';
-var group_name =  '<Nome do novo grupo>';
-var group_description = '<Descrição do grupo>';
+var creation_username = process.env.NEW_USER_USERNAME;
+var creation_fullName = process.env.NEW_USER_FULLNAME;
+var creation_email = process.env.NEW_USER_EMAIL;
+var creation_password = process.env.NEW_USER_PASS;
+var creation_locale = process.env.NEW_USER_LOCALE || 'pt-br';
+var changed_fullName = process.env.CHANGED_USER_FULLNAME;
+var tenantName = process.env.TENANT_NAME;
+var group_name =  process.env.GROUP_NAME;
+var group_description = process.env.GROUP_DESCRIPTION;
 
 
 var api = new SeniorApi();
 
-api.authentication.login(username, password).then(function (json) {
+api.authentication.login({username, password}).then(function (json) {
   if(json.body.resetPasswordInfo) {
     throw new Error('Usuário informado inválido para os testes, é necessário fazer o login na plataforma ao menos uma vez após a sua criação para realizar a troca da senha.');
   }
@@ -42,7 +42,18 @@ api.authentication.login(username, password).then(function (json) {
     console.error('Erro na tentativa de realizar chamada de getUser. ', error);
   });
 
-  api.users.createUser(creation_username, creation_fullName, creation_email, creation_password, userDescription, blocked, changePassword, photo, creation_locale, properties).then(function (json) {
+  api.users.createUser({
+    blocked, 
+    changePassword, 
+    photo, 
+    properties,
+    username: creation_username,
+    fullName: creation_fullName,
+    email: creation_email,
+    password: creation_password,
+    description: userDescription,
+    locale: creation_locale
+  }).then(function (json) {
     if (json.statusCode != 200) {
       console.log(json);
     } else {
@@ -58,7 +69,17 @@ api.authentication.login(username, password).then(function (json) {
         console.error('Erro na tentativa de realizar chamada de getUser. ', error);
       });
 
-      api.users.updateUser(creation_username, changed_fullName, creation_email, creation_password, userDescription, blocked, changePassword, photo, creation_locale, properties).then(function (json) {
+      api.users.updateUser({
+        username: creation_username,
+        fullName: creation_fullName,
+        email: creation_email,
+        description: userDescription,
+        locale: creation_locale,
+        blocked, 
+        changePassword, 
+        photo, 
+        properties
+      }).then(function (json) {
         if (json.statusCode != 200) {
           console.log(json);
         } else {
@@ -69,7 +90,12 @@ api.authentication.login(username, password).then(function (json) {
       });
       var users = [creation_username];
       var id = '';
-      api.users.createGroup(group_name, group_description, creation_email, users).then(function (json) {
+      api.users.createGroup({
+        users,
+        description: group_description,
+        email: creation_email,
+        name: group_name
+      }).then(function (json) {
 		
         if (json.statusCode != 200) {
           console.log(json);
@@ -80,7 +106,14 @@ api.authentication.login(username, password).then(function (json) {
 		
           var usersToAdd = [];
           var usersToRemove = [creation_username];
-          api.users.updateGroup(id, group_name, group_description, creation_email, usersToAdd, usersToRemove).then(function (json) {
+          api.users.updateGroup({
+            id, 
+            usersToAdd, 
+            usersToRemove,
+            description: group_description,
+            email: creation_email,
+            name: group_name
+          }).then(function (json) {
             if (json.statusCode != 200) {
               console.log(json);
             } else {
@@ -92,7 +125,7 @@ api.authentication.login(username, password).then(function (json) {
 		
           usersToAdd = [creation_username];
           usersToRemove = [];
-          api.users.updateGroupUsers(usersToAdd, usersToRemove, id).then(function (json) {
+          api.users.updateGroupUsers({usersToAdd, usersToRemove, groupId: id}).then(function (json) {
             if (json.statusCode != 200) {
               console.log(json);
             } else {
@@ -113,7 +146,7 @@ api.authentication.login(username, password).then(function (json) {
           });
 		
           var pagination;
-          api.users.listGroupUsers(id, group_name, pagination).then(function (json) {
+          api.users.listGroupUsers({id, searchValue: group_name, pagination}).then(function (json) {
             if (json.statusCode != 200) {
               console.log(json);
             } else {
@@ -123,7 +156,7 @@ api.authentication.login(username, password).then(function (json) {
             console.error('Erro na tentativa de realizar chamada de listGroupUsers. ', error);
           });
 		
-          api.users.listGroups(group_name, tenantName, pagination).then(function (json) {
+          api.users.listGroups({searchValue: group_name, tenant: tenantName, pagination}).then(function (json) {
             if (json.statusCode != 200) {
               console.log(json);
             } else {

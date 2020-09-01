@@ -2,6 +2,13 @@ import { HttpMethod } from '../model/HttpMethod';
 import { RequestClient } from '../base/RequestClient';
 import { SeniorApi } from '../SeniorApi';
 import { RequestReturn } from '../model';
+import {
+  CheckAccessDto,
+  SaveResourcesDto,
+  CreateRoleDto,
+  AssignUsersDto,
+  UnassignUsersDto,
+} from '../dto/Authorization';
 
 export class Authorization extends RequestClient {
   constructor(seniorApi: SeniorApi) {
@@ -19,31 +26,30 @@ export class Authorization extends RequestClient {
       data: {
         uri,
       },
+      headers: {
+        authorization: this.seniorApi.accessToken,
+      },
     };
 
     return this.request(clientOptions);
   }
 
-  checkAccess(resource: string, action: string, attributes: string): Promise<RequestReturn> {
-    if (!resource) {
+  checkAccess(dto: CheckAccessDto): Promise<RequestReturn> {
+    if (!dto.resource) {
       throw new Error('O "resource" deve ser informado');
     }
-    if (!action) {
+    if (!dto.action) {
       throw new Error('A "action" deve ser informada');
-    }
-    if (!attributes) {
-      throw new Error('Os "attributes" devem ser informados');
     }
 
     const clientOptions = {
-      url: this.getUrlPath('actions/checkAccess'),
+      url: this.getUrlPath('queries/checkAccess'),
       method: HttpMethod.POST,
       data: {
         permissions: [
           {
-            resource,
-            action,
-            attributes,
+            ...dto,
+            attributes: dto.attributes ? dto.attributes : [],
           },
         ],
         includeFilters: false,
@@ -57,15 +63,15 @@ export class Authorization extends RequestClient {
     return this.request(clientOptions);
   }
 
-  saveResources(resources: any): Promise<RequestReturn> {
-    if (!resources) {
+  saveResources(resources: SaveResourcesDto): Promise<RequestReturn> {
+    if (!resources || resources.length === 0) {
       throw new Error('Os "resources" devem ser informados');
     }
     const clientOptions = {
       url: this.getUrlPath('actions/saveResources'),
       method: HttpMethod.POST,
       data: {
-        resources,
+        dto: resources,
       },
       headers: {
         authorization: this.seniorApi.accessToken,
@@ -74,15 +80,15 @@ export class Authorization extends RequestClient {
     return this.request(clientOptions);
   }
 
-  deleteResources(resources: any): Promise<RequestReturn> {
-    if (!resources) {
+  deleteResources(resourcesURI: string[]): Promise<RequestReturn> {
+    if (!resourcesURI) {
       throw new Error('Os "resources" devem ser informados');
     }
     const clientOptions = {
       url: this.getUrlPath('actions/deleteResources'),
       method: HttpMethod.POST,
       data: {
-        resources,
+        resources: resourcesURI,
       },
       headers: {
         authorization: this.seniorApi.accessToken,
@@ -92,19 +98,18 @@ export class Authorization extends RequestClient {
     return this.request(clientOptions);
   }
 
-  createRole(name: string, description: string): Promise<RequestReturn> {
-    if (!name) {
+  createRole(dto: CreateRoleDto): Promise<RequestReturn> {
+    if (!dto.name) {
       throw new Error('O "name" deve ser informado');
     }
-    if (!description) {
+    if (!dto.description) {
       throw new Error('O "description" deve ser informado');
     }
     const clientOptions = {
       url: this.getUrlPath('actions/createRole'),
       method: HttpMethod.POST,
       data: {
-        name,
-        description,
+        ...dto,
       },
       headers: {
         authorization: this.seniorApi.accessToken,
@@ -121,7 +126,7 @@ export class Authorization extends RequestClient {
       url: this.getUrlPath('queries/getRole'),
       method: HttpMethod.POST,
       data: {
-        name
+        name,
       },
       headers: {
         authorization: this.seniorApi.accessToken,
@@ -149,10 +154,7 @@ export class Authorization extends RequestClient {
     return this.request(clientOptions);
   }
 
-  listRoles(searchValue: string): Promise<RequestReturn> {
-    if (!searchValue) {
-      throw new Error('O "name" devem ser informado');
-    }
+  listRoles(searchValue = ''): Promise<RequestReturn> {
     const clientOptions = {
       url: this.getUrlPath('queries/listRoles'),
       method: HttpMethod.POST,
@@ -167,19 +169,18 @@ export class Authorization extends RequestClient {
     return this.request(clientOptions);
   }
 
-  assignUsers(roles: string[], users: string[]): Promise<RequestReturn> {
-    if (!roles) {
+  assignUsers(dto: AssignUsersDto): Promise<RequestReturn> {
+    if (!dto.roles) {
       throw new Error('Os "roles" devem ser informados');
     }
-    if (!users) {
+    if (!dto.users) {
       throw new Error('Os "users" devem ser informados');
     }
     const clientOptions = {
       url: this.getUrlPath('actions/assignUsers'),
       method: HttpMethod.POST,
       data: {
-        roles,
-        users,
+        ...dto,
       },
       headers: {
         authorization: this.seniorApi.accessToken,
@@ -189,19 +190,18 @@ export class Authorization extends RequestClient {
     return this.request(clientOptions);
   }
 
-  unassignUsers(roles: string[], users: string[]): Promise<RequestReturn> {
-    if (!roles) {
+  unassignUsers(dto: UnassignUsersDto): Promise<RequestReturn> {
+    if (!dto.roles) {
       throw new Error('Os "roles" devem ser informados');
     }
-    if (!users) {
+    if (!dto.users) {
       throw new Error('Os "users" devem ser informados');
     }
     const clientOptions = {
       url: this.getUrlPath('actions/unassignUsers'),
       method: HttpMethod.POST,
       data: {
-        roles,
-        users,
+        ...dto,
       },
       headers: {
         authorization: this.seniorApi.accessToken,

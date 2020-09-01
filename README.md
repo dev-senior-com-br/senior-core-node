@@ -1,6 +1,6 @@
 # Senior API SDK para Node.js
 
-Esta biblioteca permite desenvolvedores criar integrações com API da Senior. Você pode ler a documentação completa [aqui](https://dev.senior.com.br/api/platform/)
+Esta biblioteca permite desenvolvedores criar integrações com API da Senior.
  
 ## Versão suportada do Node.js
 
@@ -21,6 +21,8 @@ export enum ENVIRONMENTS {
   PROD = 'https://api.senior.com.br',
 }
 ```
+
+Guia para mudar ambiente na seção [Iniciando a utilização](#iniciando-a-utilização).
 
 ### Configurações
 Os comando abaixo permitem configuração de proxy:
@@ -74,6 +76,7 @@ ts-node examples/<nome_arquivo>.ts
 Alguns exemplos necessitam de propriedades específicas, descritas no inicio dos arquivos. Para configurar basta criar um arquivo no root do projeto chamado `.env` contendo chave=valor para cada variavel de ambiente que o exemplo necessita.
 Exemplo:
 No arquivo `examples/authentication-example.js` usamos a variavel de ambiente: `process.env.SENIOR_USERNAME`, sendo assim no arquivo `.env` você vai colocar o seguinte:
+
 ```
 SENIOR_USERNAME=<seu_usuario_da_plataforma>
 PASS=<seu_password_da_plataforma>

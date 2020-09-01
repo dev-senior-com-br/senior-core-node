@@ -15,7 +15,8 @@
     "format": "prettier --write \"lib/**/*.ts\" \"lib/**/*.js\"",
     "lint": "eslint ./lib",
     "lint:fix": "npm run lint -- --fix",
-    "test": "npm run lint"
+    "test": "npm run lint",
+    "ts-node": "ts-node"
   },
   "husky": {
     "hooks": {
