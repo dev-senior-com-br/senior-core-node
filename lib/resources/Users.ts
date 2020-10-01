@@ -177,14 +177,17 @@ export class Users extends RequestClient {
     return this.request(clientOptions);
   }
 
-  deleteUser(id: string): Promise<RequestReturn> {
-    if (!id) {
-      throw new Error('O "id" deve ser informado');
+  deleteUser(username: string): Promise<RequestReturn> {
+    if (!username) {
+      throw new Error('O "username" deve ser informado');
     }
 
     const clientOptions = {
-      url: this.getUrlPath('entities/Usuario/' + id),
-      method: HttpMethod.DELETE,
+      url: this.getUrlPath('actions/deleteUser'),
+      data: {
+        username
+      },
+      method: HttpMethod.POST,
       headers: {
         authorization: this.seniorApi.accessToken,
       },
@@ -220,8 +223,11 @@ export class Users extends RequestClient {
     }
 
     const clientOptions = {
-      url: this.getUrlPath('entities/Grupo/' + id),
-      method: HttpMethod.DELETE,
+      url: this.getUrlPath('actions/removeGroup'),
+      data: {
+        id
+      },
+      method: HttpMethod.POST,
       headers: {
         authorization: this.seniorApi.accessToken,
       },

@@ -187,8 +187,7 @@ api.authentication.login({username, password}).then(function (json) {
           console.log(json);			
         } else {
           console.log(json.body);
-          idUser = json.body.id;
-          api.users.deleteUser(idUser).then(function (json) {
+          api.users.deleteUser(creation_username).then(function (json) {
             if (json.statusCode != 200) {
               console.log(json);
             } else {
