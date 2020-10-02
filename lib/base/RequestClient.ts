@@ -21,7 +21,7 @@ export class RequestClient {
    * @param {ClientOptions}
    * @returns {RequestReturn<T>}
    */
-  request<T>(opts: ClientOptions = new ClientOptions()): Promise<RequestReturn<T>> {
+  request<T>(opts: ClientOptions<T> = new ClientOptions()): Promise<RequestReturn<T>> {
     if (!opts.method) {
       throw new Error('O "method" deve ser informado');
     }
@@ -47,7 +47,7 @@ export class RequestClient {
     }
 
     // opções de request
-    const options = new RequestOptions(opts.timeout, opts.url, opts.method, headers);
+    const options = new RequestOptions<T>(opts.timeout, opts.url, opts.method, headers);
 
     if (opts.data) {
       options.data = opts.data;
