@@ -9,6 +9,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
+-   ECOAPI-876 - Alterado os endpoints do `User.deleteGroup` e `User.deleteUser`. Agora passam a chamar o serviço de `user` (`user\actions\deleteUser` e `user\actions\removeGroup`).
+
+### Changed
+
 -   Alterado chamadas para os métodos do `Authentication`, agora não é mais uma lista de parametros e sim um objeto;
 -   Alterado chamadas para os métodos do `Authorization`, agora não é mais uma lista de parametros e sim um objeto;
 -   Alterado chamadas para os métodos do `Notification`, agora não é mais uma lista de parametros e sim um objeto;

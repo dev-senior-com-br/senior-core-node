@@ -1,11 +1,11 @@
 import { HttpMethod } from './HttpMethod';
 
-export class RequestOptions {
+export class RequestOptions<T> {
   timeout: number;
   url: string;
   method: HttpMethod;
   headers: Record<string, string>;
-  data: any;
+  data: T;
   params: string;
 
   constructor(
@@ -13,7 +13,7 @@ export class RequestOptions {
     url: string = null,
     method: HttpMethod = null,
     headers: Record<string, string> = null,
-    data: any = null,
+    data: T = null,
     params: string = null
   ) {
     this.timeout = timeout;
@@ -24,7 +24,7 @@ export class RequestOptions {
     this.params = params;
   }
 
-  toOptions(): RequestOptions {
+  toOptions(): RequestOptions<T> & { headers: Record<string, string> } {
     return { ...this, headers: { ...this.headers } }; //clone
   }
 }
