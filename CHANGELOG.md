@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [2.1.1] - 2021-02-03
+
 ### Fixed
 
 -   Correção na documentaçao
@@ -66,7 +68,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
-[Unreleased]: https://github.com/dev-senior-com-br/senior-core-node/compare/2.1.0...HEAD
+[Unreleased]: https://github.com/dev-senior-com-br/senior-core-node/compare/2.1.1...HEAD
+
+[2.1.1]: https://github.com/dev-senior-com-br/senior-core-node/compare/2.1.0...2.1.1
 
 [2.1.0]: https://github.com/dev-senior-com-br/senior-core-node/compare/1.3.0...2.1.0
 
