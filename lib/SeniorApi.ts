@@ -2,7 +2,7 @@ import { Authentication } from './resources/Authentication';
 import { Authorization } from './resources/Authorization';
 import { Tenant } from './resources/Tenant';
 import { Notification } from './resources/Notification';
-import { Configuration } from "./resources/Configuration";
+import { Configuration } from './resources/Configuration';
 import { Users } from './resources/Users';
 import { Entity } from './base/Entity';
 import { Platform } from './base/Platform';

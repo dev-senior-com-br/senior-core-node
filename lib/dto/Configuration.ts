@@ -1,6 +1,6 @@
 export interface BodyCustomPropertyDto {
   propertyKey: string;
-  type: String;
+  type: string;
   propertyValue: string,
   hashTags: [],
   label: string,
