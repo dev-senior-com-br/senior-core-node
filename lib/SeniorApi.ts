@@ -2,6 +2,7 @@ import { Authentication } from './resources/Authentication';
 import { Authorization } from './resources/Authorization';
 import { Tenant } from './resources/Tenant';
 import { Notification } from './resources/Notification';
+import { Configuration } from './resources/Configuration';
 import { Users } from './resources/Users';
 import { Entity } from './base/Entity';
 import { Platform } from './base/Platform';
@@ -11,12 +12,18 @@ import { Blob } from './resources/Blob';
 export class SeniorApi {
   accessToken: string = null;
   #authentication: Authentication;
+  #configuration: Configuration;
   #authorization: Authorization;
   #tenant: Tenant;
   #notification: Notification;
   #users: Users;
   #blob: Blob
   #platform: Platform = new Platform(ENVIRONMENTS.DEV);
+
+  get configuration(): Configuration {
+    this.#configuration = this.#configuration || new Configuration(this);
+    return this.#configuration;
+  }
 
   get authentication(): Authentication {
     this.#authentication = this.#authentication || new Authentication(this);
