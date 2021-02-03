@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Fixed
+
+-   Correção na documentaçao
+
+## [2.1.0] - 2021-02-03
+
 ### Added
 
 -   Guia de exemplos;
@@ -22,6 +28,20 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 -   Ajustado os exemplos para atender os novos métodos.
 -   Alterado os endpoints do `User.deleteGroup` e `User.deleteUser`. Agora passam a chamar o serviço de `user` (`user\actions\deleteUser` e `user\actions\removeGroup`).
 
+## [2.0.0] - 2020-09-01
+
+### Changed
+
+-   Alterado chamadas para os métodos do `Authentication`, agora não é mais uma lista de parametros e sim um objeto;
+-   Alterado chamadas para os métodos do `Authorization`, agora não é mais uma lista de parametros e sim um objeto;
+-   Alterado chamadas para os métodos do `Notification`, agora não é mais uma lista de parametros e sim um objeto;
+-   Alterado chamadas para os métodos do `Users`, agora não é mais uma lista de parametros e sim um objeto;
+-   Ajustado os exemplos para atender os novos métodos.
+
+### Added
+
+-   Guia de exemplos;
+-   Adicionado parametro `notificationClass` ao fazer a chamada do metodo `Notification.notifyUser`.
 
 ## [1.3.0] - 2020-08-17
 
@@ -46,7 +66,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
-[Unreleased]: https://github.com/dev-senior-com-br/senior-core-node/compare/v1.3.0...HEAD
+[Unreleased]: https://github.com/dev-senior-com-br/senior-core-node/compare/2.1.0...HEAD
+
+[2.1.0]: https://github.com/dev-senior-com-br/senior-core-node/compare/1.3.0...2.1.0
 
 [1.3.0]: https://github.com/dev-senior-com-br/senior-core-node/compare/v1.2.33...1.3.0
 
