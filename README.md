@@ -89,6 +89,8 @@ Essa configuração é igual ao colocar variáveis de ambiente, o `.env` é só 
 
 - [Authentication](examples/authentication-example.js)
 - [Authorization](examples/authorization-example.js)
+- [Blob](examples/blob-example.js)
+- [Configuration](examples/configuration-example.js)
 - [Entity](examples/entity-example.ts)
 - [Notification](examples/notification-example.js)
 - [Tenant](examples/tenant-example.js)
