@@ -63,7 +63,6 @@ export class RequestClient {
   }
 
   getUrlPath(path: string, anonymous = false): string {
-    ///anonymous/rest/platform/authentication/actions/loginWithKey"
     let baseUrl: string = null;
     if (anonymous) {
       baseUrl = this.#platform.anonymousUrl;
