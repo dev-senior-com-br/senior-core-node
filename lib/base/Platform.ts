@@ -24,8 +24,8 @@ export class Platform {
       this.#anonymousUrl = `${baseUrl}/%s/%s/anonymous/%s`;
       this.#restUrl = `${baseUrl}/%s/%s/%s`;
     }
-    this.#anonymousUrl = `${baseUrl}/anonymous/rest/%s/%s/%s`;
-    this.#restUrl = `${baseUrl}/rest/%s/%s/%s`;
+    this.#anonymousUrl = `${baseUrl}/anonymous/%s/%s/%s`;
+    this.#restUrl = `${baseUrl}/%s/%s/%s`;
   }
 
   get anonymousUrl(): string {
