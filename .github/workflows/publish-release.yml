@@ -21,9 +21,10 @@ jobs:
       with:
         version: ${{ steps.get_version.outputs.version_without_v }}
     - name: Commit changes master
-      uses: EndBug/add-and-commit@v4
+      uses: EndBug/add-and-commit@v7
       with:
-        ref: 'master'
+        author_name: "github-actions"
+        branch: 'master'
         message: "[CI_PUBLISH] Updated CHANGELOG.md and package.json"
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
