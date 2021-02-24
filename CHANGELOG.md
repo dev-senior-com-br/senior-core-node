@@ -9,6 +9,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [2.1.3] - 2021-02-17
 
+### Fixed
+
+-   Correção na documentaçao
+
 ## [2.1.2] - 2021-02-17
 
 ### Fixed
@@ -25,17 +29,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
--   Guia de exemplos;
--   Adicionado parametro `notificationClass` ao fazer a chamada do metodo `Notification.notifyUser`.
 -   Incluidas as primitivas `getCustomProperty`, `createCustomProperty`, `updateCustomProperty` e `deleteCustomProperty` do serviço `Configuration`
 
 ### Changed
 
--   Alterado chamadas para os métodos do `Authentication`, agora não é mais uma lista de parametros e sim um objeto;
--   Alterado chamadas para os métodos do `Authorization`, agora não é mais uma lista de parametros e sim um objeto;
--   Alterado chamadas para os métodos do `Notification`, agora não é mais uma lista de parametros e sim um objeto;
--   Alterado chamadas para os métodos do `Users`, agora não é mais uma lista de parametros e sim um objeto;
--   Ajustado os exemplos para atender os novos métodos.
 -   Alterado os endpoints do `User.deleteGroup` e `User.deleteUser`. Agora passam a chamar o serviço de `user` (`user\actions\deleteUser` e `user\actions\removeGroup`).
 
 ## [2.0.0] - 2020-09-01
