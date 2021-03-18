@@ -8,6 +8,7 @@ import {
   CreateRoleDto,
   AssignUsersDto,
   UnassignUsersDto,
+  GetRoleFiltersDto,
 } from '../dto/Authorization';
 
 export class Authorization extends RequestClient {
@@ -199,6 +200,31 @@ export class Authorization extends RequestClient {
     }
     const clientOptions = {
       url: this.getUrlPath('actions/unassignUsers'),
+      method: HttpMethod.POST,
+      data: {
+        ...dto,
+      },
+      headers: {
+        authorization: this.seniorApi.accessToken,
+      },
+    };
+
+    return this.request(clientOptions);
+  }
+
+  getRoleFilters(dto: GetRoleFiltersDto ): Promise<RequestReturn> {
+    if (!dto.roles) {
+      throw new Error('Os "papéis" devem ser informados');
+    }
+    if (!dto.domainName) {
+      throw new Error('O "domínio" deve ser informado');
+    }
+    if (!dto.roles) {
+      throw new Error('O "serviço" deve ser informado');
+    }
+
+    const clientOptions = {
+      url: this.getUrlPath('queries/getRoleFilters'),
       method: HttpMethod.POST,
       data: {
         ...dto,

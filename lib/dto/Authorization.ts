@@ -61,3 +61,9 @@ export interface UnassignUsersDto {
    */
   users: string[];
 }
+
+export interface GetRoleFiltersDto {
+    roles: string[];
+    domainName: string;
+    serviceName: string;
+  }

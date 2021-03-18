@@ -52,12 +52,12 @@ api.authentication.login({username, password}).then(function (json) {
     console.error('Erro ao verificar se o usuário corrente possui permissão: ', error);
   });
 
-  const resourcesToSave = [{ 
-    uri: resource, 
-    name: resourceName, 
-    actions: [{ 
-      name: action 
-    }] 
+  const resourcesToSave = [{
+    uri: resource,
+    name: resourceName,
+    actions: [{
+      name: action
+    }]
   }]
   api.authorization.saveResources(resourcesToSave).then(function (json) {
     if (json.statusCode != 200) {
@@ -106,7 +106,7 @@ api.authentication.login({username, password}).then(function (json) {
       console.error(json.body);
     } else {
       console.log(JSON.stringify(json.body));
-    }		
+    }
   }).catch(function (error) {
     console.error('Erro na tentativa de obter o papeis: ', error);
   });
@@ -139,6 +139,16 @@ api.authentication.login({username, password}).then(function (json) {
     }
   }).catch(function (error) {
     console.error('Erro na tentativa de desassociar usuário(s) ao(s) papel(is): ', error);
+  });
+
+  api.authorization.getRoleFilters({roles: ['roleName','roleName'], domainName: 'domainName', serviceName: 'serviceName'}).then(function (json) {
+    if (json.statusCode != 200) {
+      console.error(json.body);
+    } else {
+      console.log(JSON.stringify(json.body));
+    }
+  }).catch(function (error) {
+    console.error('Erro na tentativa de obter os filtros dos papéis: ', error);
   });
 
   if (api.accessToken) {
