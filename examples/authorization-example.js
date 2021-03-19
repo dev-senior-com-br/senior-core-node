@@ -141,7 +141,7 @@ api.authentication.login({username, password}).then(function (json) {
     console.error('Erro na tentativa de desassociar usuário(s) ao(s) papel(is): ', error);
   });
 
-  api.authorization.getRoleFilters({roles: ['roleName','roleName'], domainName: 'domainName', serviceName: 'serviceName'}).then(function (json) {
+  api.authorization.getRoleFilters({roles: ['Usuário','admin'], domainName: 'domainName', serviceName: 'serviceName'}).then(function (json) {
     if (json.statusCode != 200) {
       console.error(json.body);
     } else {
