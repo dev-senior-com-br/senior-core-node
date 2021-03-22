@@ -61,3 +61,18 @@ export interface UnassignUsersDto {
    */
   users: string[];
 }
+
+export interface GetRoleFiltersDto {
+  /**
+   * Lista com o nome dos papéis
+   */
+  roles: string[];
+  /**
+   * Nome do domínio onde os filtros estão vinculados
+   */
+  domainName: string;
+  /**
+   * Nome do serviço onde os filtros estão vinculados
+   */
+  serviceName: string;
+  }
