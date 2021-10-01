@@ -10,3 +10,8 @@ export interface BodyCustomPropertyDto {
 export interface CustomPropertyDto {
   propertyKey: string;
 }
+
+export interface ServicePropertiesDto {
+  dominio: string;
+  servico: string;
+}
