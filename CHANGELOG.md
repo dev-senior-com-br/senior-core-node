@@ -7,9 +7,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [2.3.0] - 2021-10-04
+
 ### Added
 
-- Incluída a primitiva `listServiceProperties` do serviço Configuration.
+-   Incluída a primitiva `listServiceProperties` do serviço Configuration.
 
 ## [2.2.0] - 2021-03-22
 
@@ -83,7 +85,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
-[Unreleased]: https://github.com/dev-senior-com-br/senior-core-node/compare/2.2.0...HEAD
+[Unreleased]: https://github.com/dev-senior-com-br/senior-core-node/compare/2.3.0...HEAD
+
+[2.3.0]: https://github.com/dev-senior-com-br/senior-core-node/compare/2.2.0...2.3.0
 
 [2.2.0]: https://github.com/dev-senior-com-br/senior-core-node/compare/2.1.3...2.2.0
 
