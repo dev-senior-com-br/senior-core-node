@@ -6,6 +6,11 @@ var password = process.env.PASS;
 
 var api = new SeniorApi();
 
+const servicePropertiesPayload = {
+  dominio: 'domain01',
+  servico: 'service01'
+}
+
 const createPayload = {
   propertyKey: 'MinhaPropCustomizada',
   type: 'String',
@@ -32,6 +37,7 @@ api.authentication.login({username, password}).then(function (json) {
   }
   
   api.accessToken = JSON.parse(json.body.jsonToken).access_token;
+
   api.configuration.createCustomProperty(createPayload)
   .then(function (json) {
     if (json.statusCode != 200) {
@@ -39,7 +45,7 @@ api.authentication.login({username, password}).then(function (json) {
     } else {
       console.log(json.body);
     }
-      
+
     api.configuration.getCustomProperty(propKeyPayload)
     .then(function (json) {
       if (json.statusCode != 200) {
@@ -47,7 +53,7 @@ api.authentication.login({username, password}).then(function (json) {
       } else {
         console.log(json.body);
       }
-        
+
       api.configuration.updateCustomProperty(updatePayload)
       .then(function (json) {
         if (json.statusCode != 200) {
@@ -73,20 +79,30 @@ api.authentication.login({username, password}).then(function (json) {
             }
           }).catch(function (error) {
             console.error('Erro na tentativa de excluir propriedade de configuração: ', error);
-          });  
+          });
         }).catch(function (error) {
           console.error('Erro na tentativa de ler propriedade de configuração: ', error);
-        });  
+        });
       }).catch(function (error) {
         console.error('Erro na tentativa de atualizar propriedade de configuração: ', error);
-      });  
+      });
     }).catch(function (error) {
       console.error('Erro na tentativa de ler propriedade de configuração: ', error);
-    });      
+    });
   }).catch(function (error) {
     console.error('Erro na tentativa de criar propriedade de configuração: ', error);
   });
 
+  api.configuration.listServiceProperties(servicePropertiesPayload)
+  .then(function (json) {
+    if (json.statusCode != 200) {
+      console.error(json);
+    } else {
+      console.log(json.body);
+    }
+  }).catch(function (error) {
+    console.error('Erro ao tentar recuperar a lista de todas as propriedades de domínios/serviços: ', error);
+  });
 
   if (api.accessToken) {
     api.authentication.logout().catch(function (error) {
@@ -96,4 +112,3 @@ api.authentication.login({username, password}).then(function (json) {
 }).catch(function (error) {
   console.error('Erro na tentativa de efetuar login: ', error);
 });
-

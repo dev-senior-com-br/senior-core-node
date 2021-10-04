@@ -2,11 +2,24 @@ import { HttpMethod } from '../model/HttpMethod';
 import { SeniorApi } from '../SeniorApi';
 import { RequestClient } from '../base/RequestClient';
 import { RequestReturn } from '../model';
-import { BodyCustomPropertyDto, CustomPropertyDto } from '../dto/Configuration';
+import { BodyCustomPropertyDto, CustomPropertyDto, ServicePropertiesDto } from '../dto/Configuration';
 
 export class Configuration extends RequestClient {
   constructor(seniorApi: SeniorApi) {
     super(seniorApi, 'platform', 'configuration');
+  }
+
+  listServiceProperties(dto: ServicePropertiesDto): Promise<RequestReturn> {
+    const clientOptions = {
+      url: this.getUrlPath('queries/listServiceProperties'),
+      method: HttpMethod.POST,
+      data: dto,
+      headers: {
+        authorization: this.seniorApi.accessToken,
+      }
+    };
+
+    return this.request(clientOptions);
   }
 
   getCustomProperty(dto: CustomPropertyDto): Promise<RequestReturn> {
@@ -72,6 +85,5 @@ export class Configuration extends RequestClient {
 
     return this.request(clientOptions);
   }
-
 
 }
